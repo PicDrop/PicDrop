@@ -4,4 +4,10 @@ node_modules
 ## API Keys
 server/config/secrets.js
 
+## Rethink
+rethinkdb_data/
+
+## Floobits
+.floo
+.flooignore
 
