@@ -1,0 +1,7 @@
+## Node Packages
+node_modules
+
+## API Keys
+server/config/secrets.js
+
+
