@@ -1,8 +1,8 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
-var apiRouter = require('./routes/routes');
-
+//var apiRouter = require('./controllers/api/index');
+var controllers = require('./controllers');
 var app = express();
 
 // application settings
@@ -16,7 +16,9 @@ app.use('/', express.static(__dirname + '/../public'));
 
 
 
-
+// load the router module
+//app.use('/api', apiRouter);
+controllers.connectToApi(app);
 
 
 
