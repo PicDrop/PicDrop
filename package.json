@@ -27,6 +27,7 @@
   "dependencies": {
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.2",
+    "eslint": "^1.10.3",
     "express": "^4.13.4",
     "immutable": "^3.7.6",
     "passport": "^0.3.2",
@@ -36,7 +37,9 @@
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-redux": "^4.0.6",
-    "redux": "^3.0.5"
+    "redux": "^3.0.5",
+    "rethinkdb": "^2.2.1",
+    "thinky": "^2.2.4"
   },
   "devDependencies": {
     "babel-cli": "^6.4.5",
