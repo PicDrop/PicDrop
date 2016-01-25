@@ -3,8 +3,6 @@ var apiRouter = express.Router();
 var auth = require('./auth.controller');
 var user = require('./user.controller');
 
-
-
 /* API Routes */
 
 /* User Authentication Routes  */
@@ -15,14 +13,10 @@ apiRouter.post('/auth/logout:user', auth.userLogout);
 // apiRouter.post('/auth/google', auth.asdf);
 apiRouter.post('/auth/facebook', auth.userFacebookLogin);
 
-
-
 /* User Interface Routes */ 
 //?Should we name a user's image object a 'drop'?
 apiRouter.get('/user/drops', user.getDrops)
 apiRouter.post('/user/drop', user.createDrop)
 //apiRouter.put('/user/drop/star', user.starImage)
-
-
 
 module.exports = apiRouter;

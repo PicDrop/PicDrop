@@ -9,7 +9,16 @@ var User = thinky.createModel('User', {
   firstName: type.string(),
   lastName: type.string()
 });
-
-module.exports = User;
+var Picture = thinky.createModel('Picture', {
+  id: type.string(),
+  thumb: type.string(),
+  userId: type.string()
+});
 
 User.hasMany(Picture, 'pictures', 'id', 'userId');
+Picture.belongsTo(User, 'user', 'userId', 'id');
+
+module.exports = {
+  User: User,
+  Picture: Picture
+};
