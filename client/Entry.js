@@ -8,11 +8,6 @@ import App from './App.js';
 
 injectTapEventPlugin();
 
-// ReactDOM.render(<Router>{ routes }</Router>,
-//   document.getElementById('app')
-// );
-
-ReactDOM.render(
-  <h1>Hello</h1>,
+ReactDOM.render(<Router>{ routes }</Router>,
   document.getElementById('app')
 );
