@@ -1,12 +1,20 @@
+import React from 'react';
+
+
 class ImageInfo extends React.Component({
-  render(){
+  render: function(){
     return (
-      <Title />
-      <Status />
-      <Domain />
-      <Folder />
-      <Tags />
-      <DeleteButton />
+      <div>
+        <Title />
+        <Status />
+        <Domain />
+        <Folder />
+        <Tags />
+        <DeleteButton />
+      </div>
+
     );
   }
-});
+})
+
+export default ImageInfo
