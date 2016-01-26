@@ -4,9 +4,12 @@ import Avatar from 'material-ui/lib/avatar';
 class Logo extends React.Component{
   render(){
     return (
-      <h3 className="col-xs-3" leftAvatar={<Avatar src='../../assets/logo.svg' />}>
-        PicDrop
-      </h3>
+      <div className="box">
+        <div className="row middle-xs">
+          <Avatar src='assets/logo.svg' />
+          <h2>PicDrop</h2>
+        </div>
+      </div>
     );
   }
 }

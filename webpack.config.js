@@ -1,6 +1,8 @@
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
+  devtool: 'eval',
   entry: {
     'client/bundle': [
       'webpack-dev-server/client?http://localhost:8080',
@@ -12,12 +14,9 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
+        test: /\.js$/,
         loader: 'react-hot!babel',
-        // query: {
-        //   presets: ['es2015', 'react']
-        // }
+        include: path.join(__dirname, 'client')
       }
     ]
   },
@@ -25,8 +24,8 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: __dirname + '/public/',
-    publicPath: '/client',
+    path: path.join(__dirname, '/public/'),
+    publicPath: '/',
     filename: '[name].js'
   },
   devServer: {

@@ -5,10 +5,12 @@ import LoginOut from './LoginOut';
 class LogoBar extends React.Component{
   render() {
     return (
-      <div className="row">
-        <div className="col-xs-12">
+      <div className="row middle-xs">
+        <div className='col-xs-3'>
           <Logo />
-          <LoginOut />
+        </div>
+        <div className='col-xs-3 col-xs-offset-6 end-xs'>
+          <LoginOut className="end-xs col-xs-offset-6 col-xs-3" />
         </div>
       </div>
     );
