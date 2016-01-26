@@ -8,7 +8,8 @@ var user = require('./user.controller');
 /* User Authentication Routes  */
 apiRouter.post('/auth/create', auth.userCreate);
 apiRouter.post('/auth/login', auth.userLogin);
-apiRouter.post('/auth/logout:user', auth.userLogout);
+apiRouter.post('/auth/logout', auth.userLogout);
+apiRouter.get('/auth/isAuth', auth.isAuth)
 // apiRouter.post('/auth/dropbox', auth.asdf);
 // apiRouter.post('/auth/google', auth.asdf);
 apiRouter.post('/auth/facebook', auth.userFacebookLogin);
