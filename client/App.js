@@ -1,3 +1,9 @@
-//Logo bar and sign in. 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Router } from 'react-router';
+import { routes } from './routes';
 
-    //main view or splash page depending on login   
+ReactDOM.render(
+  <Router>{routes}</Router>,
+  document.getElementById('app')
+);
