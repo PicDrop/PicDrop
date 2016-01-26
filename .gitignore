@@ -11,3 +11,6 @@ rethinkdb_data/
 .floo
 .flooignore
 
+## Webpack Bundles
+/public/client/bundle.js
+/public/extension/bundle.js
