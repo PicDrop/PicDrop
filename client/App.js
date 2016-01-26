@@ -1,9 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Router } from 'react-router';
-import { routes } from './routes';
+import LogoBar from './LogoBar/LogoBar';
 
-ReactDOM.render(
-  <Router>{routes}</Router>,
-  document.getElementById('app')
-);
+class App extends React.Component{
+  render(){
+    return (
+      <LogoBar />
+      {this.props.children}
+    );
+  }
+}
+
+export default App;

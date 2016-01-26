@@ -21,7 +21,7 @@ module.exports = {
   },
   output: {
     path: __dirname + '/public/',
-    publicPath:'/client',
+    publicPath: '/client',
     filename: '[name].js'
   },
   devServer: {
