@@ -1,6 +1,6 @@
 import React from 'react';
-import Folders from './';
-import Tags from './';
+import Folders from './Folders/Folders';
+import Tags from './Tags/Tags';
 
 class CollectionInfo extends React.Component {
   render() {
