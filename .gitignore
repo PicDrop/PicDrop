@@ -13,4 +13,5 @@ rethinkdb_data/
 
 ## Bundles
 public/client/bundle.js
+public/client/bundle.js.map
 public/extension/bundle.js
