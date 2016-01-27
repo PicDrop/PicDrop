@@ -3,8 +3,8 @@ import ImageInfo from './ImageInfo/ImageInfo';
 import ImageView from './ImageView/ImageView';
 
 
-class Image extends React.Component({
-  render: function(){
+class Image extends React.Component{
+  render(){
     return(
       <div>
         <ImageInfo />
@@ -12,6 +12,6 @@ class Image extends React.Component({
       </div>
     )
   }
-})
+}
 
 export default Image;
