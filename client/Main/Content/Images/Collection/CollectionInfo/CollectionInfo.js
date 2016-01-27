@@ -5,7 +5,7 @@ import Tags from './Tags/Tags';
 class CollectionInfo extends React.Component {
   render() {
     return (
-      <div>CollectionInfo
+      <div>
         <Folders/>
         <Tags/>
       </div>
