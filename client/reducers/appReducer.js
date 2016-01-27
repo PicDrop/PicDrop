@@ -1,6 +1,6 @@
 import defaultState from './defaultState';
 
-const reducer = (state = defaultState, action) => {
+const appReducer = (state = defaultState, action) => {
   switch (action.type) {
     case 'SET_STATE':
       return action.state;
@@ -9,4 +9,4 @@ const reducer = (state = defaultState, action) => {
   }
 };
 
-export default reducer;
+export default appReducer;
