@@ -37,6 +37,7 @@ const defaultState = {
       thumbnail: 'http://placehold.it/350x350'
     }
   },
+
   tags: {
     myTag: {
       'sa6g54a69s8g4sd5f1': true,
@@ -51,6 +52,7 @@ const defaultState = {
       '09sjdfoins0d9fhj09': true
     }
   },
+
   folders: {
     myFolder: {
       'sa6g54a69s8g4sd5f1': true,
@@ -65,6 +67,7 @@ const defaultState = {
       '09sjdfoins0d9fhj09': true
     }
   },
+  
   username: 'testUser',
   currentFolder: null,
   currentTags: [],

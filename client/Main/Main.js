@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from './NavBar/Navbar';
-import Content from './Conent/Content';
+import Content from './Content/Content';
 
 class Main extends React.Component {
   render() {

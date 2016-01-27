@@ -1,6 +1,6 @@
 import React from 'react';
 import Images from './Navs/Images';
-import Streams from './Navs/Streams';
+import Stream from './Navs/Stream';
 import SearchBar from './Navs/SearchBar';
 
 class Navbar extends React.Component {
@@ -8,7 +8,7 @@ class Navbar extends React.Component {
     return (
       <div>
         <Images />
-        <Streams />
+        <Stream />
         <SearchBar />
       </div>
     );
