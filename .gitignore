@@ -1,5 +1,8 @@
+.DS_Store
+
 ## Node Packages
 node_modules
+npm-debug.log
 
 ## API Keys
 server/config/secrets.js
@@ -15,3 +18,7 @@ rethinkdb_data/
 public/client/bundle.js
 public/client/bundle.js.map
 public/extension/bundle.js
+
+## env variables
+.env
+
