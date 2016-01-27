@@ -48,7 +48,8 @@
     "react-tap-event-plugin": "^0.2.1",
     "redux": "^3.0.5",
     "rethinkdb": "^2.2.1",
-    "thinky": "^2.2.4"
+    "thinky": "^2.2.4",
+    "webpack": "^1.12.12"
   },
   "devDependencies": {
     "babel-cli": "^6.4.5",
