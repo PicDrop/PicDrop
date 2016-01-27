@@ -3,12 +3,12 @@ import FlatButton from 'material-ui/lib/flat-button';
 import TextField from 'material-ui/lib/text-field';
 
 
-class ImageInfo extends React.Component({
-  render: function(){
+class ImageInfo extends React.Component {
+  render() {
     return (
       <div>
         <div>
-          <FlatButton style={border: 'solid', border-width: 'thin'} label="Download" />
+          <FlatButton style={{ border: 'solid thin' }} label="Download" />
         </div>
         <div id="metadata">
           title
@@ -18,7 +18,7 @@ class ImageInfo extends React.Component({
           folder
         </div>
         <div id="tags">
-          <TextField hintText="Tags..." underlineFocusStyle={{borderColor: #ED1E79}} />
+          <TextField hintText="Tags..." />
           <FlatButton label="Clean" />
           <FlatButton label="Login" />
           <FlatButton label="Materialize" />
@@ -29,13 +29,8 @@ class ImageInfo extends React.Component({
       </div>
 
 
-
-
-
-
-
     );
   }
-})
+}
 
 export default ImageInfo
