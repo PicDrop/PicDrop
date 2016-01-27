@@ -50,6 +50,7 @@
     "redux": "^3.0.5",
     "rethinkdb": "^2.2.1",
     "thinky": "^2.2.4",
+    "uglifyjs": "^2.4.10",
     "webpack": "^1.12.12"
   },
   "devDependencies": {
