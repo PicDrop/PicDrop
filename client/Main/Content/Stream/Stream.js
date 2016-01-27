@@ -1,13 +1,13 @@
 import React from 'react';
 
-class Images extends React.Component {
+class Stream extends React.Component {
   render() {
     return (
       <div>
-        <h3>Images</h3>
+        <h1>Stream holder</h1>
       </div>
     );
   }
 }
 
-export default Images;
+export default Stream;
