@@ -3,7 +3,7 @@ var path = require('path');
 
 module.exports = {
   devtool: 'source-map',
-  entry: ['./client/Entry.js'],
+  entry: path.join(__dirname, 'client/Entry.js'),
   module: {
     loaders: [
       {
