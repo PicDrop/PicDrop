@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "nodemon server/server.js",
-    "postinstall": "webpack --config ./webpack-production.config.js --progress --colors",
+    "postinstall": "webpack --config ./webpack-production.config.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --reporter landing --recursive"
   },
   "babel": {
@@ -50,6 +50,7 @@
     "redux": "^3.0.5",
     "rethinkdb": "^2.2.1",
     "thinky": "^2.2.4",
+    "uglifyjs": "^2.4.10",
     "webpack": "^1.12.12"
   },
   "devDependencies": {
