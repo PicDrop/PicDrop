@@ -1,10 +1,14 @@
-import { Map } from 'immutable';
+import defaultState from '../defaultState';
+
+const addTag = (state, tags) => {
+  
+}
 
 
-const tagsReducer = (state = new Map(), action) => {
+const tagsReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case 'SET_STATE':
-      return state.merge(action.state);
+    case "ADD_TAG":
+      return addTag(state, action.tags);
     default:
       return state;
   }
