@@ -11,7 +11,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="row">
+      <div>
         <LogoBar />
         {this.props.children}
       </div>

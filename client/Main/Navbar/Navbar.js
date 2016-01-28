@@ -6,10 +6,16 @@ import SearchBar from './Navs/SearchBar';
 class Navbar extends React.Component {
   render() {
     return (
-      <div>
-        <Images />
-        <Stream />
-        <SearchBar />
+      <div className="row middle-xs">
+        <div className="col-xs-1 center-xs">
+          <Images />
+        </div>
+        <div className="col-xs-1">
+          <Stream />
+        </div>
+        <div className="col-xs-10 end-xs">
+          <SearchBar />
+        </div>
       </div>
     );
   }

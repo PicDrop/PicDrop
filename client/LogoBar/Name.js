@@ -3,7 +3,7 @@ import React from 'react';
 class Name extends React.Component {
   render() {
     return (
-      <div className="col s3">
+      <div className="box">
         <h2>PicDrop</h2>
       </div>
     );

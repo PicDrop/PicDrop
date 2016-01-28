@@ -11,8 +11,8 @@ class LoginOut extends React.Component {
   }
   render() {
     return (
-      <div className="col s8 right-align">
-        <FlatButton label="LoginOut" secondary={true} style={ {height: 100} }/>
+      <div className="box end-xs">
+        <FlatButton label="LoginOut" secondary={true} />
       </div>
     );
   }
