@@ -1,15 +1,17 @@
 import React from 'react';
 import Logo from './Logo';
-import Name from './Name';
 import LoginOut from './LoginOut';
 
 class LogoBar extends React.Component {
   render() {
     return (
-      <div className="row">
+      <div className="row bottom-xs">
+        <div className="col-xs-2">
           <Logo />
-          <Name />
+        </div>
+        <div className="col-xs-10">
           <LoginOut />
+        </div>
       </div>
     );
   }
