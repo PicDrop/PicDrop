@@ -1,4 +1,4 @@
-const actions = {
+const appActions = {
   setState: (newState) => {
     return {
       type: 'SET_STATE',
@@ -7,4 +7,4 @@ const actions = {
   },
 };
 
-export default actions;
+export default appActions;
