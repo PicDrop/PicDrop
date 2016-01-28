@@ -5,4 +5,5 @@ import initiateStore from './defaultState';
 const store = createStore(reducer);
 initiateStore(store.dispatch);
 
+
 export default store;
