@@ -1,4 +1,4 @@
-import defaultState from './defaultState';
+import defaultState from '../defaultState';
 
 const addTag = (state, tags) => {
   
