@@ -51,14 +51,14 @@
     "rethinkdb": "^2.2.1",
     "thinky": "^2.2.4",
     "uglifyjs": "^2.4.10",
-    "webpack": "^1.12.12"
-  },
-  "devDependencies": {
+    "webpack": "^1.12.12",
     "babel-cli": "^6.4.5",
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.1",
     "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
+    "babel-preset-react": "^6.3.13"
+  },
+  "devDependencies": {
     "chai": "^3.4.1",
     "chai-immutable": "^1.5.3",
     "eslint-config-airbnb": "^4.0.0",
