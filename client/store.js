@@ -1,8 +1,9 @@
 import { createStore } from 'redux';
 import reducer from './reducers/index';
-import initiateStore from './defaultState';
+import appActions from './actions/appActions';
+import defaultState from './defaultState';
 
 const store = createStore(reducer);
-initiateStore(store.dispatch);
+store.dispatch(appActions.setState(defaultStateImmut));
 
 export default store;
