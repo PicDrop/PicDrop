@@ -6,7 +6,6 @@ import userPics from './userPicsReducer';
 import viewing from './viewingReducer';
 
 export default combineReducers({
-  app,
   folders,
   tags,
   userPics,

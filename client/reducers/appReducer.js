@@ -1,9 +1,9 @@
-import defaultState from '../defaultState';
+import { Map } from 'immutable';
 
-const appReducer = (state = defaultState, action) => {
+const appReducer = (state = new Map(), action) => {
   switch (action.type) {
     case 'SET_STATE':
-      return action.state;
+      return state.merge(action.state);
     default:
       return state;
   }
