@@ -1,15 +1,23 @@
 import React from 'react';
+import List from 'material-ui/lib/lists/list';
+import ListItem from 'material-ui/lib/lists/list-item';
+import ActionInfo from 'material-ui/lib/svg-icons/action/info';
 
 class Folders extends React.Component {
   render() {
+    var keyCounter = 0;
+    let folders = this.props.folders.map((folderObj, folderName) => {
+      console.log(folderObj, folderName);
+      //let itemCount = folderObj.size;
+      //return (<li key={keyCounter++}>{folderName} {itemCount}</li>);
+      return (<ListItem  key={keyCounter++} primaryText={folderName} rightIcon={<ActionInfo />} />);
+    });
     return (
       <div>
         <h3>Folders</h3>
-        <ul>
-          <li>UI</li>
-          <li>Print</li>
-          <li>Interior</li>
-        </ul>
+        <List>
+          {folders}
+        </List>
         <a href="#">Show All Folders</a>
       </div>
     );
@@ -17,3 +25,17 @@ class Folders extends React.Component {
 }
 
 export default Folders;
+
+/*const Folders = (props) => {
+ return (
+ <div>
+ <h3>Folders</h3>
+ <ul>
+ <li>{this.props}</li>
+ <li>Print</li>
+ <li>Interior</li>
+ </ul>
+ <a href="#">Show All Folders</a>
+ </div>
+ );
+ };*/
