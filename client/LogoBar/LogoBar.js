@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from './Logo';
-import LoginOut from './LoginOut';
+import LogInOut from './LogInOut';
 
 class LogoBar extends React.Component {
   render() {
@@ -10,7 +10,7 @@ class LogoBar extends React.Component {
           <Logo />
         </div>
         <div className="col-xs-10">
-          <LoginOut />
+          <LogInOut />
         </div>
       </div>
     );
