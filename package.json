@@ -53,6 +53,7 @@
     "react-router": "^1.0.3",
     "react-tap-event-plugin": "^0.2.1",
     "redux": "^3.0.5",
+    "redux-form": "^4.1.5",
     "redux-logger": "^2.4.0",
     "rethinkdb": "^2.2.1",
     "thinky": "^2.2.4",
