@@ -1,5 +1,8 @@
 import React from 'react';
 import Paper from 'material-ui/lib/paper';
+import GridList from 'material-ui/lib/grid-list/grid-list';
+import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import IconButton from 'material-ui/lib/icon-button';
 
 /*class CollectionView extends React.Component {
   render() {
@@ -31,29 +34,20 @@ const style = {
   display: 'inline-block',
 };
 
-const style1 = {
-  height: 300,
-  width: 1100,
-  margin: 20,
-  textAlign: 'center',
-  display: 'inline-block',
-};
-
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
-import IconButton from 'material-ui/lib/icon-button';
-
 const styles = {
   root: {
+    marginTop: 20,
+    border: '1px dotted green',
     display: 'flex',
     flexWrap: 'nowrap',
     justifyContent: 'space-around',
   },
   gridList: {
-    width: 2200,
-    height: 1600,
+    width: '100%',
+    height: '100%',
     overflowY: 'auto',
-    marginBottom: 24,
+    marginBottom: 20,
+    marginTop: 20
   },
 };
 
@@ -104,8 +98,9 @@ const tilesData = [
 const CollectionView = () => (
   <Paper style={styles.root} z-index={1}>
     <GridList
-      cellHeight={200}
+      cellHeight={350}
       cols={3}
+      padding={20}
       style={styles.gridList}
     >
       {tilesData.map(tile => (
