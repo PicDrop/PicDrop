@@ -92,4 +92,11 @@ const initiateStore = (dispatch) => {
   dispatch(viewingActions.setState(viewing));
 };
 
-export default initiateStore;
+const initialState = {
+  userPics,
+  folders,
+  tags,
+  viewing
+};
+
+export default initialState;
