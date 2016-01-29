@@ -1,6 +1,5 @@
 import React from 'react';
 import FlatButton from 'material-ui/lib/flat-button';
-
 import Card from 'material-ui/lib/card/card';
 import CardActions from 'material-ui/lib/card/card-actions';
 import CardHeader from 'material-ui/lib/card/card-header';
@@ -12,10 +11,7 @@ import CardText from 'material-ui/lib/card/card-text';
 class ImageView extends React.Component {
   render() {
     return (
-      <div style={{"border-style": "dotted", "border-color":"red"}}>
-        <div>
-          <FlatButton label="Download" />
-        </div>
+      <div >
         <div>
           <Card>
             <CardMedia>
