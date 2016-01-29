@@ -1,9 +1,27 @@
-import { createStore } from 'redux';
-import reducer from './reducers/index';
-import initiateStore from './defaultState';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { persistState } from 'redux-devtools';
+import reducer from './reducers';
+import createLogger from 'redux-logger';
+import DevTools from './devTools/devTools';
 
-const store = createStore(reducer);
-initiateStore(store.dispatch);
+const finalCreateStore = compose(
+  applyMiddleware(createLogger),
+  DevTools.instrument(),
+  persistState(
+    window.location.href.match(
+      /[?&]debug_session=([^&]+)\b/
+    )
+  )
+)(createStore);
 
+export default function configureStore(initialState) {
+  const store = finalCreateStore(reducer, initialState);
 
-export default store;
+  if (module.hot) {
+    module.hot.accept('./reducers', () =>
+      store.replaceReducer(require('./reducers').default)
+    );
+  }
+
+  return store;
+}

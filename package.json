@@ -28,6 +28,11 @@
   },
   "homepage": "https://github.com/PicDrop/PicDrop#readme",
   "dependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.2",
     "eslint": "^1.10.3",
@@ -48,15 +53,11 @@
     "react-router": "^1.0.3",
     "react-tap-event-plugin": "^0.2.1",
     "redux": "^3.0.5",
+    "redux-logger": "^2.4.0",
     "rethinkdb": "^2.2.1",
     "thinky": "^2.2.4",
     "uglifyjs": "^2.4.10",
-    "webpack": "^1.12.12",
-    "babel-cli": "^6.4.5",
-    "babel-core": "^6.4.5",
-    "babel-loader": "^6.2.1",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13"
+    "webpack": "^1.12.12"
   },
   "devDependencies": {
     "chai": "^3.4.1",
