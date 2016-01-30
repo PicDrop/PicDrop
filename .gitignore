@@ -24,7 +24,5 @@ public/extension/bundle.js
 
 ## Webstorm
 .idea
-
 public/*.js
 public/*.json
-
