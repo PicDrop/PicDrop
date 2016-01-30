@@ -25,17 +25,3 @@ class Folders extends React.Component {
 }
 
 export default Folders;
-
-/*const Folders = (props) => {
- return (
- <div>
- <h3>Folders</h3>
- <ul>
- <li>{this.props}</li>
- <li>Print</li>
- <li>Interior</li>
- </ul>
- <a href="#">Show All Folders</a>
- </div>
- );
- };*/
