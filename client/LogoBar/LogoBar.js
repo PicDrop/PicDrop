@@ -11,14 +11,12 @@ class LogoBar extends React.Component {
   render() {
     return (
       <div>
-        <AppBar
-          title="PICDROP"
-          iconElementRight={<LogInOut label="LOGINOUT" history={this.props.history}/>}
-          style={{ backgroundColor: 'WHITE' }}
-          titleStyle={{ color: 'DIMGREY', fontFamily:'Roboto', fontWeight:'bold' }}
-          zDepth={0}
-        />
-      </div>
+      <AppBar
+        style={{ backgroundColor: 'WHITE' }}
+        title={<span style={{ color: 'DIMGREY', fontFamily: 'Abel, sans-serif' }}>PICDROP</span>}
+        iconElementRight={<LogInOut history={this.props.history} />}
+        zDepth={0}
+      />
     );
   }
 }
