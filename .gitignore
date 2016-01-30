@@ -26,9 +26,3 @@ public/*.json
 
 ## Webstorm
 .idea
-<<<<<<< 5b646a4a5398e845f352569a85fdbb30b49236e1
-=======
-
-public/*.js
-public/*.json
->>>>>>> added webpack live reload files
