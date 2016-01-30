@@ -12,7 +12,7 @@ class LogoBar extends React.Component {
           title="PICDROP"
           iconElementRight={<LogInOut label="LOGINOUT" />}
           style={{ backgroundColor: 'WHITE' }}
-          titleStyle={{ color: 'DIMGREY', fontFamily:'Roboto', fontWeight:'bold' }}
+          titleStyle={{ color: 'DIMGREY', fontFamily: 'Abel, sans-serif' }}
           zDepth={0}
         />
       </div>
