@@ -27,8 +27,8 @@ const mapStateToProps = (state) => {
   const picId = viewing.getIn(['currentViewing', 0]);
   const pic = userPics.get(picId);
   return {
-    info: pic,
-    url: pic.get('originalUrl')
+    // info: pic,
+    // url: pic.get('originalUrl')
   };
 };
 
