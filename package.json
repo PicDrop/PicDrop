@@ -55,6 +55,7 @@
     "redux": "^3.0.5",
     "redux-form": "^4.1.5",
     "redux-logger": "^2.4.0",
+    "redux-thunk": "^1.0.3",
     "rethinkdb": "^2.2.1",
     "thinky": "^2.2.4",
     "uglifyjs": "^2.4.10",
