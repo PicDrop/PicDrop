@@ -4,8 +4,10 @@ import reducer from './reducers';
 import createLogger from 'redux-logger';
 import DevTools from './devTools/devTools';
 
+const logger = createLogger();
+
 const finalCreateStore = compose(
-  applyMiddleware(createLogger),
+  applyMiddleware(logger),
   DevTools.instrument(),
   persistState(
     window.location.href.match(
