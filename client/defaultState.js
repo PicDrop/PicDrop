@@ -15,7 +15,7 @@ const userPics = new Map({
     title: 'My Picture',
     status: false,
     domain: 'http://exampleURL.com',
-    thumbnail: 'http://placehold.it/350x350'
+    thumbnail: 'http://placehold.it/200x150'
   }),
   'fh165d46h84dhd3f25h1': new Map({
     id: 'fh165d46h84dhd3f25h1',
@@ -26,7 +26,7 @@ const userPics = new Map({
     title: 'My Picture',
     status: false,
     domain: 'http://exampleURL.com',
-    thumbnail: 'http://placehold.it/350x350'
+    thumbnail: 'http://placehold.it/200x150'
   }),
   'gfh6857gdf9h6854df3gsdf': new Map({
     id: 'gfh6857gdf9h6854df3gsdf',
@@ -37,7 +37,7 @@ const userPics = new Map({
     title: 'My Picture',
     status: false,
     domain: 'http://exampleURL.com',
-    thumbnail: 'http://placehold.it/350x350'
+    thumbnail: 'http://placehold.it/200x150'
   }),
   'sa6g54a69s8g4sd5f1': new Map({
     id: 'sa6g54a69s8g4sd5f1',
@@ -48,7 +48,29 @@ const userPics = new Map({
     title: 'My Picture',
     status: false,
     domain: 'http://exampleURL.com',
-    thumbnail: 'http://placehold.it/350x350'
+    thumbnail: 'http://placehold.it/200x150'
+  }),
+  'sa6g54a69s8g4sd5f2': new Map({
+    id: 'sa6g54a69s8g4sd5f1',
+    storageId: 'storageId#',
+    originalUrl: 'http://placehold.it/650x650',
+    folder: 'myFolder',
+    'tags': ['myTag', 'overlapTag'],
+    title: 'My Picture',
+    status: false,
+    domain: 'http://exampleURL.com',
+    thumbnail: 'http://placehold.it/200x150'
+  }),
+  'sa6g54a69s8g4sd5f3': new Map({
+    id: 'sa6g54a69s8g4sd5f1',
+    storageId: 'storageId#',
+    originalUrl: 'http://placehold.it/650x650',
+    folder: 'myFolder',
+    'tags': ['myTag', 'overlapTag'],
+    title: 'My Picture',
+    status: false,
+    domain: 'http://exampleURL.com',
+    thumbnail: 'http://placehold.it/200x150'
   })
 });
 
@@ -82,7 +104,8 @@ const viewing = new Map({
   username: 'testUser',
   currentFolder: null,
   currentTags: new List(),
-  currentViewing: List.of('09sjdfoins0d9fhj09', 'gfh6857gdf9h6854df3gsdf', 'fh165d46h84dhd3f25h1', 'sa6g54a69s8g4sd5f1')
+  currentCollection: List.of('09sjdfoins0d9fhj09', 'gfh6857gdf9h6854df3gsdf', 'fh165d46h84dhd3f25h1', 'sa6g54a69s8g4sd5f1'),
+  currentImage: '09sjdfoins0d9fhj09'
 });
 
 const initiateStore = (dispatch) => {

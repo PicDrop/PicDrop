@@ -1,6 +1,6 @@
 import React from 'react';
 import Folders from './Folders/Folders';
-import { connect } from 'react-redux';
+
 import Tags from './Tags/Tags';
 import Paper from 'material-ui/lib/paper';
 
@@ -15,7 +15,7 @@ class CollectionInfo extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+/*const mapStateToProps = (state) => {
   console.log(state);
   return {
     'folders': state.folders,
@@ -23,4 +23,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(CollectionInfo);
+export default connect(mapStateToProps)(CollectionInfo);*/
+export default CollectionInfo;

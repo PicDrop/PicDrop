@@ -4,6 +4,13 @@ import GridList from 'material-ui/lib/grid-list/grid-list';
 import GridTile from 'material-ui/lib/grid-list/grid-tile';
 import IconButton from 'material-ui/lib/icon-button';
 
+import Card from 'material-ui/lib/card/card';
+import CardActions from 'material-ui/lib/card/card-actions';
+import CardMedia from 'material-ui/lib/card/card-media';
+import CardTitle from 'material-ui/lib/card/card-title';
+import FlatButton from 'material-ui/lib/flat-button';
+import CardText from 'material-ui/lib/card/card-text';
+
 /*class CollectionView extends React.Component {
   render() {
     return (
@@ -37,18 +44,34 @@ const style = {
 const styles = {
   root: {
     marginTop: 20,
-    border: '1px dotted green',
+    backgroundColor: '#E9E9F4',
     display: 'flex',
-    flexWrap: 'nowrap',
+    flexWrap: 'wrap',
     justifyContent: 'space-around',
+    //minWidth: 965,
+    padding: 16,
   },
   gridList: {
-    width: '100%',
+    width: '800',
     height: '100%',
     overflowY: 'auto',
-    marginBottom: 20,
-    marginTop: 20
+    margin: 15
   },
+  card: {
+    maxWidth: 220,
+    maxHeight: 300,
+    minWidth: 220,
+    minHeight: 300,
+    margin: 16,
+  },
+  image: {
+    maxWidth: 200,
+    maxHeight: 150,
+    minWidth: 200,
+    minHeight: 150,
+    border: '10px solid white',
+    //marginLeft: 92
+  }
 };
 
 const tilesData = [
@@ -94,28 +117,28 @@ const tilesData = [
   },
 ];
 
+class CollectionView extends React.Component {
+  render() {
+    var count = 0;
+    return (
+      <Paper style={styles.root} z-index={1}>
 
-const CollectionView = () => (
-  <Paper style={styles.root} z-index={1}>
-    <GridList
-      cellHeight={350}
-      cols={3}
-      padding={20}
-      style={styles.gridList}
-    >
-      {tilesData.map(tile => (
-        <GridTile
-          key={tile.img}
-          title={tile.title}
-          subtitle={<span>by <b>{tile.author}</b></span>}
-          actionIcon={<IconButton></IconButton>}
-        >
-          <img src={tile.img} />
-        </GridTile>
-      ))}
-    </GridList>
-  </Paper>
-);
+        {this.props.userPics.map(pic => (
+        <Card style={styles.card}>
+          <CardMedia>
+            <img style={styles.image} src={pic.get('thumbnail')} />
+          </CardMedia>
+          <CardActions>
+            <FlatButton label={pic.get('title')} />
+          </CardActions>
+          <CardTitle subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."  />
+
+        </Card>
+        ))}
+      </Paper>
+    );
+  }
+}
 
 /*const CollectionView = () => (
   <Paper style={styles.root} z-index={1}>
