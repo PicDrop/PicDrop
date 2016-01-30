@@ -4,6 +4,8 @@ import FlatButton from 'material-ui/lib/flat-button';
 import RaisedButton from 'material-ui/lib/raised-button';
 import IconButton from 'material-ui/lib/icon-button';
 import { reduxForm } from 'redux-form';
+import axios from 'axios';
+import server from '../../utils/ajaxConfig';
 
 class AuthForm extends React.Component {
   constructor(props) {
@@ -11,11 +13,20 @@ class AuthForm extends React.Component {
     this.submitForm = this.submitForm.bind(this);
     this.changeText = this.changeText.bind(this);
   }
-  submitForm(e, submit) {
+  submitForm(e) {
     e.preventDefault();
-    console.log(e, submit);
-    console.log(this.props.fields.password.val, this.props.fields.email.value);
-    this.props.onSubmit();
+    axios.post('/api/auth/create',
+      {
+        username: this.props.values.email,
+        password: this.props.values
+      }
+    )
+    .then((resp)=> {
+      console.log(resp);
+      localStorage.setItem('pd.loggedIn', true);
+      this.props.handleSubmit();
+      this.props.history.push({pathname: '/main/collection'});
+    });
   }
   changeText(e) {
     console.log(e, 'inside changeText');
@@ -30,13 +41,15 @@ class AuthForm extends React.Component {
       <div>
         <h4>Log In</h4>
         <form onSubmit={this.submitForm}>
-        <input
-          placeholder="Email"
+        <TextField
+          hintText="Email"
+          floatingLabelText="Email:"
           {...email}
         />
         <br/>
-        <input
-          placeholder="Password"
+        <TextField
+          hintText="Password"
+          floatingLabelText="Password:"
           {...password}
         />
         <RaisedButton 
@@ -76,41 +89,3 @@ export default reduxForm({
     initialValues: { email: '', password: '', submissionType: 'login' }
   })
 )(AuthForm);
-
-
-// <div>
-//   <h4>Log In</h4>
-//   <form onSubmit={this.submitForm}>
-//   <TextField
-//     hintText="Email"
-//     floatingLabelText="Email:"
-//     value={ this.props.values.email }
-//     onKeyDown={ function(param){ values.email += String.fromCharCode(param.keyCode) } }
-//     {...email}
-//   />
-//   <br/>
-//   <TextField
-//     hintText="Password"
-//     floatingLabelText="Password:"
-//     value={ password.initialValue }
-//     onChange={ this.changeText }
-//     {...password}
-//   />
-//   <RaisedButton 
-//     label="Login" primary={true} type="submit" style={{ margin: 12 }}
-//   />
-//   </form>
-//   <br/>
-//   <FlatButton label="Don't have an account? Sign up."/>
-//   <div className="row center-xs">
-//     <div className='col-xs-3'>
-//       <div className="box">
-//         <IconButton iconClassName=""/>
-//       </div>
-//     </div>
-//     <div className='col-xs-3'>
-//       <div className="box">
-//       </div>
-//     </div>
-//   </div>
-// </div>

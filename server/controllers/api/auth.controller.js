@@ -7,9 +7,6 @@ var LocalStrategy = require('passport-local').Strategy;
 var jwtSuperSecretCode = 'super-secret-key';
 var validateJwt = expressJwt({secret: jwtSuperSecretCode});
 
-
-
-
 passport.use(new LocalStrategy(function(username, password, done) {
   
   DB.User.filter({
@@ -49,9 +46,9 @@ module.exports = {
   userCreate: function(req, res){
     DB.User.save({
       username: req.body.username,
-      password: req.body.password,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName
+      password: req.body.password
+      // firstName: req.body.firstName,
+      // lastName: req.body.lastName
     })
     .then(function(data){
       res.send('User Created', data);

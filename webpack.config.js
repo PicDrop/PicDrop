@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'eval',
   entry: {
     'client/bundle': [
-      'webpack-dev-server/client?http://localhost:8080',
+      'webpack-dev-server/client?http://localhost:8000',
       'webpack/hot/only-dev-server',
       './client/Entry.js',
     ],
