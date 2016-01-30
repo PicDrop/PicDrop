@@ -2,13 +2,15 @@ import React from 'react';
 import CollectionInfo from './CollectionInfo/CollectionInfo';
 import { connect } from 'react-redux';
 import CollectionView from './CollectionView/CollectionView';
+import viewingActions from '../../../../../client/actions/viewingActions';
+import { bindActionCreators } from 'redux';
 
 class Collection extends React.Component {
   render() {
     return (
       <div className="row">
         <div className="col-sm-3 col-md-3 col-lg-2">
-          <CollectionInfo folders={this.props.folders} tags={this.props.tags}/>
+          <CollectionInfo viewingActions={this.props.viewingActions} folders={this.props.folders} tags={this.props.tags}/>
         </div>
         <div className="col-sm-10 col-md-10 col-lg-10">
           <CollectionView userPics={this.props.userPics}/>
@@ -28,4 +30,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Collection);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ viewingActions: viewingActions }, dispatch);
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Collection);

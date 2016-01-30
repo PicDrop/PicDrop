@@ -5,6 +5,7 @@ import CardActions from 'material-ui/lib/card/card-actions';
 import CardMedia from 'material-ui/lib/card/card-media';
 import CardTitle from 'material-ui/lib/card/card-title';
 import FlatButton from 'material-ui/lib/flat-button';
+import { connect } from 'react-redux';
 
 const styles = {
   root: {
@@ -33,7 +34,7 @@ const styles = {
   }
 };
 
-class CollectionView extends React.Component {
+/*class CollectionView extends React.Component {
   render() {
     var counter = 0;
     return (
@@ -54,6 +55,27 @@ class CollectionView extends React.Component {
       </Paper>
     );
   }
+}*/
+
+class CollectionView extends React.Component {
+  render() {
+    var counter = 0;
+    if(!this.props.viewingActions) {
+      return <div>select a folder</div>;
+    }
+    return (
+      <Paper style={styles.root} z-index={1}>
+        {this.props.viewingActions};
+      </Paper>
+    );
+  }
 }
 
-export default CollectionView;
+function mapStateToProps(state) {
+  return {
+    viewingActions: state.viewingActions,
+  };
+}
+
+//export default CollectionView;
+export default connect(mapStateToProps)(CollectionView);

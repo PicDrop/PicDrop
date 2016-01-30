@@ -7,7 +7,7 @@ class CollectionInfo extends React.Component {
   render() {
     return (
       <Paper zDepth={1}>
-        <Folders folders={this.props.folders}/>
+        <Folders viewingActions={this.props.viewingActions} folders={this.props.folders}/>
         <Tags tags={this.props.tags}/>
       </Paper>
     );

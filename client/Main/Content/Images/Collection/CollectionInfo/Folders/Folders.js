@@ -2,6 +2,9 @@ import React from 'react';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import ActionInfo from 'material-ui/lib/svg-icons/action/info';
+//import { viewingActions } from '../../../../../../../client/actions/viewingActions';
+//import { connect } from 'react-redux';
+//import { bindActionCreators } from 'redux';
 
 class Folders extends React.Component {
   render() {
@@ -10,7 +13,14 @@ class Folders extends React.Component {
       console.log(folderObj, folderName);
       //let itemCount = folderObj.size;
       //return (<li key={keyCounter++}>{folderName} {itemCount}</li>);
-      return (<ListItem  key={keyCounter++} primaryText={folderName} rightIcon={<ActionInfo />} />);
+      return (
+        <ListItem
+          key={keyCounter++}
+          primaryText={folderName}
+          rightIcon={<ActionInfo />}
+          onClick={() => this.props.viewingActions(folderObj)}
+        />
+      );
     });
     return (
       <div>
@@ -24,4 +34,10 @@ class Folders extends React.Component {
   }
 }
 
+//const mapDispatchToProps = (dispatch) => {
+//  return bindActionCreators({ selectFolder }, dispatch);
+//};
+
+
 export default Folders;
+//export default connect(null, mapDispatchToProps)(Folders);
