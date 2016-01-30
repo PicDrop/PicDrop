@@ -11,8 +11,8 @@ import CardText from 'material-ui/lib/card/card-text';
 class ImageView extends React.Component {
   render() {
     return (
-      <div >
-        <div>
+      <div>
+        <div style={{ width: '80%', borderStyle: 'dotted', borderColor: 'red' }}>
           <Card>
             <CardMedia>
               <img src="http://lorempixel.com/600/337/cats/" />
