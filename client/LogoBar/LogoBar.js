@@ -1,17 +1,20 @@
 import React from 'react';
 import Logo from './Logo';
 import LogInOut from './LogInOut';
+import AppBar from 'material-ui/lib/app-bar';
+
 
 class LogoBar extends React.Component {
   render() {
     return (
-      <div className="row bottom-xs">
-        <div className="col-xs-2">
-          <Logo />
-        </div>
-        <div className="col-xs-10">
-          <LogInOut />
-        </div>
+      <div>
+        <AppBar
+          title="PICDROP"
+          iconElementRight={<LogInOut label="LOGINOUT" />}
+          style={{ backgroundColor: 'WHITE' }}
+          titleStyle={{ color: 'DIMGREY', fontFamily:'Roboto', fontWeight:'bold' }}
+          zDepth={0}
+        />
       </div>
     );
   }
