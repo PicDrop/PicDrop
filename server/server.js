@@ -2,7 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 //var apiRouter = require('./controllers/api/index');
 var controllers = require('./controllers');
-var auth = require('./controllers/api/auth.controller');
+var auth = require('./middleware/passport');
+
 var app = express();
 
 
@@ -17,7 +18,6 @@ app.set('port', process.env.PORT || 3000);
 
 // static route
 app.use('/', express.static(__dirname + '/../public/client'));
-
 
 // Passport
 auth.passportInitialize(app);
