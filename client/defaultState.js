@@ -104,6 +104,7 @@ const viewing = new Map({
   username: 'testUser',
   currentFolder: null,
   currentTags: new List(),
+  //currentCollection: new List(),
   currentCollection: List.of('09sjdfoins0d9fhj09', 'gfh6857gdf9h6854df3gsdf', 'fh165d46h84dhd3f25h1', 'sa6g54a69s8g4sd5f1'),
   currentImage: '09sjdfoins0d9fhj09',
 });

@@ -3,7 +3,7 @@ import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import ActionInfo from 'material-ui/lib/svg-icons/action/info';
 //import { viewingActions } from '../../../../../../../client/actions/viewingActions';
-//import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 //import { bindActionCreators } from 'redux';
 
 class Folders extends React.Component {
@@ -34,10 +34,16 @@ class Folders extends React.Component {
   }
 }
 
+/*function mapStateToProps(state) {
+  return {
+    activeImages: state.viewing
+  } ;
+}*/
 //const mapDispatchToProps = (dispatch) => {
 //  return bindActionCreators({ selectFolder }, dispatch);
 //};
 
 
 export default Folders;
+//export default connect(mapStateToProps)(Folders);
 //export default connect(null, mapDispatchToProps)(Folders);

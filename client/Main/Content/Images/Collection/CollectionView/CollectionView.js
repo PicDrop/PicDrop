@@ -34,46 +34,80 @@ const styles = {
   }
 };
 
-/*class CollectionView extends React.Component {
+class CollectionView extends React.Component {
   render() {
     var counter = 0;
+    const viewingIds = this.props.viewing.get('currentCollection');
+    // console.log(viewingIds);
+
+    // If folder is not selected, return all images
+    if(!viewingIds.size) {
+      return (
+        <Paper style={styles.root} z-index={1}>
+          {this.props.userPics.map(pic => (
+            <Card style={styles.card}>
+              {pic}
+              <CardMedia>
+                <img style={styles.image} src={pic.get('thumbnail')} />
+              </CardMedia>
+              <CardActions>
+                <FlatButton key={counter++} label={pic.get('title')} />
+              </CardActions>
+              <CardTitle subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."  />
+
+            </Card>
+          ))}
+        </Paper>
+      );
+    }
+
+    // If folder is selected, return selected images
+    const selectedImages = [];
+    const imagesInFolders = viewingIds.map((val) => {
+      // console.log(this.props.userPics.get(val))
+      return selectedImages.concat(this.props.userPics.get(val));
+    });
+
     return (
       <Paper style={styles.root} z-index={1}>
-
-        {this.props.userPics.map(pic => (
-          <Card style={styles.card}>
-            <CardMedia>
-              <img style={styles.image} src={pic.get('thumbnail')} />
-            </CardMedia>
-            <CardActions>
-              <FlatButton key={counter++} label={pic.get('title')} />
-            </CardActions>
-            <CardTitle subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."  />
-
-          </Card>
+        {imagesInFolders.map(picObj => (
+          picObj.map(pic => (
+            <Card style={styles.card}>
+              {pic}
+              <CardMedia>
+                <img style={styles.image} src={pic.get('thumbnail')} />
+              </CardMedia>
+              <CardActions>
+                <FlatButton key={counter++} label={pic.get('title')} />
+              </CardActions>
+              <CardTitle subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."  />
+            </Card>
+          ))
         ))}
+
       </Paper>
     );
   }
-}*/
+}
 
-class CollectionView extends React.Component {
+/*class CollectionView extends React.Component {
   render() {
     var counter = 0;
     if(!this.props.viewingActions) {
       return <div>select a folder</div>;
     }
+    console.dir(this.props.viewingActions);
     return (
       <Paper style={styles.root} z-index={1}>
         {this.props.viewingActions};
       </Paper>
     );
   }
-}
+}*/
 
 function mapStateToProps(state) {
   return {
-    viewingActions: state.viewingActions,
+    viewing: state.viewing
   };
 }
 

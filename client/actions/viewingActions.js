@@ -21,4 +21,11 @@ function viewingActions(folder) {
   };
 }
 
+const selectBook = (book) => {
+  return {
+    type: 'BOOK_SELECTED',
+    payload: book
+  }
+}
+
 export default viewingActions;

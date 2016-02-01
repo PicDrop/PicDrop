@@ -7,8 +7,10 @@ const viewingReducer = (state = null, action) => {
       return state.merge(action.state);*/
     case 'FOLDER_SELECTED':
       //return state.merge(action.payload);
+      console.log(action);
       return action.payload;
     default:
+      console.log(action);
       return state;
   }
 };

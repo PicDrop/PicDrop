@@ -26,7 +26,8 @@ const mapStateToProps = (state) => {
   return {
     'folders': state.folders,
     'tags': state.tags,
-    'userPics': state.userPics
+    'userPics': state.userPics,
+    viewing: state.viewing
   }
 }
 
