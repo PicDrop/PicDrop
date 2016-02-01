@@ -40,12 +40,13 @@ module.exports = {
 
   },
   userLogin: function(req, res, next){
-    passport.authenticate('local', function(err, user, info) {
+    passport.passport.authenticate('local', function(err, user, info) {
+      console.log(user);
       if (err) {
         return next(err);
       }
       if (!user) {
-        return res.send(404, info);
+        return res.status(404).send(info);
       }
 
       req.logIn(user, function(err) {
@@ -62,7 +63,7 @@ module.exports = {
   
   userLogout: function(req, res){
     req.logout();
-    res.send(200, { success: true });
+    res.status(200).send({ success: true });
   },
   userFacebookLogin: function(req, res){},
 };
