@@ -1,41 +1,53 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import FlatButton from 'material-ui/lib/flat-button';
 import Popover from 'material-ui/lib/popover/popover';
 import PopoverAnimationFromTop from 'material-ui/lib/popover/popover-animation-from-top';
 import AuthForm from './Auth/AuthForm';
+import appActions from '../actions/appActions';
 
 class LoginOut extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
     };
-    this.handleTouchTap = this.handleTouchTap.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+    this.handleAuthOpen = this.handleAuthOpen.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.componentWillMount = this.componentWillMount.bind(this);
   }
-  handleTouchTap(event) {
-    console.log('inside touchtap');
+  componentWillMount() {
+  }
+  handleAuthOpen(event) {
     this.setState({
       open: true,
-      anchorEl: event.currentTarget
+      anchorEl: event.currentTarget,
     });
+  }
+  handleLogout() {
+    localStorage.removeItem('pd.token');
+    localStorage.removeItem('pd.loggedIn');
+    console.log(this.props.history);
+    this.props.dispatch(appActions.setLoggedIn(false));
+    this.props.history.push({ pathname: '/' });
   }
   handleRequestClose() {
     this.setState({
-      open: false
+      open: false,
     });
   }
   checkLogin() {
-    if (localStorage.getItem('logedIn')) {
-      return <FlatButton label="Logout" secondary={true} />;
+    if (this.props.loggedIn) {
+      return <FlatButton onTouchTap={ this.handleLogout } label="Logout" secondary={true} />;
     } else {
-      return <FlatButton label="Login" primary={true} />;
+      return <FlatButton onTouchTap={ this.handleAuthOpen } label="Login" secondary={true} />;
     }
   }
   render() {
     return (
       <div className="box end-xs">
-        <FlatButton onTouchTap={this.handleTouchTap} label="LoginOut" secondary={true} />
+        { this.checkLogin() }
         <Popover
           open={this.state.open}
           anchorEl={this.state.anchorEl}
@@ -45,7 +57,7 @@ class LoginOut extends React.Component {
           animation={PopoverAnimationFromTop}
         >
           <div style={{"padding":20}}>
-            <AuthForm submissionType={'login'} history={this.props.history} onSubmit={this.handleRequestClose} />
+            <AuthForm dispatch={ this.props.dispatch }submissionType={'login'} history={this.props.history} onSubmit={this.handleRequestClose} />
           </div>
         </Popover>
       </div>
@@ -53,4 +65,10 @@ class LoginOut extends React.Component {
   }
 }
 
-export default LoginOut;
+const mapStateToProps = (state) => {
+  return {
+    loggedIn: state.app.get('loggedIn'),
+  };
+};
+
+export default connect(mapStateToProps)(LoginOut);

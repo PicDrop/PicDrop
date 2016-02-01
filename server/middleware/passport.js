@@ -49,7 +49,7 @@ module.exports = {
     res.send(req.user)
   },
   checkTonk: function(app) {
-    app.use('/api', expressJwt({secret: jwtSuperSecretCode}).unless({path: ['/api/auth/login', '/api/auth/create']}));
+    app.use('/api', expressJwt({secret: jwtSuperSecretCode}).unless({path: ['/api/auth/login', '/api/auth/signup']}));
   },
   passport: passport
 };

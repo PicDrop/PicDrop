@@ -5,6 +5,7 @@ import IconButton from 'material-ui/lib/icon-button';
 import LoginSignup from './LoginSignup';
 import { reduxForm } from 'redux-form';
 import axios from 'axios';
+import appActions from '../../actions/appActions';
 
 
 class AuthForm extends React.Component {
@@ -30,6 +31,7 @@ class AuthForm extends React.Component {
       console.log(resp);
       localStorage.setItem('pd.loggedIn', true);
       localStorage.setItem('pd.token', resp.data.token);
+      this.props.dispatch(appActions.setLoggedIn(true));
       this.props.history.push({ pathname: '/main/collection' });
       this.props.handleSubmit();
     });

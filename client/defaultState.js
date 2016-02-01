@@ -3,7 +3,7 @@ import foldersActions from './actions/foldersActions';
 import tagsActions from './actions/tagsActions';
 import userPicsActions from './actions/userPicsActions';
 import viewingActions from './actions/viewingActions';
-
+import appActions from './actions/appActions';
 
 const userPics = new Map({
   '09sjdfoins0d9fhj09': new Map({
@@ -85,41 +85,39 @@ const tags = new Map({
   }),
   overlapTag: new Map({
     'sa6g54a69s8g4sd5f1': true,
-    '09sjdfoins0d9fhj09': true
+    '09sjdfoins0d9fhj09': true,
   })
 });
 
 const folders = new Map({
   myFolder: new Map({
     'sa6g54a69s8g4sd5f1': true,
-    'fh165d46h84dhd3f25h1': true
+    'fh165d46h84dhd3f25h1': true,
   }),
   seperateFolder: new Map({
     'gfh6857gdf9h6854df3gsdf': true,
-    '09sjdfoins0d9fhj09': true
+    '09sjdfoins0d9fhj09': true,
   }),
 });
 
-const viewing = new Map({ 
+const viewing = new Map({
   username: 'testUser',
   currentFolder: null,
   currentTags: new List(),
   currentCollection: List.of('09sjdfoins0d9fhj09', 'gfh6857gdf9h6854df3gsdf', 'fh165d46h84dhd3f25h1', 'sa6g54a69s8g4sd5f1'),
-  currentImage: '09sjdfoins0d9fhj09'
+  currentImage: '09sjdfoins0d9fhj09',
 });
 
-const initiateStore = (dispatch) => {
-  dispatch(foldersActions.setState(folders));
-  dispatch(tagsActions.setState(tags));
-  dispatch(userPicsActions.setState(userPics));
-  dispatch(viewingActions.setState(viewing));
-};
+const app = new Map({
+  loggedIn: false
+});
 
 const initialState = {
   userPics,
   folders,
   tags,
-  viewing
+  viewing,
+  app,
 };
 
 export default initialState;

@@ -1,25 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import LogoBar from './LogoBar/LogoBar';
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import appActions from './actions/appActions';
 
 class App extends React.Component {
-  // getChildContext(){
-  //   return {
-  //     muiTheme: ThemeManager.getMuiTheme(ThemeManager.types.LIGHT)
-  //   };
-  // }
+  constructor(props) {
+    super(props);
 
+    this.componentWillMount = this.componentWillMount.bind(this);
+  }
+  componentWillMount() {
+    if (localStorage.getItem('pd.loggedIn')) {
+      this.props.dispatch(appActions.setLoggedIn(true));
+    }
+  }
   render() {
     return (
       <div>
-        <LogoBar history={this.props.history}/>
-        {this.props.children}
+        <LogoBar history={this.props.history} />
+        { this.props.children }
       </div>
     );
   }
 }
-// App.childContextTypes= {
-//   muiTheme: React.PropTypes.object
-// }
 
-export default App;
+
+export default connect()(App);
