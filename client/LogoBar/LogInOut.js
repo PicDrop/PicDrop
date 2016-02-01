@@ -45,7 +45,7 @@ class LoginOut extends React.Component {
           animation={PopoverAnimationFromTop}
         >
           <div style={{"padding":20}}>
-            <AuthForm onSubmit={this.handleRequestClose} />
+            <AuthForm submissionType={'login'} history={this.props.history} onSubmit={this.handleRequestClose} />
           </div>
         </Popover>
       </div>

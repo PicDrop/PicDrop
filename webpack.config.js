@@ -3,14 +3,11 @@ var path = require('path');
 
 module.exports = {
   devtool: 'eval',
-  entry: {
-    'client/bundle': [
-      'webpack-dev-server/client?http://localhost:8000',
-      'webpack/hot/only-dev-server',
-      './client/Entry.js',
-    ],
-    'extension/bundle': './extension/extension.js'
-  },
+  entry: [
+    'webpack-dev-server/client?http://localhost:5267',
+    'webpack/hot/only-dev-server',
+    './client/Entry.js',
+  ],
   module: {
     loaders: [
       {
@@ -24,9 +21,9 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: path.join(__dirname, '/public/'),
+    path: path.join(__dirname, '/public/client/'),
     publicPath: '/',
-    filename: '[name].js'
+    filename: 'bundle.js'
   },
   devServer: {
     contentBase: './public/client',

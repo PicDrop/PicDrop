@@ -1,45 +1,56 @@
 import React from 'react';
 import TextField from 'material-ui/lib/text-field';
-import FlatButton from 'material-ui/lib/flat-button';
 import RaisedButton from 'material-ui/lib/raised-button';
 import IconButton from 'material-ui/lib/icon-button';
+import LoginSignup from './LoginSignup';
 import { reduxForm } from 'redux-form';
 import axios from 'axios';
-import server from '../../utils/ajaxConfig';
+
 
 class AuthForm extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      submissionType: 'Log In',
+    };
+
     this.submitForm = this.submitForm.bind(this);
-    this.changeText = this.changeText.bind(this);
+    this.flipForm = this.flipForm.bind(this);
   }
   submitForm(e) {
     e.preventDefault();
-    axios.post('/api/auth/create',
+    const route = this.state.submissionType.toLowerCase().split(' ').join('');
+    axios.post(`/api/auth/${route}`,
       {
-        username: this.props.values.email,
-        password: this.props.values
+        email: this.props.values.email,
+        password: this.props.values.password,
       }
     )
-    .then((resp)=> {
+    .then((resp) => {
       console.log(resp);
       localStorage.setItem('pd.loggedIn', true);
+      localStorage.setItem('pd.token', resp.data.token);
+      this.props.history.push({ pathname: '/main/collection' });
       this.props.handleSubmit();
-      this.props.history.push({pathname: '/main/collection'});
     });
   }
-  changeText(e) {
-    console.log(e, 'inside changeText');
+  flipForm() {
+    console.log('in flipForm', this.state.submissionType);
+    if (this.state.submissionType === 'Log In') {
+      this.setState({ submissionType: 'Sign Up' });
+    } else {
+      this.setState({ submissionType: 'Log In' });
+    }
   }
   render() {
-    const { fields: { email, password, submissionType },
+    const { fields: { email, password},
       handleSubmit,
       resetForm,
       submitting
     } = this.props;
     return (
       <div>
-        <h4>Log In</h4>
+        <h4>{ this.state.submissionType }</h4>
         <form onSubmit={this.submitForm}>
         <TextField
           hintText="Email"
@@ -48,23 +59,26 @@ class AuthForm extends React.Component {
         />
         <br/>
         <TextField
+          type="password"
           hintText="Password"
           floatingLabelText="Password:"
           {...password}
         />
-        <RaisedButton 
-          label="Login" primary={true} type="submit" style={{ margin: 12 }}
+        <RaisedButton
+          label="Login" primary={ true } type="submit" style={{ margin: 12 }}
         />
         </form>
         <br/>
-        <FlatButton label="Don't have an account? Sign up."/>
+        <LoginSignup
+          flipForm={ this.flipForm }
+        />
         <div className="row center-xs">
-          <div className='col-xs-3'>
+          <div className="col-xs-3">
             <div className="box">
               <IconButton iconClassName=""/>
             </div>
           </div>
-          <div className='col-xs-3'>
+          <div className="col-xs-3">
             <div className="box">
             </div>
           </div>
@@ -78,14 +92,12 @@ AuthForm.propTypes = {
   handleSubmit: React.PropTypes.func.isRequired,
   resetForm: React.PropTypes.func.isRequired,
   submitting: React.PropTypes.bool.isRequired,
-  onSubmit: React.PropTypes.func.isRequired
+  onSubmit: React.PropTypes.func.isRequired,
+  values: React.PropTypes.object.isRequired,
+  history: React.PropTypes.object.isRequired,
 };
 
 export default reduxForm({
   form: 'Auth',
-  fields: ['email', 'password', 'submissionType']
-  },
-  (state) => ({
-    initialValues: { email: '', password: '', submissionType: 'login' }
-  })
-)(AuthForm);
+  fields: ['email', 'password'],
+})(AuthForm);

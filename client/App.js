@@ -12,7 +12,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <LogoBar />
+        <LogoBar history={this.props.history}/>
         {this.props.children}
       </div>
     );
