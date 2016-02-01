@@ -5,14 +5,14 @@ import ImageView from './ImageView/ImageView';
 import Immutable from 'immutable';
 
 
-class Image extends React.Component{
+class Image extends React.Component {
   render() {
     return (
-      <div className="row" style={{ borderStyle: 'dotted', borderColor: 'blue' }}>
-        <div className="col-sm-2 col-md-2 col-lg-2" style={{ borderStyle: 'dotted', borderColor: 'blue' }}>
+      <div>
+        <div style={{ width: '250px', position: 'absolute' }}>
             <ImageInfo info={ this.props.info } />
         </div>
-        <div className="col-sm-10 col-md-10 col-lg-10" style={{ borderStyle: 'dotted', borderColor: 'blue' }}>
+        <div style={{ marginLeft: '250px' }}>
             <ImageView url={ this.props.url } />
         </div>
       </div>

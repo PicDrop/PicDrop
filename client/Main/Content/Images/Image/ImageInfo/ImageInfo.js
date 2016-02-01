@@ -30,7 +30,7 @@ class ImageInfo extends React.Component {
       <div>
 
 
-          <div id="metadata" style={ REDBORDERSTYLE }>
+          <div id="metadata">
             <List subheader="Title" subheaderStyle={ SUBHEADERSTYLE } >
               <ListItem primaryText="Logged In" />
             </List>

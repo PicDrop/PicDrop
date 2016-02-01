@@ -14,7 +14,7 @@ class Navbar extends React.Component {
   render() {
     return (
       <div>
-        <Tabs>
+        <Tabs style={{marginBottom: '10px'}}>
            <Tab label="IMAGES" style={{ backgroundColor: 'GAINSBORO', color:'DIMGREY', fontWeight: '300', fontSize: '18px',  letterSpacing: '-0.5px' }}>
              <div>
              </div>
