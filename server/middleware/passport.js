@@ -6,10 +6,12 @@ var LocalStrategy = require('passport-local').Strategy;
 var jwtSuperSecretCode = 'super-secret-key';
 var validateJwt = expressJwt({secret: jwtSuperSecretCode});
 
-passport.use(new LocalStrategy(function(username, password, done) {
-  
-  DB.User.filter({
-      "username": username
+passport.use(new LocalStrategy(
+  { usernameField: 'email' },
+  function(email, password, done) {
+    console.log(email, password);
+    DB.User.filter({
+      email: email
     }).then(function (data) {
       var user = data[0];
       if (user) {
@@ -29,7 +31,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
 
 
 passport.serializeUser(function(user, done) {
-  done(null, user.username);
+  done(null, user.email);
 });
 
 passport.deserializeUser(function(username, done) {
