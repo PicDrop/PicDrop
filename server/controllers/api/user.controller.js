@@ -35,14 +35,37 @@ module.exports = {
       user.addRelation('folders', newFolder);
       user.addRelation('userPics', newPic);
       user.saveAll({userPics: true, folders: true, tags: true}).then(function(user){
-        res.status(201).send(user);
+        res.status(201).send('Picture saved');
       });
     });
   },
   getDrops: function(req, res){},
   getDrop: function(req, res){},
   starDrop: function(req, res){},
-  tagDrop: function(req, res){},
+  tagDrop: function(req, res){
+    DB.User.get(req.user).getJoin({tags: true}).run().then(function(user){
+      var newTag = null, pic;
+      DB.Picture.get(req.body.picId).run().then(function(picture){
+        pic = picture;
+      });
+      user.tags.forEach(function(tag){
+        if(tag.name === req.body.tag){
+          newTag = tag;
+        }
+      });
+      if(newTag === null){
+        newTag = new DB.tag
+        user.addRelation('tags', newTag);
+        newTag.addRelation('user', user);
+      }
+      newTag.addRelation('pictures', pic);
+      pic.addRelation('tags', newTag);
+      pic.save();
+      user.saveAll({tags: true}).then(fucntion(user){
+        res.status(201).send("Added tag");
+      });
+    })
+  },
   getCategory: function(req, res){},
   getTagname: function(req, res){},
 }  
