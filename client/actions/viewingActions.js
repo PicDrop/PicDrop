@@ -11,7 +11,15 @@ const viewingActions = {
       type: 'FOLDER_SELECTED',
       payload: folder
     };
-  }
+  },
+
+  selectTag: (tag) => {
+    return {
+      type: 'SELECT_TAG',
+      payload: tag
+    };
+  },
+
 };
 /*function viewingActions(folder) {
   console.log(folder);
