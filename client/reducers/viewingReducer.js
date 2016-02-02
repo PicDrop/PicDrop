@@ -29,8 +29,23 @@ const updateCurrentFolder = (state, folder) => {
 }
 
 const updateCurrentTags = (state, tag) => {
-  const newState = state.set('currentTags', tag.tagName).set('currentTagsPics', tag.tagObj);
+  let currentTags = state.get('currentTags');
+  let currentTagsPics = state.get('currentTagsPics');
+  if (!currentTags) {
+    currentTags = state.set('currentTags', tag.tagName);
+  }
+
+  if (!currentTagsPics) {
+    currentTagsPics = state.set('currentTagsPics', tag.tagObj);
+  }
+
+  currentTags = currentTags.concat(tag.tagName);
+  currentTagsPics = currentTagsPics.concat(tag.tagObj);
+  const newState = state.set('currentTags', currentTags).set('currentTagsPics', currentTagsPics);
+  console.log(newState);
+  //const newState = state.set('currentTags', tag.tagName).set('currentTagsPics', tag.tagObj);
   return populateCurrentCollection(newState);
+  //return newState;
 }
 
 const viewingReducer = (state = new Map(), action) => {
