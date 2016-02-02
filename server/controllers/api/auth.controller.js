@@ -12,7 +12,6 @@ module.exports = {
     console.log(req.body.email, req.body.password);
     thinky.r.table('User').filter({ email: req.body.email }).run()
       .then(function(user){
-        console.log(user);
         if(user.length){
           res.status(401);
           res.send('Email is already registered');
@@ -41,7 +40,6 @@ module.exports = {
   },
   userLogin: function(req, res, next){
     passport.passport.authenticate('local', function(err, user, info) {
-      console.log(user);
       if (err) {
         return next(err);
       }
@@ -53,9 +51,10 @@ module.exports = {
         if (err) {
           return next(err);
         }
-        var token = jwt.sign({username: "travis"}, jwtSuperSecretCode);
-        console.log(token)
-        return res.status(200).send({ token: token });
+        var token = jwt.sign({id: user.id}, jwtSuperSecretCode);
+        user.token = token;
+        console.log(user);
+        // return res.status(200).send({ token: token });
 
       });
     })(req, res, next);

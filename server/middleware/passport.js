@@ -6,18 +6,32 @@ var LocalStrategy = require('passport-local').Strategy;
 var jwtSuperSecretCode = 'super-secret-key';
 var validateJwt = expressJwt({secret: jwtSuperSecretCode});
 
+function arrToObj(oldArr, key){
+  var newObj = {};
+  oldArr.forEach(function(item){
+    newObj[item[key]] = item
+  });
+  return newObj;
+}
+
 passport.use(new LocalStrategy(
   { usernameField: 'email' },
   function(email, password, done) {
-    console.log(email, password);
     DB.User.filter({
       email: email
     }).then(function (data) {
       var user = data[0];
       if (user) {
         if (password === user.password) {
-          delete user.password;
-          return done(null, user);
+          DB.User.get(user.id).getJoin({userPics: true, folders: true, tags: true})
+          .run().then(function(user){
+            delete user.password;
+            delete user.email;
+            user.folders = arrToObj(user.folders, 'name');
+            user.tags = arrToObj(user.tags, 'name');
+            user.userPics = arrToObj(user.userPics, 'id');
+            return done(null, user);
+          });
         } else {
           done(null, false, { message: 'Incorrect password' });
         }
@@ -31,7 +45,7 @@ passport.use(new LocalStrategy(
 
 
 passport.serializeUser(function(user, done) {
-  done(null, user.email);
+  done(null, user.id);
 });
 
 passport.deserializeUser(function(username, done) {
