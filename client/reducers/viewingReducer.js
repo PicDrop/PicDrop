@@ -1,9 +1,14 @@
-import { Map, List } from 'immutable';
+import { Map, List, Set } from 'immutable';
 
 const populateCurrentCollection = (state) => {
   if (state.get('currentTagsPics').size) {
     if (state.get('currentFolderPics').size) {
       // find intersection of folder and tag
+      const folderSet = Set.fromKeys(state.get('currentFolderPics'));
+      const tagsSet = Set.fromKeys(state.get('currentTagsPics'));
+      //console.log('intersect', tagsSet.intersect(folderSet));
+      const folderTagIntersect = tagsSet.intersect(folderSet)
+      return state.set('currentCollection', folderTagIntersect);
     }
     // if tags, no folder, set current to all tags pics
     let tagOnlyList = new List();
@@ -15,11 +20,11 @@ const populateCurrentCollection = (state) => {
 
   } else if (state.get('currentFolderPics').size) {
     // set current viewing to equal list of pics in currFolderPics
-    let newList = new List();
+    let folderOnlyList = new List();
     state.get('currentFolderPics').map((val, key) => {
-      newList = newList.push(key);
+      folderOnlyList = folderOnlyList.push(key);
     });
-    return state.set('currentCollection', newList);
+    return state.set('currentCollection', folderOnlyList);
   }
 };
 
@@ -31,10 +36,11 @@ const updateCurrentFolder = (state, folder) => {
 const updateCurrentTags = (state, tag) => {
   let currentTags = state.get('currentTags');
   let currentTagsPics = state.get('currentTagsPics');
+  // Empty currentTags
   if (!currentTags) {
     currentTags = state.set('currentTags', tag.tagName);
   }
-
+  // Empty currentTagsPics
   if (!currentTagsPics) {
     currentTagsPics = state.set('currentTagsPics', tag.tagObj);
   }
