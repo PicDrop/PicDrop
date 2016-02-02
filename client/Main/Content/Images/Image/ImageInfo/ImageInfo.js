@@ -1,7 +1,7 @@
 import React from 'react';
+import TagList from './TagList';
 import FlatButton from 'material-ui/lib/flat-button';
 import TextField from 'material-ui/lib/text-field';
-import Paper from 'material-ui/lib/paper';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 
@@ -28,31 +28,28 @@ class ImageInfo extends React.Component {
   render() {
     return (
       <div>
-
-
+          <div>
+            <FlatButton label="Back" hoverColor="WHITE"/>
+          </div>
           <div id="metadata">
             <List subheader="Title" subheaderStyle={ SUBHEADERSTYLE } >
-              <ListItem primaryText="Logged In" disabled={true} />
+              <ListItem primaryText={ this.props.title } disabled={true} />
             </List>
             <List subheader="Status" subheaderStyle={ SUBHEADERSTYLE }>
               <ListItem primaryText="Saved to Google Drive" disabled={true} />
             </List>
             <List subheader="Domain" subheaderStyle={ SUBHEADERSTYLE }>
-              <ListItem primaryText="Ffffound.com" disabled={true} />
+              <ListItem primaryText={ this.props.originalUrl } disabled={true} />
             </List>
             <List subheader="Folder" subheaderStyle={ SUBHEADERSTYLE }>
-              <ListItem primaryText="Brutalist" disabled={true} />
+              <ListItem primaryText={ this.props.folder } disabled={true} />
             </List>
             <List subheader="Tags" subheaderStyle={ SUBHEADERSTYLE }>
-              <TextField hintText="Tags..." />
+              <TagList currentTags={ this.props.currentTags } />
             </List>
           </div>
 
-          <div id="tags">
-            <FlatButton label="Clean" />
-            <FlatButton label="Login" />
-            <FlatButton label="Materialize" />
-          </div>
+
 
       </div>
 
@@ -60,5 +57,10 @@ class ImageInfo extends React.Component {
     );
   }
 }
+ImageInfo.propTypes = {
+  title: React.PropTypes.string.isRequired,
+  folder: React.PropTypes.string.isRequired,
+  originalUrl: React.PropTypes.string.isRequired,
+};
 
 export default ImageInfo

@@ -18,11 +18,11 @@ rethinkdb_data/
 public/client/bundle.js
 public/client/bundle.js.map
 public/extension/bundle.js
+public/*.js
+public/*.json
 
 ## env variables
 .env
 
 ## Webstorm
 .idea
-public/*.js
-public/*.json
