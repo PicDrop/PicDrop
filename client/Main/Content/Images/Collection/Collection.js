@@ -2,6 +2,8 @@ import React from 'react';
 import CollectionInfo from './CollectionInfo/CollectionInfo';
 import { connect } from 'react-redux';
 import CollectionView from './CollectionView/CollectionView';
+/*import viewingActions from '../../../../../client/actions/viewingActions';
+import { bindActionCreators } from 'redux';*/
 
 class Collection extends React.Component {
   render() {
@@ -18,13 +20,13 @@ class Collection extends React.Component {
   }
 }
 
-
 const mapStateToProps = (state) => {
   console.log(state);
   return {
     'folders': state.folders,
     'tags': state.tags,
-    'userPics': state.userPics
+    'userPics': state.userPics,
+    viewing: state.viewing
   }
 }
 
