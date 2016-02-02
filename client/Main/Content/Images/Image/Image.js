@@ -10,10 +10,10 @@ class Image extends React.Component {
     return (
       <div>
         <div style={{ width: '250px', position: 'absolute' }}>
-            <ImageInfo info={ this.props.info } />
+            <ImageInfo picId={ this.props.picId } />
         </div>
         <div style={{ marginLeft: '250px' }}>
-            <ImageView url={ this.props.url } />
+            <ImageView originalUrl={ this.props.originalUrl } />
         </div>
       </div>
 
@@ -24,11 +24,13 @@ class Image extends React.Component {
 const mapStateToProps = (state) => {
   const userPics = state.userPics;
   const viewing = state.viewing;
-  const picId = viewing.getIn(['currentViewing', 0]);
+  console.log(viewing);
+  const picId = viewing.get('currentImage', 0);
   const pic = userPics.get(picId);
+  const originalUrl = pic.get('originalUrl');
   return {
-    // info: pic,
-    // url: pic.get('originalUrl')
+    picId: pic,
+    originalUrl: originalUrl
   };
 };
 

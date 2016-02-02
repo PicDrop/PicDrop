@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/PicDrop/PicDrop#readme",
   "dependencies": {
+    "axios": "^0.9.1",
     "babel-cli": "^6.4.5",
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.1",
