@@ -15,7 +15,7 @@ class ImageView extends React.Component {
         <div style={{ width: '55%' }}>
           <Card>
             <CardMedia>
-              <img src={this.props.originalUrl} />
+              <img src={ this.props.originalUrl } />
             </CardMedia>
             <CardActions>
               <FlatButton label="Delete" />
@@ -27,5 +27,9 @@ class ImageView extends React.Component {
     );
   }
 }
+
+ImageView.propTypes = {
+  originalUrl: React.PropTypes.string.isRequired,
+};
 
 export default ImageView;
