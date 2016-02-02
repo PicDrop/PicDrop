@@ -12,10 +12,10 @@ class ImageView extends React.Component {
   render() {
     return (
       <div style={{ display:'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <div style={{ width: '70%' }}>
+        <div style={{ width: '55%' }}>
           <Card>
             <CardMedia>
-              <img src="http://lorempixel.com/600/337/cats/" />
+              <img src={this.props.originalUrl} />
             </CardMedia>
             <CardActions>
               <FlatButton label="Delete" />

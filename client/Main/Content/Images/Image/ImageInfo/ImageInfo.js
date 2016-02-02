@@ -32,24 +32,23 @@ class ImageInfo extends React.Component {
 
           <div id="metadata">
             <List subheader="Title" subheaderStyle={ SUBHEADERSTYLE } >
-              <ListItem primaryText="Logged In" />
+              <ListItem primaryText="Logged In" disabled={true} />
             </List>
             <List subheader="Status" subheaderStyle={ SUBHEADERSTYLE }>
-              <ListItem primaryText="Saved to Google Drive" />
+              <ListItem primaryText="Saved to Google Drive" disabled={true} />
             </List>
             <List subheader="Domain" subheaderStyle={ SUBHEADERSTYLE }>
-              <ListItem primaryText="Ffffound.com" />
+              <ListItem primaryText="Ffffound.com" disabled={true} />
             </List>
             <List subheader="Folder" subheaderStyle={ SUBHEADERSTYLE }>
-              <ListItem primaryText="Brutalist" />
+              <ListItem primaryText="Brutalist" disabled={true} />
             </List>
-            <List subheader="Tags maybe" subheaderStyle={ SUBHEADERSTYLE }>
+            <List subheader="Tags" subheaderStyle={ SUBHEADERSTYLE }>
               <TextField hintText="Tags..." />
             </List>
           </div>
 
           <div id="tags">
-            <TextField hintText="Tags..." />
             <FlatButton label="Clean" />
             <FlatButton label="Login" />
             <FlatButton label="Materialize" />
