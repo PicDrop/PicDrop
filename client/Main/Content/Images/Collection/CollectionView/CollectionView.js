@@ -54,7 +54,6 @@ class CollectionView extends React.Component {
                 <FlatButton key={counter++} label={pic.get('title')} />
               </CardActions>
               <CardTitle subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."  />
-
             </Card>
           ))}
         </Paper>
@@ -64,7 +63,6 @@ class CollectionView extends React.Component {
     // If folder is selected, return selected images
     const selectedImages = [];
     const imagesInFolders = viewingIds.map((val) => {
-      // console.log(this.props.userPics.get(val))
       return selectedImages.concat(this.props.userPics.get(val));
     });
 
@@ -84,26 +82,10 @@ class CollectionView extends React.Component {
             </Card>
           ))
         ))}
-
       </Paper>
     );
   }
 }
-
-/*class CollectionView extends React.Component {
-  render() {
-    var counter = 0;
-    if(!this.props.viewingActions) {
-      return <div>select a folder</div>;
-    }
-    console.dir(this.props.viewingActions);
-    return (
-      <Paper style={styles.root} z-index={1}>
-        {this.props.viewingActions};
-      </Paper>
-    );
-  }
-}*/
 
 function mapStateToProps(state) {
   return {

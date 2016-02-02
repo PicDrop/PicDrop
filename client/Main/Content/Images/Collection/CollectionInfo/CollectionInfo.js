@@ -19,8 +19,8 @@ class CollectionInfo extends React.Component {
   render() {
     return (
       <Paper zDepth={1}>
-        <Folders populateCurrentCollection={this.populateCurrentCollection} dispatch={this.props.dispatch} folders={this.props.folders}/>
-        <Tags populateCurrentCollection={this.populateCurrentCollection} dispatch={this.props.dispatch} tags={this.props.tags}/>
+        <Folders populateCurrentCollection={this.populateCurrentCollection} folders={this.props.folders}/>
+        <Tags populateCurrentCollection={this.populateCurrentCollection} tags={this.props.tags}/>
       </Paper>
     );
   }

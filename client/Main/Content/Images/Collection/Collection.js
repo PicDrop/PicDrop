@@ -10,7 +10,7 @@ class Collection extends React.Component {
     return (
       <div className="row">
         <div className="col-sm-3 col-md-3 col-lg-2">
-          <CollectionInfo dispatch={this.props.dispatch} folders={this.props.folders} tags={this.props.tags}/>
+          <CollectionInfo folders={this.props.folders} tags={this.props.tags}/>
         </div>
         <div className="col-sm-10 col-md-10 col-lg-10">
           <CollectionView userPics={this.props.userPics}/>
@@ -19,7 +19,6 @@ class Collection extends React.Component {
     );
   }
 }
-
 
 const mapStateToProps = (state) => {
   console.log(state);
@@ -31,8 +30,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-/*const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ viewingActions: viewingActions }, dispatch);
-};*/
-//export default connect(mapStateToProps, mapDispatchToProps)(Collection);
 export default connect(mapStateToProps)(Collection);
