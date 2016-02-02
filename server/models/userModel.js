@@ -22,11 +22,16 @@ var Tag = thinky.createModel('Tag', {
   name: type.string()
 });
 
-User.hasMany(Picture, 'pictures', 'id', 'userId');
+User.hasMany(Picture, 'userPics', 'id', 'userId');
+User.hasMany(Folder, 'folders', 'id', 'userId');
+User.hasMany(Tag, 'tags', 'id', 'userId');
 Picture.belongsTo(User, 'user', 'userId', 'id');
 Picture.hasAndBelongsToMany(Tag, 'tags', 'id', 'id');
 Picture.belongsTo(Folder, 'folder', 'folderId', 'id');
 Folder.hasMany(Picture, 'pictures', 'id', 'picId');
+Folder.belongsTo(User, 'user', 'userId', 'id');
+Tag.belongsTo(User, 'user', 'userId', 'id');
+
 
 module.exports = {
   User: User,
