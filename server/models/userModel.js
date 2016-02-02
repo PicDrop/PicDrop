@@ -11,7 +11,8 @@ var Picture = thinky.createModel('Picture', {
   id: type.string(),
   thumb: type.string(),
   url: type.string(),
-  userId: type.string()
+  userId: type.string(),
+  domain: type.string()
 });
 var Folder = thinky.createModel('Folder', {
   id: type.string(),
