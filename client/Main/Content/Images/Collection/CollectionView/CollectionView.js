@@ -38,7 +38,7 @@ class CollectionView extends React.Component {
   render() {
     var counter = 0;
     const viewingIds = this.props.viewing.get('currentCollection');
-    // console.log(viewingIds);
+     console.log(viewingIds);
 
     // If folder is not selected, return all images
     if(!viewingIds.size) {
