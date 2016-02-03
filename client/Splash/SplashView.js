@@ -1,1 +1,15 @@
-  //splash page <h1> Hello Everybody</h1>
+import React from 'react';
+
+
+class SplashView extends React.Component {
+  render() {
+    return (
+      <div>
+
+      </div>
+
+    );
+  }
+}
+
+export default SplashView;
