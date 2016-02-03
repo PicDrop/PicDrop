@@ -54,7 +54,7 @@ module.exports = {
         var token = jwt.sign({id: user.id}, jwtSuperSecretCode);
         user.token = token;
         console.log(user);
-        // return res.status(200).send({ token: token });
+        return res.status(200).send({ token: token });
 
       });
     })(req, res, next);
