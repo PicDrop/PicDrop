@@ -55,7 +55,7 @@ const userPics = new Map({
     storageId: 'storageId#',
     originalUrl: 'http://placehold.it/650x650',
     folder: 'myFolder',
-    'tags': ['myTag', 'overlapTag'],
+    'tags': ['seperateTag'],
     title: 'My Picture',
     status: false,
     domain: 'http://exampleURL.com',
@@ -65,8 +65,8 @@ const userPics = new Map({
     id: 'sa6g54a69s8g4sd5f1',
     storageId: 'storageId#',
     originalUrl: 'http://placehold.it/650x650',
-    folder: 'myFolder',
-    'tags': ['myTag', 'overlapTag'],
+    folder: '',
+    'tags': ['newTag'],
     title: 'My Picture',
     status: false,
     domain: 'http://exampleURL.com',
@@ -80,18 +80,23 @@ const tags = new Map({
     'fh165d46h84dhd3f25h1': true
   }),
   seperateTag: new Map({
+    'sa6g54a69s8g4sd5f2': true,
     'gfh6857gdf9h6854df3gsdf': true,
     '09sjdfoins0d9fhj09': true
   }),
   overlapTag: new Map({
     'sa6g54a69s8g4sd5f1': true,
     '09sjdfoins0d9fhj09': true,
-  })
+  }),
+  newTag: new Map({
+    'sa6g54a69s8g4sd5f3': true,
+  }),
 });
 
 const folders = new Map({
   myFolder: new Map({
     'sa6g54a69s8g4sd5f1': true,
+    'sa6g54a69s8g4sd5f2': true,
     'fh165d46h84dhd3f25h1': true,
   }),
   seperateFolder: new Map({
@@ -106,8 +111,8 @@ const viewing = new Map({
   currentFolderPics: new Map(),
   currentTags: new Set(),
   currentTagsPics: new Map(),
-  //currentCollection: new List(),
-  currentCollection: Set.of('09sjdfoins0d9fhj09', 'gfh6857gdf9h6854df3gsdf', 'fh165d46h84dhd3f25h1', 'sa6g54a69s8g4sd5f1'),
+  currentCollection: new Set(),
+  //currentCollection: Set.of('09sjdfoins0d9fhj09', 'gfh6857gdf9h6854df3gsdf', 'fh165d46h84dhd3f25h1', 'sa6g54a69s8g4sd5f1'),
   currentImage: '09sjdfoins0d9fhj09',
 
 });

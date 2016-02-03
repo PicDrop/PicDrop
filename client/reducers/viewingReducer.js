@@ -36,7 +36,7 @@ const updateCurrentFolder = (state, folder) => {
   var newState = {};
   // folder is already selected -- deselect it
   if (state.get('currentFolder') === folder.folderName) {
-    newState = state.set('currentFolder', 'none').set('currentFolderPics', new Map());
+    newState = state.set('currentFolder', '').set('currentFolderPics', new Map());
   } else {
     newState = state.set('currentFolder', folder.folderName).set('currentFolderPics', folder.folderObj);
   }

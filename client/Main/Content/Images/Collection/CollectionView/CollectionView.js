@@ -37,11 +37,13 @@ const styles = {
 class CollectionView extends React.Component {
   render() {
     var counter = 0;
-    const viewingIds = this.props.viewing.get('currentCollection');
-     console.log(viewingIds);
+    const currentCollection = this.props.viewing.get('currentCollection');
+    const currentFolder = this.props.viewing.get('currentFolder');
+    const currentTags = this.props.viewing.get('currentTags');
+     console.log(currentFolder === '' && !currentTags.size);
 
-    // If folder is not selected, return all images
-    if(!viewingIds.size) {
+    // If no folder or no tag selected, return all images
+    if (currentFolder === '' && !currentTags.size) {
       return (
         <Paper style={styles.root} z-index={1}>
           {this.props.userPics.map(pic => (
@@ -62,13 +64,15 @@ class CollectionView extends React.Component {
 
     // If folder is selected, return selected images
     const selectedImages = [];
-    const imagesInFolders = viewingIds.map((val) => {
+    const currentCollectionImages = currentCollection.map((val) => {
       return selectedImages.concat(this.props.userPics.get(val));
     });
 
+    console.log(currentCollectionImages);
+
     return (
       <Paper style={styles.root} z-index={1}>
-        {imagesInFolders.map(picObj => (
+        {currentCollectionImages.map(picObj => (
           picObj.map(pic => (
             <Card style={styles.card}>
               {pic}
@@ -89,7 +93,7 @@ class CollectionView extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    viewing: state.viewing
+    viewing: state.viewing,
   };
 }
 
