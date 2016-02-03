@@ -6,3 +6,7 @@
   -o-background-size: cover;
   -webkit-background-size: cover;
 }
+.selected {
+    background-color: #CCCCCC;
+    border-bottom: 1px solid white !important;
+}

@@ -1,4 +1,4 @@
-import { Map, List } from 'immutable';
+import { Map, List, Set } from 'immutable';
 import foldersActions from './actions/foldersActions';
 import tagsActions from './actions/tagsActions';
 import userPicsActions from './actions/userPicsActions';
@@ -104,10 +104,10 @@ const viewing = new Map({
   username: 'testUser',
   currentFolder: '',
   currentFolderPics: new Map(),
-  currentTags: new List(),
+  currentTags: new Set(),
   currentTagsPics: new Map(),
   //currentCollection: new List(),
-  currentCollection: List.of('09sjdfoins0d9fhj09', 'gfh6857gdf9h6854df3gsdf', 'fh165d46h84dhd3f25h1', 'sa6g54a69s8g4sd5f1'),
+  currentCollection: Set.of('09sjdfoins0d9fhj09', 'gfh6857gdf9h6854df3gsdf', 'fh165d46h84dhd3f25h1', 'sa6g54a69s8g4sd5f1'),
   currentImage: '09sjdfoins0d9fhj09',
 
 });
