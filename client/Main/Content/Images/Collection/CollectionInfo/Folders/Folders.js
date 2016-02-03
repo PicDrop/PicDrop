@@ -10,12 +10,14 @@ class Folders extends React.Component {
   render() {
     const selectedFolder = this.props.viewing.get('currentFolder');
     let keyCounter = 0;
+    let currentCount = 0;
     const folders = this.props.folders.map((folderObj, folderName) => {
+      currentCount = folderObj.size;
       return (
         <ListItem
           className={selectedFolder === folderName ? 'selected' : ''}
           key={keyCounter++}
-          primaryText={folderName}
+          primaryText={folderName + folderObj.size}
           rightIcon={<ActionInfo />}
           onClick={() => this.props.viewingActions({ folderName, folderObj })}
         />
@@ -24,7 +26,6 @@ class Folders extends React.Component {
     return (
       <div>
         <h3>Folders</h3>
-        <div>Current Selection: {selectedFolder}</div>
         <List>
           {folders}
         </List>
