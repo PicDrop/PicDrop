@@ -9,12 +9,14 @@ import { connect } from 'react-redux';
 
 const styles = {
   root: {
-    marginTop: 20,
+    marginTop: -10,
+    marginLeft: -20,
     backgroundColor: '#E9E9F4',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     //minWidth: 965,
+    minHeight: screen.height - 240,
     padding: 16,
   },
   card: {
@@ -45,7 +47,7 @@ class CollectionView extends React.Component {
     // If no folder or no tag selected, return all images
     if (currentFolder === '' && !currentTags.size) {
       return (
-        <Paper style={styles.root} z-index={1}>
+        <Paper style={styles.root} zDepth={1}>
           {this.props.userPics.map(pic => (
             <Card style={styles.card}>
               <CardMedia>
