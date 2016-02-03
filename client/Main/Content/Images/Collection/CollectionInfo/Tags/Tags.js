@@ -15,8 +15,8 @@ class Tags extends React.Component {
         <ListItem
           className={selectedTags.has(tagName) ? 'selected' : ''}
           key={keyCounter++}
-          primaryText={tagName + tagObj.size}
-          rightIcon={<ActionInfo />}
+          primaryText={tagName}
+          rightIcon={<span className="mdl-badge" data-badge={tagObj.size}></span>}
           onClick={() => this.props.viewingActions({ tagName, tagObj })}
         />
       );

@@ -15,3 +15,15 @@
     top: 3px !important;
     right: 1px !important;
 }
+
+.info-bar {
+    z-index: 20;
+}
+
+.image-collection {
+    z-index: 10;
+}
+
+body {
+    overflow-x: hidden;
+}
