@@ -25,11 +25,22 @@ const populateCurrentCollection = (state) => {
       folderOnlyList = folderOnlyList.push(key);
     });
     return state.set('currentCollection', folderOnlyList);
+  } else {
+    //if nothing is selected, return empty collection
+    return state.set('currentCollection', new Map());
   }
 };
 
 const updateCurrentFolder = (state, folder) => {
-  const newState = state.set('currentFolder', folder.folderName).set('currentFolderPics', folder.folderObj);
+  console.log(state.get('currentFolder'));
+  var newState = {};
+  //folder is already selected
+  if (state.get('currentFolder') === folder.folderName) {
+    newState = state.set('currentFolder', 'none').set('currentFolderPics', new Map());
+  } else {
+    newState = state.set('currentFolder', folder.folderName).set('currentFolderPics', folder.folderObj);
+  }
+  console.log(newState);
   return populateCurrentCollection(newState);
 }
 
