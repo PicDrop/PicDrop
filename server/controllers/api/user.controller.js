@@ -4,7 +4,7 @@ var passport = require('../../middleware/passport');
 module.exports = {
   createDrop: function(req, res){
     DB.User.get(req.user).getJoin({folders: true, userPics: true, tags: true}).run().then(function(user){
-      var newTags = [], var newFolder;
+      var newTags = [], newFolder;
       var tags = req.body.tags, folder = req.body.folder;
       var newPic = new DB.Picture({url: req.body.url, domain: req.body.domain});
       for(var i = 0; i < tags.length; i++){
@@ -61,7 +61,7 @@ module.exports = {
       newTag.addRelation('pictures', pic);
       pic.addRelation('tags', newTag);
       pic.save();
-      user.saveAll({tags: true}).then(fucntion(user){
+      user.saveAll({tags: true}).then(function(user){
         res.status(201).send("Added tag");
       });
     })
