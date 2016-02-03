@@ -8,10 +8,12 @@ import { bindActionCreators } from 'redux';
 
 class Tags extends React.Component {
   render() {
+    const selectedTags = this.props.viewing.get('currentTags');
     let keyCounter = 0;
     const tags = this.props.tags.map((tagObj, tagName) => {
       return (
         <ListItem
+          className={selectedTags.has(tagName) ? 'selected' : ''}
           key={keyCounter++}
           primaryText={tagName}
           rightIcon={<ActionInfo />}
@@ -31,11 +33,17 @@ class Tags extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    viewing: state.viewing
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ viewingActions: viewingActions.selectTag }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(Tags);
+export default connect(mapStateToProps, mapDispatchToProps)(Tags);
 
 /*class Tags extends React.Component {
   render() {
