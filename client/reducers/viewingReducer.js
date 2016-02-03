@@ -34,7 +34,7 @@ const populateCurrentCollection = (state) => {
 const updateCurrentFolder = (state, folder) => {
   console.log(state.get('currentFolder'));
   var newState = {};
-  //folder is already selected
+  // folder is already selected -- deselect it
   if (state.get('currentFolder') === folder.folderName) {
     newState = state.set('currentFolder', 'none').set('currentFolderPics', new Map());
   } else {
@@ -56,8 +56,15 @@ const updateCurrentTags = (state, tag) => {
     currentTagsPics = state.set('currentTagsPics', tag.tagObj);
   }
 
-  currentTags = currentTags.concat(tag.tagName);
-  currentTagsPics = currentTagsPics.concat(tag.tagObj);
+  // Tag is already selected -- deselect it
+  if (currentTags.has(tag.tagName)) {
+    currentTags = currentTags.delete(tag.tagName);
+    // Remove items that are in the clicked tags
+    currentTagsPics = currentTagsPics.filter((val, key) => Array.from(tag.tagObj.keys()).indexOf(key) === -1);
+  } else {
+    currentTags = currentTags.concat(tag.tagName);
+    currentTagsPics = currentTagsPics.concat(tag.tagObj);
+  }
   const newState = state.set('currentTags', currentTags).set('currentTagsPics', currentTagsPics);
   console.log(newState);
   //const newState = state.set('currentTags', tag.tagName).set('currentTagsPics', tag.tagObj);
