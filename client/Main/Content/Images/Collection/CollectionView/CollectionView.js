@@ -48,7 +48,6 @@ class CollectionView extends React.Component {
         <Paper style={styles.root} z-index={1}>
           {this.props.userPics.map(pic => (
             <Card style={styles.card}>
-              {pic}
               <CardMedia>
                 <img style={styles.image} src={pic.get('thumbnail')} />
               </CardMedia>
