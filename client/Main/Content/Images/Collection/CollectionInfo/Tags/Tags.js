@@ -15,7 +15,7 @@ class Tags extends React.Component {
         <ListItem
           className={selectedTags.has(tagName) ? 'selected' : ''}
           key={keyCounter++}
-          primaryText={tagName}
+          primaryText={tagName + tagObj.size}
           rightIcon={<ActionInfo />}
           onClick={() => this.props.viewingActions({ tagName, tagObj })}
         />
