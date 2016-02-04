@@ -9,13 +9,13 @@ const userPics = new Map({
   '09sjdfoins0d9fhj09': new Map({
     id: '09sjdfoins0d9fhj09',
     storageId: 'storageId#',
-    originalUrl: 'http://placehold.it/650x650',
+    originalUrl: 'http://i63.tinypic.com/16ktgmr.jpg',
     folder: 'seperateFolder',
     'tags': ['seperateTag', 'overlapTag'],
-    title: 'My Picture',
+    title: 'Woof Woof',
     status: false,
     domain: 'http://exampleURL.com',
-    thumbnail: 'http://placehold.it/200x150'
+    thumbnail: 'http://i67.tinypic.com/2pskge9.jpg'
   }),
   'fh165d46h84dhd3f25h1': new Map({
     id: 'fh165d46h84dhd3f25h1',
