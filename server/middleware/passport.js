@@ -23,7 +23,7 @@ passport.use(new LocalStrategy(
       var user = data[0];
       if (user) {
         if (password === user.password) {
-          DB.User.get(user.id).getJoin({userPics: true, folders: true, tags: true})
+          DB.User.get(user.id).getJoin({userPics: true})
           .run().then(function(user){
             delete user.password;
             delete user.email;
