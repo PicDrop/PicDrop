@@ -26,7 +26,10 @@ class Folders extends React.Component {
     });
     return (
       <div>
-        <h3>Folders</h3>
+        <div className="sidebar-header">
+          <i className="material-icons">folder_open</i>
+          <div>Folders</div>
+        </div>
         <List>
           {folders}
         </List>

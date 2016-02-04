@@ -27,3 +27,18 @@
 body {
     overflow-x: hidden;
 }
+
+.sidebar-header {
+
+}
+
+.sidebar-header .material-icons {
+    font-size: 28px !important;
+    margin: 0 3px 0 6px !important;
+}
+
+.sidebar-header div {
+    font-size: 19px;
+    margin-top: -28px;
+    margin-left: 43px;
+}

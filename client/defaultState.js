@@ -34,7 +34,7 @@ const userPics = new Map({
     originalUrl: 'http://placehold.it/650x650',
     folder: 'seperateFolder',
     'tags': ['seperateTag'],
-    title: 'My Picture',
+    title: 'My Picture #1',
     status: false,
     domain: 'http://exampleURL.com',
     thumbnail: 'http://placehold.it/200x150'
@@ -45,7 +45,7 @@ const userPics = new Map({
     originalUrl: 'http://placehold.it/650x650',
     folder: 'myFolder',
     'tags': ['myTag', 'overlapTag'],
-    title: 'My Picture',
+    title: 'My Picture #2',
     status: false,
     domain: 'http://exampleURL.com',
     thumbnail: 'http://placehold.it/200x150'
@@ -56,7 +56,7 @@ const userPics = new Map({
     originalUrl: 'http://placehold.it/650x650',
     folder: 'myFolder',
     'tags': ['seperateTag'],
-    title: 'My Picture',
+    title: 'My Picture #3',
     status: false,
     domain: 'http://exampleURL.com',
     thumbnail: 'http://placehold.it/200x150'
@@ -67,7 +67,7 @@ const userPics = new Map({
     originalUrl: 'http://placehold.it/650x650',
     folder: '',
     'tags': ['newTag'],
-    title: 'My Picture',
+    title: 'My Picture #4',
     status: false,
     domain: 'http://exampleURL.com',
     thumbnail: 'http://placehold.it/200x150'
