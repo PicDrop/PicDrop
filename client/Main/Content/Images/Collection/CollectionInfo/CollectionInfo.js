@@ -3,6 +3,14 @@ import Folders from './Folders/Folders';
 import Tags from './Tags/Tags';
 import Paper from 'material-ui/lib/paper';
 
+const styles = {
+  root: {
+    minHeight: screen.height - 240,
+    marginLeft: 10,
+    marginTop: -34
+  }
+};
+
 class CollectionInfo extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +26,7 @@ class CollectionInfo extends React.Component {
 
   render() {
     return (
-      <Paper zDepth={1}>
+      <Paper style={styles.root} zDepth={1}>
         <Folders populateCurrentCollection={this.populateCurrentCollection} folders={this.props.folders}/>
         <Tags populateCurrentCollection={this.populateCurrentCollection} tags={this.props.tags}/>
       </Paper>
