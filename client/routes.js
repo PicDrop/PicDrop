@@ -12,7 +12,7 @@ export default (
     <Route path="splash" component={SplashView} />
     <Route path="main" component={Main}>
       <Route path="collection" component={Collection} />
-      <Route path="image" component={Image} />
+      <Route path="image/:imageId" component={Image} />
     </Route>
   </Route>
 

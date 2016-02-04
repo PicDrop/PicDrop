@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, browserHistory } from 'react-router';
 import Paper from 'material-ui/lib/paper';
 import Card from 'material-ui/lib/card/card';
 import CardActions from 'material-ui/lib/card/card-actions';
@@ -54,7 +55,9 @@ class CollectionView extends React.Component {
                 <img style={styles.image} src={pic.get('thumbnail')} />
               </CardMedia>
               <CardActions>
-                <FlatButton key={counter++} label={pic.get('title')} />
+                <Link to={`/main/image/${pic.get('id')}`}>
+                  <FlatButton key={counter++} label={pic.get('title')} />
+                </Link>
               </CardActions>
               <CardTitle subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."  />
             </Card>
@@ -76,12 +79,13 @@ class CollectionView extends React.Component {
         {currentCollectionImages.map(picObj => (
           picObj.map(pic => (
             <Card style={styles.card}>
-              {pic}
               <CardMedia>
                 <img style={styles.image} src={pic.get('thumbnail')} />
               </CardMedia>
               <CardActions>
-                <FlatButton key={counter++} label={pic.get('title')} />
+                <Link to={`/main/image/${pic.get('id')}`}>
+                  <FlatButton key={counter++} label={pic.get('title')} />
+                </Link>
               </CardActions>
               <CardTitle subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."  />
             </Card>
