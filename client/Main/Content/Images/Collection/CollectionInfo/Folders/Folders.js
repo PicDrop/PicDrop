@@ -33,7 +33,7 @@ class Folders extends React.Component {
         <List>
           {folders}
         </List>
-        <a href="#">Show All Folders</a>
+        <a href="#"><i className="material-icons">expand_more</i>Show All Folders</a>
       </div>
     );
   }
