@@ -6,13 +6,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var jwtSuperSecretCode = 'super-secret-key';
 var validateJwt = expressJwt({secret: jwtSuperSecretCode});
 
-function arrToObj(oldArr, key){
-  var newObj = {};
-  oldArr.forEach(function(item){
-    newObj[item[key]] = item
-  });
-  return newObj;
-}
+
 
 passport.use(new LocalStrategy(
   { usernameField: 'email' },
@@ -23,13 +17,8 @@ passport.use(new LocalStrategy(
       var user = data[0];
       if (user) {
         if (password === user.password) {
-          DB.User.get(user.id).getJoin({userPics: true, folders: true, tags: true})
-          .run().then(function(user){
-            delete user.password;
-            delete user.email;
-            user.folders = arrToObj(user.folders, 'name');
-            user.tags = arrToObj(user.tags, 'name');
-            user.userPics = arrToObj(user.userPics, 'id');
+          DB.User.get(user.id).getJoin({userPics: true})
+          .run().then(function(user){   
             return done(null, user);
           });
         } else {
