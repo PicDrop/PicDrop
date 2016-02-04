@@ -30,7 +30,10 @@ class Tags extends React.Component {
         <List>
           {tags}
         </List>
-        <a href="#"><i className="material-icons">expand_more</i>Show All Tags</a>
+        <a className="sidebar-link" href="#">
+          <i className="material-icons">expand_more</i>
+          <div>Show All</div>
+        </a>
       </div>
     );
   }
