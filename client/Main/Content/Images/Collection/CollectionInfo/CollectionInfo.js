@@ -7,7 +7,8 @@ const styles = {
   root: {
     minHeight: screen.height - 240,
     marginLeft: 10,
-    marginTop: -34
+    marginTop: -10,
+    paddingTop: 20
   }
 };
 

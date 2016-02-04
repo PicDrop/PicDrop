@@ -23,11 +23,17 @@ class Tags extends React.Component {
     });
     return (
       <div>
-        <h3>Tags</h3>
+        <div className="sidebar-header">
+          <i className="material-icons">filter_frames</i>
+          <div>Tags</div>
+        </div>
         <List>
           {tags}
         </List>
-        <a href="#">Show All Tags</a>
+        <a className="sidebar-link" href="#">
+          <i className="material-icons">expand_more</i>
+          <div>Show All</div>
+        </a>
       </div>
     );
   }

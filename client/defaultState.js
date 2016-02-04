@@ -9,13 +9,13 @@ const userPics = new Map({
   '09sjdfoins0d9fhj09': new Map({
     id: '09sjdfoins0d9fhj09',
     storageId: 'storageId#',
-    originalUrl: 'http://placehold.it/650x650',
+    originalUrl: 'http://i63.tinypic.com/16ktgmr.jpg',
     folder: 'seperateFolder',
     'tags': ['seperateTag', 'overlapTag'],
-    title: 'My Picture',
+    title: 'Woof Woof',
     status: false,
     domain: 'http://exampleURL.com',
-    thumbnail: 'http://placehold.it/200x150'
+    thumbnail: 'http://i67.tinypic.com/2pskge9.jpg'
   }),
   'fh165d46h84dhd3f25h1': new Map({
     id: 'fh165d46h84dhd3f25h1',
@@ -23,7 +23,7 @@ const userPics = new Map({
     originalUrl: 'http://placehold.it/650x650',
     folder: 'myFolder',
     'tags': ['myTag'],
-    title: 'My Picture',
+    title: 'Placeholder Pic',
     status: false,
     domain: 'http://exampleURL.com',
     thumbnail: 'http://placehold.it/200x150'
@@ -34,7 +34,7 @@ const userPics = new Map({
     originalUrl: 'http://placehold.it/650x650',
     folder: 'seperateFolder',
     'tags': ['seperateTag'],
-    title: 'My Picture',
+    title: 'My Picture #1',
     status: false,
     domain: 'http://exampleURL.com',
     thumbnail: 'http://placehold.it/200x150'
@@ -45,7 +45,7 @@ const userPics = new Map({
     originalUrl: 'http://placehold.it/650x650',
     folder: 'myFolder',
     'tags': ['myTag', 'overlapTag'],
-    title: 'My Picture',
+    title: 'My Picture #2',
     status: false,
     domain: 'http://exampleURL.com',
     thumbnail: 'http://placehold.it/200x150'
@@ -56,7 +56,7 @@ const userPics = new Map({
     originalUrl: 'http://placehold.it/650x650',
     folder: 'myFolder',
     'tags': ['seperateTag'],
-    title: 'My Picture',
+    title: 'My Picture #3',
     status: false,
     domain: 'http://exampleURL.com',
     thumbnail: 'http://placehold.it/200x150'
@@ -67,7 +67,7 @@ const userPics = new Map({
     originalUrl: 'http://placehold.it/650x650',
     folder: '',
     'tags': ['newTag'],
-    title: 'My Picture',
+    title: 'My Picture #4',
     status: false,
     domain: 'http://exampleURL.com',
     thumbnail: 'http://placehold.it/200x150'
