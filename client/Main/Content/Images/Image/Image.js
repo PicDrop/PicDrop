@@ -4,11 +4,36 @@ import ImageInfo from './ImageInfo/ImageInfo';
 import ImageView from './ImageView/ImageView';
 import Immutable from 'immutable';
 
-
 class Image extends React.Component {
-
   render() {
+    const userPics = this.props.userPics;
+    //const viewing = this.props.viewing;
+    const picId = this.props.params.imageId;
+    const pic = userPics.get(picId);
+    const originalUrl = pic.get('originalUrl');
+    const folder = pic.get('folder');
+    const title = pic.get('title');
+    const currentTags = pic.get('tags');
+
     return (
+      <div>
+        <div style={{ width: '250px', position: 'absolute' }}>
+          <ImageInfo
+            picId={ picId }
+            folder={ folder }
+            title={ title }
+            originalUrl={ originalUrl }
+            currentTags={ currentTags }
+            history={ this.props.history }
+          />
+        </div>
+        <div style={{ marginLeft: '250px' }}>
+          <ImageView originalUrl={ originalUrl } />
+        </div>
+      </div>
+
+    );
+/*    return (
       <div>
         <div style={{ width: '250px', position: 'absolute' }}>
             <ImageInfo
@@ -25,11 +50,19 @@ class Image extends React.Component {
         </div>
       </div>
 
-    );
+    );*/
 
   }
 }
+
 const mapStateToProps = (state) => {
+  return {
+    userPics: state.userPics,
+    viewing: state.viewing
+  };
+};
+
+/*const mapStateToProps = (state) => {
   const userPics = state.userPics;
   const viewing = state.viewing;
   const picId = viewing.get('currentImage', 0);
@@ -45,7 +78,7 @@ const mapStateToProps = (state) => {
     title: title,
     currentTags: currentTags,
   };
-};
+};*/
 
 
 export default connect(mapStateToProps)(Image);

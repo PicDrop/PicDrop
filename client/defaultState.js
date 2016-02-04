@@ -23,7 +23,7 @@ const userPics = new Map({
     originalUrl: 'http://placehold.it/650x650',
     folder: 'myFolder',
     'tags': ['myTag'],
-    title: 'My Picture',
+    title: 'Placeholder Pic',
     status: false,
     domain: 'http://exampleURL.com',
     thumbnail: 'http://placehold.it/200x150'
