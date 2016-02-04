@@ -8,7 +8,9 @@ module.exports = {
         url: req.body.url,
         domain: req.body.domain,
         thumb: req.body.thumb,
-        tags: req.body.tags
+        tags: req.body.tags,
+        folder: req.body.folder,
+        notes: req.body.notes
       });
       user.userPics.push(newPic);
       user.saveAll({userPics: true}).then(function(user){

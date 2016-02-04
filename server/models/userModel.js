@@ -11,7 +11,10 @@ var Picture = thinky.createModel('Picture', {
   userId: type.string(),
   thumb: type.string(),
   url: type.string(),
-  domain: type.string()
+  folder: type.string(),
+  note: type.string(),
+  domain: type.string(),
+  tags: type.array()
 });
 
 User.hasMany(Picture, 'userPics', 'id', 'userId');
