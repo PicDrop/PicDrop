@@ -3,7 +3,9 @@ var bodyParser = require('body-parser');
 //var apiRouter = require('./controllers/api/index');
 var controllers = require('./controllers');
 var auth = require('./middleware/passport');
-
+var https = require('https');
+var fs = require('fs');
+var cors = require('cors')
 var app = express();
 
 
@@ -33,6 +35,16 @@ app.use(function(err, req, res, next){
   }
 });
 
+// CORS
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header("Access-Control-Allow-Headers", "*");
+  
+  next();
+});
+
+app.options('*', cors());
 
 // load the router module
 //app.use('/api', apiRouter);
@@ -44,5 +56,13 @@ controllers.connectToApi(app);
 app.listen(app.get('port'), function(){
   console.log('Express listening on port 3000');
 })
+
+// HTTPS Server
+https.createServer({
+  key: fs.readFileSync(__dirname + '/key.pem'),
+  cert: fs.readFileSync(__dirname + '/cert.pem')
+}, app).listen(4000, function () {
+  console.log("listening on 4000")
+});
 
 

@@ -4,6 +4,7 @@ var buildUserState = require('./helpers').buildUserState;
 
 module.exports = {
   createDrop: function(req, res){
+
     DB.User.get(req.user.id).getJoin({userPics: true}).run().then(function(user){
       var newPic = DB.Picture({
         url: req.body.url,
@@ -11,7 +12,7 @@ module.exports = {
         thumb: req.body.thumb,
         tags: req.body.tags,
         folder: req.body.folder,
-        note: req.body.notes
+        note: req.body.note
       });
       user.userPics.push(newPic);
       user.saveAll({userPics: true}).then(function(user){
