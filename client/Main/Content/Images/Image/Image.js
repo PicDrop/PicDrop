@@ -6,6 +6,7 @@ import Immutable from 'immutable';
 
 
 class Image extends React.Component {
+
   render() {
     return (
       <div>
@@ -16,6 +17,7 @@ class Image extends React.Component {
               title={ this.props.title }
               originalUrl={ this.props.originalUrl }
               currentTags={ this.props.currentTags }
+              history={ this.props.history }
               />
         </div>
         <div style={{ marginLeft: '250px' }}>
@@ -24,20 +26,18 @@ class Image extends React.Component {
       </div>
 
     );
+
   }
 }
-
 const mapStateToProps = (state) => {
   const userPics = state.userPics;
   const viewing = state.viewing;
-  console.log('Viewing: ', viewing);
   const picId = viewing.get('currentImage', 0);
   const pic = userPics.get(picId);
   const originalUrl = pic.get('originalUrl');
   const folder = pic.get('folder');
   const title = pic.get('title');
   const currentTags = pic.get('tags');
-  console.log('Current Tags:', currentTags);
   return {
     picId: pic,
     originalUrl: originalUrl,
