@@ -13,18 +13,20 @@ function buildUserState(user){
   user.userPics.forEach(function(pic){
     var id = pic.id;
     newUser.userPics[id] = pic;
-    if(newUser.folder[pic.folder]) {
-      newUser.folder[pic.folder][id] = true;
+    if(newUser.folders[pic.folder]) {
+      newUser.folders[pic.folder][id] = true;
     } else {
-      newUser.folder[pic.folder] = { id: true };
+      newUser.folders[pic.folder] = { id: true };
     }
-    user.tags.forEach(function(tag){
-      if(newUser.tags[tag]){
-        newUser.tags[tag][id] = true;
-      } else {
-        newUser.tags[tag] = { id: true };
-      }
-    });
+    if (user.tags) {
+      user.tags.forEach(function(tag){
+        if(newUser.tags[tag]){
+          newUser.tags[tag][id] = true;
+        } else {
+          newUser.tags[tag] = { id: true };
+        }
+      });
+    }
     newUser.viewing.currentViewing.push(id);
   });
   return newUser;
