@@ -1,9 +1,10 @@
 import React from 'react';
-import {reduxForm} from 'redux-form';
+import { reduxForm } from 'redux-form';
 class Profile extends React.Component {
   render() {
+    const { handleSubmit } = this.props;
     return (
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>User Profile</div>
         <label>Email</label>
         <input type="text" className=""/>
