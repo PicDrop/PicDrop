@@ -3,17 +3,20 @@ import {reduxForm} from 'redux-form';
 class Profile extends React.Component {
   render() {
     return (
-      <div>
+      <form>
         <div>User Profile</div>
         <label>Email</label>
         <input type="text" className=""/>
         <label>Password</label>
         <input type="password" className="" placeholder="New Password"/>
         <button>Cancel</button>
-        <button>Save</button>
-      </div>
+        <button type="submit">Save</button>
+      </form>
     );
   }
 }
 
-export default Profile;
+export default reduxForm({
+  form: 'ProfileForm',
+  fields: ['email', 'password']
+})(Profile);

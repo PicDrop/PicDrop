@@ -20,6 +20,8 @@ public/client/bundle.js.map
 public/extension/bundle.js
 public/*.js
 public/*.json
+public/client/*.hot-update.js
+public/client/*.hot-update.json
 
 ## env variables
 .env
