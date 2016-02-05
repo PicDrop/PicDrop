@@ -6,8 +6,8 @@ var passport = require('../../middleware/passport');
 var jwtSuperSecretCode = 'super-secret-key';
 var validateJwt = expressJwt({secret: jwtSuperSecretCode});
 
-function buildUserState(user){
-  var newUser = {userPics: {}, folders: {}, tags: {}, viewing:{ currentViewing:[]} }};
+function buildUserState(user) {
+  var newUser = {userPics: {}, folders: {}, tags: {}, viewing:{ currentViewing:[]} };
   user.userPics.forEach(function(pic){
     var id = pic.id;
     newUser.userPics[id] = pic;
@@ -24,7 +24,7 @@ function buildUserState(user){
       }
     });
     newUser.viewing.currentViewing.push(id);
-  })
+  });
   return newUser;
 }
 
@@ -57,7 +57,6 @@ module.exports = {
       .error(function(err){
         console.log(err);
       });
-
   },
   userLogin: function(req, res, next){
     passport.passport.authenticate('local', function(err, user, info) {

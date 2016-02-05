@@ -10,7 +10,7 @@ module.exports = {
         thumb: req.body.thumb,
         tags: req.body.tags,
         folder: req.body.folder,
-        notes: req.body.notes
+        note: req.body.notes
       });
       user.userPics.push(newPic);
       user.saveAll({userPics: true}).then(function(user){
@@ -22,6 +22,36 @@ module.exports = {
   getDrop: function(req, res){},
   starDrop: function(req, res){},
   tagDrop: function(req, res){
+    DB.Picture.get(req.body.picId).run().then(function(pic){
+      pic.tags.push(req.body.tag);
+      pic.save();
+      res.status(201).send('Picture tagged');
+    });
+  },
+  untagDrop: function(req, res){
+    DB.Picture.get(req.body.picId).run().then(function(pic){
+      pic.tags = pic.tags.reduce(function(tags, tag){
+        if(tag !== req.body.tag) tags.push(tag);
+        return tags;
+      }, []);
+      pic.save();
+      res.status(200
+        ).send('Tag removed');
+    })
+  },
+  updateFolder: function(req, res){
+    DB.Picture.get(req.body.picId).run().then(function(pic){
+      pic.folder = req.body.folder;
+      pic.save();
+      res.status(201).send('New folder saved');
+    })
+  },
+  removeDrop: function(req, res){
+    DB.Picture.get(req.body.picId).run().then(function(pic){
+      pic.delete().then(function(result){
+        res.status(200).send('Picture deleted');
+      });
+    });
   },
   getCategory: function(req, res){},
   getTagname: function(req, res){},
