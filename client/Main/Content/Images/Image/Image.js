@@ -14,7 +14,6 @@ class Image extends React.Component {
     const folder = pic.get('folder');
     const title = pic.get('title');
     const currentTags = pic.get('tags');
-
     return (
       <div>
         <div style={{ width: '250px', position: 'absolute' }}>
