@@ -6,6 +6,10 @@ import LoginSignup from './LoginSignup';
 import { reduxForm } from 'redux-form';
 import axios from 'axios';
 import appActions from '../../actions/appActions';
+import userPicsActions from '../../actions/userPicsActions';
+import tagsActions from '../../actions/tagsActions';
+import foldersActions from '../../actions/foldersActions';
+import viewingActions from '../../actions/foldersActions';
 
 
 class AuthForm extends React.Component {
@@ -21,6 +25,7 @@ class AuthForm extends React.Component {
   submitForm(e) {
     e.preventDefault();
     const route = this.state.submissionType.toLowerCase().split(' ').join('');
+    const dispatch = this.props.dispatch;
     axios.post(`/api/auth/${route}`,
       {
         email: this.props.values.email,
@@ -31,7 +36,13 @@ class AuthForm extends React.Component {
       console.log(resp);
       localStorage.setItem('pd.loggedIn', true);
       localStorage.setItem('pd.token', resp.data.token);
-      this.props.dispatch(appActions.setLoggedIn(true));
+      dispatch(appActions.setLoggedIn(true));
+      if (route === 'login') {
+        dispatch(userPicsActions.setState(resp.data.userPics));
+        dispatch(tagsActions.setState(resp.data.tags));
+        dispatch(foldersActions.setState(resp.data.folders));
+        dispatch(viewingActions.setState(resp.data.viewing));
+      }
       this.props.history.push({ pathname: '/main/collection' });
       this.props.handleSubmit();
     });

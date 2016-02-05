@@ -5,7 +5,9 @@ var User = thinky.createModel('User', {
   id: type.string(),
   email: type.string(),
   password: type.string(),
-})
+  folders: type.object(),
+  tags: type.object()
+});
 var Picture = thinky.createModel('Picture', {
   id: type.string(),
   userId: type.string(),
