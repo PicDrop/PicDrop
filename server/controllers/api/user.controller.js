@@ -53,6 +53,14 @@ module.exports = {
       });
     });
   },
+  deleteFolder: function(req, res){
+    DB.Picture.filter({folder: req.body.folder}).run().then(function(pics){
+      pics.forEach(function(pic){
+        pic.delete();
+      });
+      res.status(200).send('Folder and pictures deleted');
+    })
+  },
   getCategory: function(req, res){},
   getTagname: function(req, res){},
 }  
