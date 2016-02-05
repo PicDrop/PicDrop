@@ -26,7 +26,7 @@ function buildUserState(user) {
     newUser.viewing.currentViewing.push(id);
   });
   return newUser;
-}
+};
 
 module.exports = {
   userCreate: function(req, res){
