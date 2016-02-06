@@ -59,3 +59,7 @@ body {
     margin-left: 43px;
     margin-bottom: 45px;
 }
+
+.btn-save-profile div span {
+    margin-left: 20px !important;
+}

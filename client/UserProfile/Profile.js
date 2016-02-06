@@ -29,17 +29,25 @@ const styles = {
   },
   button: {
     marginLeft: 20,
-    width: 150
+    width: 115
   },
-  iconWhite: {
+  iconRed: {
     position: 'absolute',
-    color: 'white',
-    left: 4
+    color: 'red',
+    left: 14,
+    top: 5
+  },
+  iconGreen: {
+    position: 'absolute',
+    color: 'green',
+    left: 14,
+    top: 5
   },
   iconGray: {
     position: 'absolute',
     color: 'gray',
-    left: 4
+    left: 14,
+    top: 5
   }
 };
 
@@ -72,32 +80,23 @@ class Profile extends React.Component {
               </div>
               <div className="row end-sm end-md end-lg">
                 <RaisedButton
-                  label="Label before"
-                  labelPosition="before"
-                  primary={true}
-                  icon={<ActionAndroid />}
-                  style={styles.button}
-                />
-                <RaisedButton
                   style={styles.button}
                   linkButton={true}
                   label="Cancel"
-                  labelPosition="before"
-                  secondary={true}
                 >
-                  <i className="material-icons" style={{color: 'white'}}>sort</i>
+                  <i className="material-icons" style={styles.iconRed}>clear</i>
                 </RaisedButton>
 
                 <RaisedButton
+                  className="btn-save-profile"
                   style={styles.button}
                   label="Save"
                   disabled={password.error ? true : false}
                   type="submit"
-                  primary={true}
                 >
                   { password.error ?
-                    <i className="material-icons" style={styles.iconWhite}>check</i> :
-                    <i className="material-icons" style={styles.iconGray}>check</i> }
+                    <i className="material-icons" style={styles.iconGray}>check</i> :
+                    <i className="material-icons" style={styles.iconGreen}>check</i> }
 
                 </RaisedButton>
               </div>
