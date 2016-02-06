@@ -25,6 +25,9 @@ const styles = {
   textField: {
     maxWidth: 300,
     minWidth: 300,
+  },
+  button: {
+    marginLeft: 20
   }
 };
 
@@ -56,11 +59,13 @@ class Profile extends React.Component {
                 />
               </div>
               <div>{email.touched ? email.error : ''}, {password.touched ? password.error : ''}</div>
-              <div className="row">
+              <div className="row end-sm end-md end-lg">
                 <RaisedButton
+                  style={styles.button}
                   label="Cancel"
                 />
                 <RaisedButton
+                  style={styles.button}
                   label="Save"
                   disabled={true}
                   type="submit"
