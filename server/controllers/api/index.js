@@ -14,11 +14,17 @@ apiRouter.get('/auth/isAuth', passport.isAuth);
 // apiRouter.post('/auth/dropbox', auth.asdf);
 // apiRouter.post('/auth/google', auth.asdf);
 apiRouter.post('/auth/facebook', auth.userFacebookLogin);
-
+apiRouter.get('/auth/google', auth.googleLogin);
+apiRouter.get('/auth/google/return', auth.googleReturn);
+apiRouter.get('/auth/google/success', auth.googleSuccess);
 /* User Interface Routes */ 
 //?Should we name a user's image object a 'drop'?
-apiRouter.get('/user/drops', user.getDrops);
-apiRouter.post('/user/drop', user.createDrop);
+apiRouter.post('/user/createDrop', user.createDrop);
+apiRouter.post('/user/tagDrop', user.tagDrop);
+apiRouter.post('/user/untagDrop', user.untagDrop);
+apiRouter.post('/user/updateFolder', user.updateFolder);
+apiRouter.post('/user/removeDrop', user.removeDrop);
+apiRouter.post('/user/deleteFolder', user.deleteFolder);
 //apiRouter.put('/user/drop/star', user.starImage)
 
 module.exports = apiRouter;

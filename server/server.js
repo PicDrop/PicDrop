@@ -20,6 +20,7 @@ app.set('port', process.env.PORT || 3000);
 app.use('/', express.static(__dirname + '/../public/client'));
 
 // Passport
+console.log('initialize');
 auth.passportInitialize(app);
 
 // Authinicating Tokens for all routes /api/*

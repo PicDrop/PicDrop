@@ -1,5 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/lib/text-field';
+import FlatButton from 'material-ui/lib/flat-button';
 import RaisedButton from 'material-ui/lib/raised-button';
 import IconButton from 'material-ui/lib/icon-button';
 import LoginSignup from './LoginSignup';
@@ -18,7 +19,7 @@ class AuthForm extends React.Component {
     this.state = {
       submissionType: 'Log In',
     };
-
+    this.googleAuth = this.googleAuth.bind(this);
     this.submitForm = this.submitForm.bind(this);
     this.flipForm = this.flipForm.bind(this);
   }
@@ -55,8 +56,27 @@ class AuthForm extends React.Component {
       this.setState({ submissionType: 'Log In' });
     }
   }
+  googleAuth(e) {
+    e.preventDefault();
+    const dispatch = this.props.dispatch;
+    axios.get('api/auth/google')
+    .then((res) => {
+      console.log(res);
+      localStorage.setItem('pd.loggedIn', true);
+      localStorage.setItem('pd.token', resp.data.token);
+      dispatch(appActions.setLoggedIn(true));
+      if (route === 'login') {
+        dispatch(userPicsActions.setState(resp.data.userPics));
+        dispatch(tagsActions.setState(resp.data.tags));
+        dispatch(foldersActions.setState(resp.data.folders));
+        dispatch(viewingActions.setState(resp.data.viewing));
+      }
+      this.props.history.push({ pathname: '/main/collection' });
+      this.props.handleSubmit();
+    });
+  }
   render() {
-    const { fields: { email, password},
+    const { fields: { email, password },
       handleSubmit,
       resetForm,
       submitting
@@ -86,9 +106,10 @@ class AuthForm extends React.Component {
           flipForm={ this.flipForm }
         />
         <div className="row center-xs">
-          <div className="col-xs-3">
+          <div className="col-xs-6">
             <div className="box">
-              <IconButton iconClassName=""/>
+              
+              <a href='/api/auth/google'>Google</a>
             </div>
           </div>
           <div className="col-xs-3">
@@ -108,9 +129,12 @@ AuthForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
   values: React.PropTypes.object.isRequired,
   history: React.PropTypes.object.isRequired,
+  dispatch: React.PropTypes.func.isRequired,
 };
 
 export default reduxForm({
   form: 'Auth',
   fields: ['email', 'password'],
 })(AuthForm);
+
+

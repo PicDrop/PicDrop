@@ -79,7 +79,21 @@ module.exports = {
       });
     })(req, res, next);
   },
-  
+  googleLogin: function(req, res){
+    console.log('in /auth/google');
+    passport.passport.authenticate('google', {scope: 'profile' });
+  },
+  googleReturn: function(req, res){
+    console.log('in /auth/google/return');
+    passport.passport.authenticate('google', {successRedirect: '/api/auth/google/success'});
+  },
+  googleSuccess: function(req, res){
+    console.log(' in google success');
+    var user = buildUserState(req.user);
+    user.token = jwt.sign({id: user.id}, jwtSuperSecretCode);
+    console.log('in google final', user);
+    res.status(200).send(user);
+  },
   userLogout: function(req, res){
     req.logout();
     res.status(200).send({ success: true });

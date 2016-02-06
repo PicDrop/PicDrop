@@ -3,6 +3,8 @@ var type = thinky.type;
 
 var User = thinky.createModel('User', {
   id: type.string(),
+  googleId: type.string(),
+  googleToken: type.string(),
   email: type.string(),
   password: type.string(),
   folders: type.object(),
