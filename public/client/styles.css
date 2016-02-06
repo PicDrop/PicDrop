@@ -60,6 +60,12 @@ body {
     margin-bottom: 45px;
 }
 
-.btn-save-profile div span {
+.btn-profile div span {
     margin-left: 20px !important;
+}
+
+.btn-icons {
+    position: absolute;
+    left: 14px;
+    top: 5px;
 }

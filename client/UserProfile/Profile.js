@@ -28,26 +28,19 @@ const styles = {
     minWidth: 300,
   },
   button: {
-    marginLeft: 20,
-    width: 115
+    margin: 20,
+    marginRight: 0,
+    width: 115,
+    minWidth: 115
   },
   iconRed: {
-    position: 'absolute',
     color: 'red',
-    left: 14,
-    top: 5
   },
   iconGreen: {
-    position: 'absolute',
     color: 'green',
-    left: 14,
-    top: 5
   },
   iconGray: {
-    position: 'absolute',
     color: 'gray',
-    left: 14,
-    top: 5
   }
 };
 
@@ -80,23 +73,24 @@ class Profile extends React.Component {
               </div>
               <div className="row end-sm end-md end-lg">
                 <RaisedButton
+                  className="btn-profile"
                   style={styles.button}
                   linkButton={true}
                   label="Cancel"
                 >
-                  <i className="material-icons" style={styles.iconRed}>clear</i>
+                  <i className="material-icons btn-icons" style={styles.iconRed}>clear</i>
                 </RaisedButton>
 
                 <RaisedButton
-                  className="btn-save-profile"
+                  className="btn-profile"
                   style={styles.button}
                   label="Save"
                   disabled={password.error ? true : false}
                   type="submit"
                 >
                   { password.error ?
-                    <i className="material-icons" style={styles.iconGray}>check</i> :
-                    <i className="material-icons" style={styles.iconGreen}>check</i> }
+                    <i className="material-icons btn-icons" style={styles.iconGray}>check</i> :
+                    <i className="material-icons btn-icons" style={styles.iconGreen}>check</i> }
 
                 </RaisedButton>
               </div>
