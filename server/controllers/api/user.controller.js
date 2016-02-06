@@ -1,5 +1,6 @@
 var DB = require('../../models/userModel');
 var passport = require('../../middleware/passport');
+var buildUserState = require('./helpers').buildUserState;
 
 module.exports = {
   createDrop: function(req, res){
@@ -16,6 +17,12 @@ module.exports = {
       user.saveAll({userPics: true}).then(function(user){
         res.status(201).send('Picture saved');
       });
+    });
+  },
+  getState: function(req, res){
+    DB.User.get(req.user).run().then(function(user){
+      var userState = buildUserState(user);
+      res.status(200).send(userState);
     });
   },
   getDrops: function(req, res){},

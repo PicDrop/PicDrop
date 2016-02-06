@@ -12,12 +12,15 @@ class App extends React.Component {
   componentWillMount() {
     if (localStorage.getItem('pd.loggedIn')) {
       this.props.dispatch(appActions.setLoggedIn(true));
+      this.props.history.push({ pathname: '/main/collection' });
+    }else{
+      this.props.hisotry.push({ pathname: '/splash' });
     }
   }
   render() {
     return (
       <div>
-        <LogoBar history={this.props.history} />
+        <LogoBar history={ this.props.history } />
         { this.props.children }
       </div>
     );
