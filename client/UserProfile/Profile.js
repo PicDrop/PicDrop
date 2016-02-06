@@ -13,6 +13,7 @@ class Profile extends React.Component {
         <input type="text" className="" {...email}/>
         <label>Password</label>
         <input type="password" className="" placeholder="New Password" {...password}/>
+        <div>{email.error}, {password.error}</div>
         <button>Cancel</button>
         <button type="submit">Save</button>
       </form>
@@ -20,7 +21,21 @@ class Profile extends React.Component {
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  if(!values.email) {
+    errors.email = 'Enter Email';
+  }
+  if(!values.password) {
+    errors.password = 'Enter Pw';
+  }
+
+  return errors;
+}
+
 export default reduxForm({
   form: 'ProfileForm',
-  fields: ['email', 'password']
+  fields: ['email', 'password'],
+  validate
 }, null, { setProfile: profileActions.setProfile, getProfile: profileActions.getProfile })(Profile);
