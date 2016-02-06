@@ -14,7 +14,7 @@ class App extends React.Component {
       this.props.dispatch(appActions.setLoggedIn(true));
       this.props.history.push({ pathname: '/main/collection' });
     }else{
-      this.props.hisotry.push({ pathname: '/splash' });
+      this.props.history.push({ pathname: '/splash' });
     }
   }
   render() {

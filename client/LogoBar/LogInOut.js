@@ -30,7 +30,7 @@ class LoginOut extends React.Component {
     localStorage.removeItem('pd.loggedIn');
     console.log(this.props.history);
     this.props.dispatch(appActions.setLoggedIn(false));
-    this.props.history.push({ pathname: '/' });
+    this.props.history.push({ pathname: '/splash' });
   }
   handleRequestClose() {
     this.setState({
