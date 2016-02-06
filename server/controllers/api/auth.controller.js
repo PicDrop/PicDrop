@@ -8,6 +8,31 @@ var validateJwt = expressJwt({secret: jwtSuperSecretCode});
 var buildUserState = require('./helpers').buildUserState
 
 
+function buildUserState(user){
+  var newUser = {userPics: {}, folders: {}, tags: {}, viewing:{ currentViewing:[]} };
+  user.userPics.forEach(function(pic){
+    var id = pic.id;
+    newUser.userPics[id] = pic;
+    if(newUser.folders[pic.folder]) {
+      newUser.folders[pic.folder][id] = true;
+    } else {
+      newUser.folders[pic.folder] = { id: true };
+    }
+    if (user.tags) {
+      user.tags.forEach(function(tag){
+        if(newUser.tags[tag]){
+          newUser.tags[tag][id] = true;
+        } else {
+          newUser.tags[tag] = { id: true };
+        }
+      });
+    }
+    newUser.viewing.currentViewing.push(id);
+  });
+  return newUser;
+};
+
+
 module.exports = {
   userCreate: function(req, res){
     console.log(req.body.email, req.body.password);
