@@ -5,28 +5,8 @@ var expressJwt = require('express-jwt');
 var passport = require('../../middleware/passport');
 var jwtSuperSecretCode = 'super-secret-key';
 var validateJwt = expressJwt({secret: jwtSuperSecretCode});
+var buildUserState = require('./helpers').buildUserState
 
-function buildUserState(user) {
-  var newUser = {userPics: {}, folders: {}, tags: {}, viewing:{ currentViewing:[]} };
-  user.userPics.forEach(function(pic){
-    var id = pic.id;
-    newUser.userPics[id] = pic;
-    if(newUser.folder[pic.folder]) {
-      newUser.folder[pic.folder][id] = true;
-    } else {
-      newUser.folder[pic.folder] = { id: true };
-    }
-    user.tags.forEach(function(tag){
-      if(newUser.tags[tag]){
-        newUser.tags[tag][id] = true;
-      } else {
-        newUser.tags[tag] = { id: true };
-      }
-    });
-    newUser.viewing.currentViewing.push(id);
-  });
-  return newUser;
-};
 
 module.exports = {
   userCreate: function(req, res){
@@ -75,20 +55,12 @@ module.exports = {
         user = buildUserState(user);
         user.token = token;
         return res.status(200).send(user);
-
       });
     })(req, res, next);
   },
-  googleLogin: function(req, res){
-    console.log('in /auth/google');
-    passport.passport.authenticate('google', {scope: 'profile' });
-  },
-  googleReturn: function(req, res){
-    console.log('in /auth/google/return');
-    passport.passport.authenticate('google', {successRedirect: '/api/auth/google/success'});
-  },
   googleSuccess: function(req, res){
     console.log(' in google success');
+    console.log(req.user);
     var user = buildUserState(req.user);
     user.token = jwt.sign({id: user.id}, jwtSuperSecretCode);
     console.log('in google final', user);

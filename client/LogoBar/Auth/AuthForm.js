@@ -105,18 +105,6 @@ class AuthForm extends React.Component {
         <LoginSignup
           flipForm={ this.flipForm }
         />
-        <div className="row center-xs">
-          <div className="col-xs-6">
-            <div className="box">
-              
-              <a href='/api/auth/google'>Google</a>
-            </div>
-          </div>
-          <div className="col-xs-3">
-            <div className="box">
-            </div>
-          </div>
-        </div>
       </div>
     );
   }
