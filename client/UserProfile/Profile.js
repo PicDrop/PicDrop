@@ -2,6 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/lib/text-field';
 import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
+import ActionAndroid from 'material-ui/lib/svg-icons/action/android';
 import profileActions from '../actions/profileActions';
 import { reduxForm } from 'redux-form';
 
@@ -27,7 +28,18 @@ const styles = {
     minWidth: 300,
   },
   button: {
-    marginLeft: 20
+    marginLeft: 20,
+    width: 150
+  },
+  iconWhite: {
+    position: 'absolute',
+    color: 'white',
+    left: 4
+  },
+  iconGray: {
+    position: 'absolute',
+    color: 'gray',
+    left: 4
   }
 };
 
@@ -58,18 +70,36 @@ class Profile extends React.Component {
                   {...password}
                 />
               </div>
-              <div>{email.touched ? email.error : ''}, {password.touched ? password.error : ''}</div>
               <div className="row end-sm end-md end-lg">
                 <RaisedButton
+                  label="Label before"
+                  labelPosition="before"
+                  primary={true}
+                  icon={<ActionAndroid />}
                   style={styles.button}
-                  label="Cancel"
                 />
+                <RaisedButton
+                  style={styles.button}
+                  linkButton={true}
+                  label="Cancel"
+                  labelPosition="before"
+                  secondary={true}
+                >
+                  <i className="material-icons" style={{color: 'white'}}>sort</i>
+                </RaisedButton>
+
                 <RaisedButton
                   style={styles.button}
                   label="Save"
-                  disabled={true}
+                  disabled={password.error ? true : false}
                   type="submit"
-                />
+                  primary={true}
+                >
+                  { password.error ?
+                    <i className="material-icons" style={styles.iconWhite}>check</i> :
+                    <i className="material-icons" style={styles.iconGray}>check</i> }
+
+                </RaisedButton>
               </div>
             </form>
           </Paper>
