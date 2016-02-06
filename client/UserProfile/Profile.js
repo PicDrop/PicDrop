@@ -5,36 +5,67 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import profileActions from '../actions/profileActions';
 import { reduxForm } from 'redux-form';
 
+const styles = {
+  root: {
+    marginTop: 10,
+    marginLeft: 20,
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    minWidth: 300,
+    padding: 25,
+  },
+  label: {
+    margin: 15,
+  },
+  emailLabel: {
+    margin: 15,
+    paddingRight: 29
+  },
+  textField: {
+    maxWidth: 300,
+    minWidth: 300,
+  }
+};
+
 class Profile extends React.Component {
   render() {
     const { fields: { email, password }, handleSubmit } = this.props;
     console.log(this.props.setProfile)
     return (
       <div className="row">
-        <div className="col-sm-3 col-md-3 col-lg-2">
-          <Paper zDepth={1}>
+        <div className="col">
+          <Paper style={styles.root} zDepth={1}>
             <form onSubmit={handleSubmit(this.props.setProfile)}>
               <h4>Edit Profile</h4>
-              <label>Email</label>
-              <TextField
-                defaultValue = "Default Email"
-                {...email}
-              />
-              <label>Password</label>
-              <TextField
-                type="password"
-                placeholder="New Password"
-                {...password}
-              />
+              <div className="row">
+                <label style={styles.emailLabel}>Email</label>
+                <TextField
+                  style={styles.textField}
+                  defaultValue = "Default Email"
+                  {...email}
+                />
+              </div>
+              <div className="row">
+                <label style={styles.label}>Password</label>
+                <TextField
+                  style={styles.textField}
+                  type="password"
+                  placeholder="New Password"
+                  {...password}
+                />
+              </div>
               <div>{email.touched ? email.error : ''}, {password.touched ? password.error : ''}</div>
-              <RaisedButton
-                label="Cancel"
-              />
-              <RaisedButton
-                label="Save"
-                disabled={true}
-                type="submit"
-              />
+              <div className="row">
+                <RaisedButton
+                  label="Cancel"
+                />
+                <RaisedButton
+                  label="Save"
+                  disabled={true}
+                  type="submit"
+                />
+              </div>
             </form>
           </Paper>
         </div>
