@@ -2,11 +2,43 @@ var DB = require('../models/userModel');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var passport = require('passport');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 var jwtSuperSecretCode = 'super-secret-key';
 var validateJwt = expressJwt({secret: jwtSuperSecretCode});
 
+var googleID, googleSecret; 
+if(process.env.PRODUCTION){
+  googleID = process.env.GOOGLE_ID;
+  googleSecret = process.env.GOOGLE_SECRET;
+}else{
+  var secrets = require('../config/secrets');
+  googleID = secrets.google.clientID;
+  googleSecret = secrets.google.secret;
+}
 
+passport.use(new GoogleStrategy({
+  clientID: googleID,
+  clientSecret: googleSecret,
+  callbackURL: 'http://127.0.0.1:3000/api/auth/google/return',
+  },
+  function(accessToken, refreshToken, profile, done){
+    console.log('in google strategy');
+    process.nextTick(function(){
+      DB.User.filter({ googleId: profile.id }).run().then(function(user){
+        if(user.lenght) {
+          DB.User.get(user[0].id).getJoin({userPics: true}).run().then(function(user){
+            return done(null, user);
+          });
+        }
+        var user = new DB.User({googleID: profile.id, googleToken: accessToken});
+        user.save().then(function(user){
+          done(null, user);
+        });
+      });
+    });
+  }
+));
 
 passport.use(new LocalStrategy(
   { usernameField: 'email' },
@@ -54,7 +86,14 @@ module.exports = {
     res.send(req.user)
   },
   checkTonk: function(app) {
-    app.use('/api', expressJwt({secret: jwtSuperSecretCode}).unless({path: ['/api/auth/login', '/api/auth/signup']}));
+    app.use('/api', expressJwt({secret: jwtSuperSecretCode})
+      .unless({path: [
+        '/api/auth/login',
+        '/api/auth/signup',
+        '/api/auth/google',
+        '/api/auth/google/return',
+        '/api/auth/google/success'
+        ]}));
   },
   passport: passport
 };
