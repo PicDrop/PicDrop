@@ -5,8 +5,9 @@ import { reduxForm } from 'redux-form';
 class Profile extends React.Component {
   render() {
     const { fields: { email, password }, handleSubmit } = this.props;
+    console.log(this.props.setProfile)
     return (
-      <form onSubmit={handleSubmit(this.props.profileActions.setProfile)}>
+      <form onSubmit={handleSubmit(this.props.setProfile)}>
         <div>User Profile</div>
         <label>Email</label>
         <input type="text" className="" {...email}/>
@@ -22,4 +23,4 @@ class Profile extends React.Component {
 export default reduxForm({
   form: 'ProfileForm',
   fields: ['email', 'password']
-}, null, { profileActions })(Profile);
+}, null, { setProfile: profileActions.setProfile, getProfile: profileActions.getProfile })(Profile);
