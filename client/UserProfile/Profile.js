@@ -13,7 +13,7 @@ class Profile extends React.Component {
         <input type="text" className="" {...email}/>
         <label>Password</label>
         <input type="password" className="" placeholder="New Password" {...password}/>
-        <div>{email.error}, {password.error}</div>
+        <div>{email.touched ? email.error : ''}, {password.touched ? password.error : ''}</div>
         <button>Cancel</button>
         <button type="submit">Save</button>
       </form>

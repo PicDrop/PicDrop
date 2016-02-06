@@ -1,5 +1,5 @@
 import axios from 'axios';
-const ROOT_URL = '/some/url';
+const ROOT_URL = '/api/profile';
 
 const profileActions = {
   setState: (newState) => {
