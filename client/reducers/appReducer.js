@@ -7,7 +7,7 @@ const setLoggedIn = (state, loggedIn) => {
 const appReducer = (state = new Map(), action) => {
   switch (action.type) {
     case 'SET_STATE':
-      return state.merge(action.state);
+      return state.mergeDeep(action.state);
     case 'SET_LOGGED_IN':
       return setLoggedIn(state, action.loggedIn);
     default:
