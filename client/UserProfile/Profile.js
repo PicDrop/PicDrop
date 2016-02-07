@@ -1,9 +1,9 @@
 import React from 'react';
+import { reduxForm } from 'redux-form';
 import TextField from 'material-ui/lib/text-field';
 import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
 import profileActions from '../actions/profileActions';
-import { reduxForm } from 'redux-form';
 
 const styles = {
   root: {
@@ -46,6 +46,20 @@ const styles = {
 class Profile extends React.Component {
   componentWillMount() {
     console.log("Go and fetch profile");
+    this.props.getProfile();
+  }
+
+  onSubmit(props) {
+    this.props.setProfile(props)
+      .then((resp) => {
+        console.log(resp);
+        this.props.history.push.bind(this, { pathname: '/main/collection' });
+      })
+      .catch((error) => {
+        console.log(error);
+        this.props.history.push.bind(this, { pathname: '/main/collection' });
+      });
+
   }
   render() {
     const { fields: { email, password }, handleSubmit } = this.props;

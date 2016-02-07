@@ -15,7 +15,7 @@ const reducer = combineReducers({
   userPics,
   viewing,
   form,
-  profile
+  profile,
 });
 
 export default reducer;
