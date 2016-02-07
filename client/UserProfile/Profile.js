@@ -2,7 +2,6 @@ import React from 'react';
 import TextField from 'material-ui/lib/text-field';
 import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
-import ActionAndroid from 'material-ui/lib/svg-icons/action/android';
 import profileActions from '../actions/profileActions';
 import { reduxForm } from 'redux-form';
 
@@ -45,9 +44,11 @@ const styles = {
 };
 
 class Profile extends React.Component {
+  componentWillMount() {
+    console.log("Go and fetch profile");
+  }
   render() {
     const { fields: { email, password }, handleSubmit } = this.props;
-    console.log(this.props.setProfile)
     return (
       <div className="row">
         <div className="col">
@@ -89,10 +90,11 @@ class Profile extends React.Component {
                   disabled={password.error ? true : false}
                   type="submit"
                 >
-                  { password.error ?
+                  {
+                    password.error ?
                     <i className="material-icons btn-icons" style={styles.iconGray}>check</i> :
-                    <i className="material-icons btn-icons" style={styles.iconGreen}>check</i> }
-
+                    <i className="material-icons btn-icons" style={styles.iconGreen}>check</i>
+                  }
                 </RaisedButton>
               </div>
             </form>
