@@ -13,22 +13,22 @@ const REDBORDERSTYLE = {borderStyle: 'dotted', borderColor: 'red'};
 
 
 class LogoBar extends React.Component {
-  //render() {
-  //  return (
-  //    <div>
-  //      <AppBar
-  //        style={{ backgroundColor: 'WHITE' }}
-  //        title={<span style={{ color: 'DIMGREY', fontFamily: 'Abel, sans-serif' }}>PICDROP</span>}
-  //        children={<div><ProfileBtn/><LogInOut history={this.props.history} /></div>}
-  //        iconElementRight={<LogInOut history={this.props.history} />}
-  //        // iconElementRight={<a href='/api/auth/google'>Google</a>}
-  //        zDepth={0}
-  //      />
-  //    </div>
-  //  );
-  //}
-
   render() {
+    return (
+      <div>
+        <AppBar
+          style={{ backgroundColor: 'WHITE' }}
+          title={<span style={{ color: 'DIMGREY', fontFamily: 'Abel, sans-serif' }}>PICDROP</span>}
+          children={<div><ProfileBtn/><LogInOut history={this.props.history} /></div>}
+          iconElementRight={<LogInOut history={this.props.history} />}
+          // iconElementRight={<a href='/api/auth/google'>Google</a>}
+          zDepth={0}
+        />
+      </div>
+    );
+  }
+
+/*  render() {
     return (
         <Toolbar>
           <ToolbarGroup float="left">
@@ -43,7 +43,7 @@ class LogoBar extends React.Component {
           </ToolbarGroup>
         </Toolbar>
     );
-  }
+  }*/
 }
 
 export default LogoBar;
