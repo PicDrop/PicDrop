@@ -73,6 +73,7 @@ class Profile extends React.Component {
               </div>
               <div className="row end-sm end-md end-lg">
                 <RaisedButton
+                  onTouchTap={ this.props.history.push.bind(this, { pathname: '/main/collection' }) }
                   className="btn-profile"
                   style={styles.button}
                   linkButton={true}
