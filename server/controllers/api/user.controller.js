@@ -7,9 +7,11 @@ module.exports = {
 
     DB.User.get(req.user.id).getJoin({userPics: true}).run().then(function(user){
       var newPic = DB.Picture({
-        url: req.body.url,
+        originalUrl: req.body.url,
+        thumbnail: req.body.url,
         domain: req.body.domain,
-        thumb: req.body.thumb,
+        status: false,
+        title: '',
         tags: req.body.tags,
         folder: req.body.folder,
         note: req.body.note
@@ -21,7 +23,8 @@ module.exports = {
     });
   },
   getState: function(req, res){
-    DB.User.get(req.user).run().then(function(user){
+    console.log(' in getSTate');
+    DB.User.get(req.user.id).getJoin({ userPics: true }).run().then(function(user){
       var userState = buildUserState(user);
       res.status(200).send(userState);
     });

@@ -1,7 +1,7 @@
 const appActions = {
   setState: (newState) => {
     return {
-      type: 'SET_STATE',
+      type: 'SET_APP_STATE',
       state: newState,
     };
   },

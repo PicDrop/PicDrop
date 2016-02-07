@@ -11,13 +11,16 @@ var User = thinky.createModel('User', {
   email: type.string(),
   password: type.string(),
   folders: type.object(),
+  status: type.boolean(),
   tags: type.object()
 });
 var Picture = thinky.createModel('Picture', {
   id: type.string(),
+  storageId: type.string(),
+  thumbnail: type.string(),
+  title: type.string(),
   userId: type.string(),
-  thumb: type.string(),
-  url: type.string(),
+  originalUrl: type.string(),
   folder: type.string(),
   note: type.string(),
   domain: type.string(),

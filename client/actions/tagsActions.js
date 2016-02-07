@@ -1,7 +1,7 @@
 const tagsActions = {
   setState: (newState) => {
     return {
-      type: 'SET_STATE',
+      type: 'SET_TAGS_STATE',
       state: newState,
     };
   },

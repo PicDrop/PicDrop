@@ -1,8 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/lib/text-field';
-import FlatButton from 'material-ui/lib/flat-button';
 import RaisedButton from 'material-ui/lib/raised-button';
-import IconButton from 'material-ui/lib/icon-button';
 import LoginSignup from './LoginSignup';
 import { reduxForm } from 'redux-form';
 import axios from 'axios';
@@ -10,8 +8,6 @@ import appActions from '../../actions/appActions';
 import userPicsActions from '../../actions/userPicsActions';
 import tagsActions from '../../actions/tagsActions';
 import foldersActions from '../../actions/foldersActions';
-import viewingActions from '../../actions/foldersActions';
-
 
 class AuthForm extends React.Component {
   constructor(props) {
@@ -19,7 +15,7 @@ class AuthForm extends React.Component {
     this.state = {
       submissionType: 'Log In',
     };
-    this.googleAuth = this.googleAuth.bind(this);
+    // this.googleAuth = this.googleAuth.bind(this);
     this.submitForm = this.submitForm.bind(this);
     this.flipForm = this.flipForm.bind(this);
   }
@@ -34,7 +30,6 @@ class AuthForm extends React.Component {
       }
     )
     .then((resp) => {
-      console.log(resp);
       localStorage.setItem('pd.loggedIn', true);
       localStorage.setItem('pd.token', resp.data.token);
       dispatch(appActions.setLoggedIn(true));
@@ -42,7 +37,6 @@ class AuthForm extends React.Component {
         dispatch(userPicsActions.setState(resp.data.userPics));
         dispatch(tagsActions.setState(resp.data.tags));
         dispatch(foldersActions.setState(resp.data.folders));
-        dispatch(viewingActions.setState(resp.data.viewing));
       }
       this.props.history.push({ pathname: '/main/collection' });
       this.props.handleSubmit();
@@ -56,25 +50,25 @@ class AuthForm extends React.Component {
       this.setState({ submissionType: 'Log In' });
     }
   }
-  googleAuth(e) {
-    e.preventDefault();
-    const dispatch = this.props.dispatch;
-    axios.get('api/auth/google')
-    .then((res) => {
-      console.log(res);
-      localStorage.setItem('pd.loggedIn', true);
-      localStorage.setItem('pd.token', resp.data.token);
-      dispatch(appActions.setLoggedIn(true));
-      if (route === 'login') {
-        dispatch(userPicsActions.setState(resp.data.userPics));
-        dispatch(tagsActions.setState(resp.data.tags));
-        dispatch(foldersActions.setState(resp.data.folders));
-        dispatch(viewingActions.setState(resp.data.viewing));
-      }
-      this.props.history.push({ pathname: '/main/collection' });
-      this.props.handleSubmit();
-    });
-  }
+  // googleAuth(e) {
+  //   e.preventDefault();
+  //   const dispatch = this.props.dispatch;
+  //   axios.get('api/auth/google')
+  //   .then((res) => {
+  //     console.log(res);
+  //     localStorage.setItem('pd.loggedIn', true);
+  //     localStorage.setItem('pd.token', resp.data.token);
+  //     dispatch(appActions.setLoggedIn(true));
+  //     if (route === 'login') {
+  //       dispatch(userPicsActions.setState(resp.data.userPics));
+  //       dispatch(tagsActions.setState(resp.data.tags));
+  //       dispatch(foldersActions.setState(resp.data.folders));
+  //       dispatch(viewingActions.setState(resp.data.viewing));
+  //     }
+  //     this.props.history.push({ pathname: '/main/collection' });
+  //     this.props.handleSubmit();
+  //   });
+  // }
   render() {
     const { fields: { email, password },
       handleSubmit,
