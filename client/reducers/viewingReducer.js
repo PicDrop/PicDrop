@@ -74,8 +74,8 @@ const updateCurrentTags = (state, tag) => {
 
 const viewingReducer = (state = new Map(), action) => {
   switch (action.type) {
-/*    case 'SET_STATE':
-      return state.merge(action.state);*/
+    case 'SET_STATE':
+      return state.mergeDeep(action.state);
     case 'FOLDER_SELECTED':
       return updateCurrentFolder(state, action.payload);
     case 'SELECT_TAG':
