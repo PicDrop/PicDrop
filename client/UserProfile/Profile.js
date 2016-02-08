@@ -62,7 +62,7 @@ class Profile extends React.Component {
 
   }
   render() {
-    const { fields: { email, password }, handleSubmit } = this.props;
+    const { fields: { email, oldPassword, newPassword }, handleSubmit } = this.props;
     return (
       <div className="row">
         <div className="col">
@@ -78,12 +78,21 @@ class Profile extends React.Component {
                 />
               </div>
               <div className="row">
-                <label style={styles.label}>Password</label>
+                <label style={styles.label}>Old Password</label>
+                <TextField
+                  style={styles.textField}
+                  type="password"
+                  placeholder="Old Password"
+                  {...oldPassword}
+                />
+              </div>
+              <div className="row">
+                <label style={styles.label}>New Password</label>
                 <TextField
                   style={styles.textField}
                   type="password"
                   placeholder="New Password"
-                  {...password}
+                  {...newPassword}
                 />
               </div>
               <div className="row end-sm end-md end-lg">
@@ -101,11 +110,11 @@ class Profile extends React.Component {
                   className="btn-profile"
                   style={styles.button}
                   label="Save"
-                  disabled={password.error ? true : false}
+                  disabled={oldPassword.error ? true : false}
                   type="submit"
                 >
                   {
-                    password.error ?
+                    oldPassword.error ?
                     <i className="material-icons btn-icons" style={styles.iconGray}>check</i> :
                     <i className="material-icons btn-icons" style={styles.iconGreen}>check</i>
                   }
@@ -122,11 +131,11 @@ class Profile extends React.Component {
 function validate(values) {
   const errors = {};
 
-  if(!values.email) {
-    errors.email = 'Enter Email';
+  if(!values.newPassword) {
+    errors.newPassword = 'Enter new Pw';
   }
-  if(!values.password) {
-    errors.password = 'Enter Pw';
+  if(!values.oldPassword) {
+    errors.oldPassword = 'Enter old Pw';
   }
 
   return errors;
@@ -134,6 +143,6 @@ function validate(values) {
 
 export default reduxForm({
   form: 'ProfileForm',
-  fields: ['email', 'password'],
+  fields: ['email', 'oldPassword', 'newPassword'],
   validate
 }, null, { setProfile: profileActions.setProfile, getProfile: profileActions.getProfile })(Profile);
