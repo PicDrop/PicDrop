@@ -57,7 +57,7 @@ const styles = {
 class Profile extends React.Component {
   componentWillMount() {
     console.log("Go and fetch profile");
-    this.props.getProfile();
+    //this.props.getProfile();
   }
 
   onSubmit(props) {
@@ -73,6 +73,9 @@ class Profile extends React.Component {
 
   }
   render() {
+    console.log(this.props.profile.get('email'));
+    const userEmail = this.props.profile.get('email');
+    const userId = this.props.profile.get('id');
     const { fields: { email, oldPassword, newPassword }, handleSubmit } = this.props;
     return (
       <div className="row">
@@ -84,8 +87,8 @@ class Profile extends React.Component {
                 <label style={styles.emailLabel}>Email</label>
                 <TextField
                   style={styles.textField}
-                  defaultValue = "Default Email"
                   {...email}
+                  defaultValue = {userEmail}
                 />
               </div>
               <div className="row">
@@ -168,8 +171,20 @@ function validate(values) {
   return errors;
 }
 
+function mapStateToProps(state) {
+  return {
+    profile: state.profile,
+  }
+}
+
 export default reduxForm({
   form: 'ProfileForm',
   fields: ['email', 'oldPassword', 'newPassword'],
-  validate
-}, null, { setProfile: profileActions.setProfile, getProfile: profileActions.getProfile })(Profile);
+  validate,
+}, mapStateToProps, { setProfile: profileActions.setProfile })(Profile);
+
+/*export default reduxForm({
+  form: 'ProfileForm',
+  fields: ['email', 'oldPassword', 'newPassword'],
+  validate,
+}, null, { setProfile: profileActions.setProfile, getProfile: profileActions.getProfile })(Profile);*/

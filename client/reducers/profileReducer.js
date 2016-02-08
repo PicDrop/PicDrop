@@ -6,8 +6,8 @@ const profileReducer = (state = new Map(), action) => {
       return state.merge(action.state);
     case 'SET_STATE':
       return state.mergeDeep(action.state);
-    case 'GET_PROFILE':
-      return state.mergeDeep(action.payload.data);
+/*    case 'GET_PROFILE':
+      return state.mergeDeep(action.state);*/
     case 'SET_PROFILE':
       return state.mergeDeep(action.payload.data);
     default:
