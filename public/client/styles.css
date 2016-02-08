@@ -64,6 +64,10 @@ body {
     margin-left: 20px !important;
 }
 
+.btn-profile-link div span {
+    margin-left: 30px !important;
+}
+
 .btn-icons {
     position: absolute;
     left: 14px;

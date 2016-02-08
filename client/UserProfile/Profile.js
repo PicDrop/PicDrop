@@ -1,5 +1,6 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
+import { Link } from 'react-router';
 import TextField from 'material-ui/lib/text-field';
 import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
@@ -20,7 +21,11 @@ const styles = {
   },
   emailLabel: {
     margin: 15,
-    paddingRight: 29
+    paddingRight: 55
+  },
+  oldPwLabel: {
+    margin: 15,
+    paddingRight: 5
   },
   textField: {
     maxWidth: 300,
@@ -31,6 +36,12 @@ const styles = {
     marginRight: 0,
     width: 115,
     minWidth: 115
+  },
+  buttonLink: {
+    margin: 10,
+    marginRight: 0,
+    width: 220,
+    minWidth: 220
   },
   iconRed: {
     color: 'red',
@@ -78,7 +89,7 @@ class Profile extends React.Component {
                 />
               </div>
               <div className="row">
-                <label style={styles.label}>Old Password</label>
+                <label style={styles.oldPwLabel}>Old Password</label>
                 <TextField
                   style={styles.textField}
                   type="password"
@@ -119,6 +130,22 @@ class Profile extends React.Component {
                     <i className="material-icons btn-icons" style={styles.iconGreen}>check</i>
                   }
                 </RaisedButton>
+              </div>
+              <div className="row end-sm end-md end-lg">
+                <Link to={`/api/auth/google`}>
+                  <RaisedButton
+                    className="btn-profile-link"
+                    style={styles.buttonLink}
+                    label="Link to Google Drive"
+                    disabled={oldPassword.error ? true : false}
+                  >
+                    {
+                      oldPassword.error ?
+                        <i className="material-icons btn-icons" style={styles.iconGray}>link</i> :
+                        <i className="material-icons btn-icons" style={styles.iconGreen}>link</i>
+                    }
+                  </RaisedButton>
+                </Link>
               </div>
             </form>
           </Paper>
