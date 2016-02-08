@@ -1,7 +1,7 @@
 const foldersActions = {
   setState: (newState) => {
     return {
-      type: 'SET_STATE',
+      type: 'SET_FOLDERS_STATE',
       state: newState,
     };
   },

@@ -1,7 +1,7 @@
 const userPicsActions = {
   setState: (newState) => {
     return {
-      type: 'SET_STATE',
+      type: 'SET_PICS_STATE',
       state: newState,
     };
   },

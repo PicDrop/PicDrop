@@ -23,7 +23,7 @@ apiRouter.get('/auth/google/return', passport.passport.authorize('google', {fail
 apiRouter.get('/auth/google/success', auth.googleSuccess);
 /* User Interface Routes */ 
 //?Should we name a user's image object a 'drop'?
-apiRouter.post('/user/getState', user.getState);
+apiRouter.get('/user/getState', user.getState);
 apiRouter.post('/user/createDrop', user.createDrop);
 apiRouter.post('/user/tagDrop', user.tagDrop);
 apiRouter.post('/user/untagDrop', user.untagDrop);
