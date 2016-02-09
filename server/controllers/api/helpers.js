@@ -28,7 +28,6 @@ function buildUserState(user) {
     });
   }
   newUser.profile.email = user.email;
-  newUser.profile.id = user.id;
   return newUser;
 };
 
