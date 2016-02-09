@@ -10,7 +10,6 @@ var User = thinky.createModel('User', {
   },
   email: type.string(),
   password: type.string(),
-  folders: type.object(),
   status: type.boolean(),
   tags: type.object()
 });
@@ -21,7 +20,6 @@ var Picture = thinky.createModel('Picture', {
   title: type.string(),
   userId: type.string(),
   originalUrl: type.string(),
-  folder: type.string(),
   note: type.string(),
   domain: type.string(),
   tags: type.array()
@@ -31,7 +29,7 @@ var Folder = thinky.createModel('Folder', {
   googleId: type.string(),
   name: type.string(),
   userId: type.string(),
-})
+});
 
 User.hasMany(Folder, 'folders', 'id', 'userId');
 User.hasMany(Picture, 'userPics', 'id', 'userId');
@@ -42,7 +40,8 @@ Folder.belongsTo(User, 'user', 'userId', 'id');
 
 module.exports = {
   User: User,
-  Picture: Picture
+  Picture: Picture,
+  Folder: Folder
 };
 // var User = thinky.createModel('User', {
 //   id: type.string(),
