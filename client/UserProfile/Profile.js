@@ -1,6 +1,7 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import { Link } from 'react-router';
+import axios from 'axios';
 import TextField from 'material-ui/lib/text-field';
 import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
@@ -60,18 +61,38 @@ class Profile extends React.Component {
     //this.props.getProfile();
   }*/
 
-  onSubmit(id, props) {
-    this.props.setProfile(id, props)
+/*  <form onSubmit={handleSubmit(this.onSubmit.bind(this, userId))}>
+    onSubmit(id, props) {
+      this.props.setProfile(id, props)
+        .then((resp) => {
+          console.log(resp);
+          this.props.history.push.bind(this, { pathname: '/main/collection' });
+        })
+        .catch((error) => {
+          console.log(error);
+          this.props.history.push.bind(this, { pathname: '/main/collection' });
+        });
+  }*/
+  submitForm(e) {
+    e.preventDefault();
+    var token = localStorage.getItem('pd.token');
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+    // axios --put oldPassword and new pw in data /api/user/updatePassword
+    axios.put(`/api/user/updatePassword`,
+      {
+        oldPassword: this.props.values.oldPassword,
+        newPassword: this.props.values.newPassword,
+      })
       .then((resp) => {
-        console.log(resp);
-        this.props.history.push.bind(this, { pathname: '/main/collection' });
+       this.props.history.push.bind(this, { pathname: '/main/collection' });
       })
       .catch((error) => {
-        console.log(error);
-        this.props.history.push.bind(this, { pathname: '/main/collection' });
+       console.log(error);
+       this.props.history.push.bind(this, { pathname: '/main/collection' });
       });
-
   }
+
   render() {
     console.log(this.props.profile.get('email'));
     const userEmail = this.props.profile.get('email');
@@ -82,7 +103,7 @@ class Profile extends React.Component {
       <div className="row">
         <div className="col">
           <Paper style={styles.root} zDepth={1}>
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this, userId))}>
+            <form onSubmit={this.submitForm.bind(this)}>
               <h4>Edit Profile</h4>
               <div className="row">
                 <label style={styles.emailLabel}>Email</label>
