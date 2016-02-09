@@ -31,6 +31,7 @@ apiRouter.post('/user/untagDrop', user.untagDrop);
 apiRouter.post('/user/updateFolder', user.updateFolder);
 apiRouter.post('/user/removeDrop', user.removeDrop);
 apiRouter.post('/user/deleteFolder', user.deleteFolder);
+apiRouter.put('/user/updatePasssword', user.updatePassword);
 //apiRouter.put('/user/drop/star', user.starImage)
 
 module.exports = apiRouter;
