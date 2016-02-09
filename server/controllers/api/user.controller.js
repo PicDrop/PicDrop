@@ -5,7 +5,7 @@ var buildUserState = require('./helpers').buildUserState;
 module.exports = {
   createDrop: function(req, res){
 
-    DB.User.get(req.user.id).getJoin({userPics: true}).run().then(function(user){
+    DB.User.get(req.user.id).getJoin({userPics: true, folders: true}).run().then(function(user){
       var newPic = DB.Picture({
         originalUrl: req.body.url,
         thumbnail: req.body.url,
@@ -16,14 +16,37 @@ module.exports = {
         folder: req.body.folder,
         note: req.body.note
       });
+      if(newPic.folder){
+        var found = false;
+        user.folders.forEach(function(folder){
+          if(folder.name === newPic.folder) {
+            folder.pics.push(newPic);
+            found = true;
+          }
+        });
+        if(!found){
+          var newFolder = DB.Folder({name: newPic.folder});
+          newFolder.pics.push(newPic);
+          user.folders.push(newFolder);
+        }
+      }
       user.userPics.push(newPic);
-      user.saveAll({userPics: true}).then(function(user){
-        res.status(201).send('Picture saved');
+      user.saveAll({userPics: true, folders: true}).then(function(user){
+        res.status(201).send({picId: newPic.id});
+      });
+    });
+  },
+  createFolder: function(req, res){
+    DB.User.get(req.user.id).getJoin({folders: true}).run().then(function(user){
+      var newFolder = DB.Folder({name: req.body.folderName});
+      user.folders.push(newFolder);
+      user.saveAll({folders: true}).then(function(user){
+        res.status(201).send({folderId: newFolder.id});
       });
     });
   },
   getState: function(req, res){
-    DB.User.get(req.user.id).getJoin({ userPics: true }).run().then(function(user){
+    DB.User.get(req.user.id).getJoin({ userPics: true, folders: true }).run().then(function(user){
       var userState = buildUserState(user);
       res.status(200).send(userState);
     });
