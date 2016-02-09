@@ -34,20 +34,6 @@ passport.use(new GoogleStrategy({
         user.save().then(function(user){
           done(null, user);
         });
-        // if(user.length) {
-        //   DB.User.get(user[0].id).getJoin({userPics: true}).run().then(function(user){
-        //     console.log(user, ' in get user');
-        //     req.user = user;
-        //     return done(null, user);
-        //   });
-        // }else{
-        //   var user = new DB.User({googleID: profile.id, googleToken: accessToken});
-        //   user.save().then(function(user){
-        //     console.log(user, ' in new user with return');
-        //     req.user = user;
-        //     return done(null, user);
-        //   });
-        // }
       });
     });
   }
@@ -65,6 +51,9 @@ passport.use(new LocalStrategy(
           DB.User.get(user.id).getJoin({userPics: true, folders: true})
           .run().then(function(user){   
             return done(null, user);
+          })
+          .error(function(error){
+            console.log(error);
           });
         } else {
           done(null, false, { message: 'Incorrect password' });

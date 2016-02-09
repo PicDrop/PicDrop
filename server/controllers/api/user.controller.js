@@ -13,14 +13,14 @@ module.exports = {
         status: false,
         title: '',
         tags: req.body.tags,
-        folder: req.body.folder,
         note: req.body.note
       });
-      if(newPic.folder){
+      if(req.body.folder){
         var found = false;
         user.folders.forEach(function(folder){
-          if(folder.name === newPic.folder) {
+          if(folder.name === req.body.folder) {
             folder.pics.push(newPic);
+            newPic.folder = folder;
             found = true;
           }
         });
@@ -28,6 +28,7 @@ module.exports = {
           var newFolder = DB.Folder({name: newPic.folder});
           newFolder.pics.push(newPic);
           user.folders.push(newFolder);
+          newPic.folder = newFolder;
         }
       }
       user.userPics.push(newPic);
@@ -73,11 +74,29 @@ module.exports = {
     })
   },
   updateFolder: function(req, res){
-    DB.Picture.get(req.body.picId).run().then(function(pic){
-      pic.folder = req.body.folder;
-      pic.save();
-      res.status(201).send('New folder saved');
-    })
+    DB.User.get(req.user.id).getJoin({folders: true}).run().then(function(user){
+      var updatedFolder = null;
+      if(user.folders.length){
+        user.folders.forEach(function(folder){
+          if(folder.name === req.body.folder){
+            updatedFolder = folder;
+          }
+        });
+      }
+      if(updatedFolder === null){
+        updatedFolder = DB.Folder({name: req.body.folder});
+        user.folders.push(updatedFolder);
+      }
+      DB.Picture.get(req.body.picId).getJoin({folder: true}).run().then(function(pic){
+        pic.folder = updatedFolder;
+        updatedFolder.pics.push(pic);
+        pic.saveAll({folder: true}).then(function(pic){
+          user.saveAll({folders: true}).then(function(user){
+            res.status(201).send('New folder saved');
+          });
+        });
+      });
+    });
   },
   removeDrop: function(req, res){
     DB.Picture.get(req.body.picId).run().then(function(pic){
@@ -87,12 +106,15 @@ module.exports = {
     });
   },
   deleteFolder: function(req, res){
-    DB.Picture.filter({folder: req.body.folder}).run().then(function(pics){
-      pics.forEach(function(pic){
-        pic.delete();
+    DB.User.get(req.user.id).getJoin({folders: true}).run().then(function(user){
+      var targetFolder;
+      user.folders.forEach(function(folder){
+        if(folder.name === req.body.folder) targetFolder = folder;
       });
-      res.status(200).send('Folder and pictures deleted');
-    })
+      targetFolder.deleteAll({pics: true}).then(function(result){
+        res.status(200).send('Folder and pics deleted');
+      })
+    });
   },
   getCategory: function(req, res){},
   getTagname: function(req, res){},
