@@ -32,7 +32,7 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar history={this.props.history}/>
         {this.props.children}
       </div>
     );

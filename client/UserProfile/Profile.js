@@ -55,10 +55,10 @@ const styles = {
 };
 
 class Profile extends React.Component {
-  componentWillMount() {
+/*  componentWillMount() {
     console.log("Go and fetch profile");
     //this.props.getProfile();
-  }
+  }*/
 
   onSubmit(id, props) {
     this.props.setProfile(id, props)

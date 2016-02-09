@@ -117,11 +117,6 @@ const viewing = new Map({
 
 });
 
-const profile = new Map({
-  email: 'user@email.com',
-  id: 11223344
-});
-
 const app = new Map({
   loggedIn: false
 });
