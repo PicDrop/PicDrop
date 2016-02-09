@@ -1,5 +1,5 @@
 function buildUserState(user) {
-  var newUser = {userPics: {}, folders: {}, tags: {} };
+  var newUser = {profile: {}, userPics: {}, folders: {}, tags: {} };
   user.userPics.forEach(function(pic){
     var id = pic.id;
     newUser.userPics[id] = pic;
@@ -20,6 +20,8 @@ function buildUserState(user) {
       });
     }
   });
+  newUser.profile.email = user.email;
+  newUser.profile.id = user.id;
   return newUser;
 };
 
