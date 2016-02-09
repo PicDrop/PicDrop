@@ -8,6 +8,7 @@ import appActions from '../../actions/appActions';
 import userPicsActions from '../../actions/userPicsActions';
 import tagsActions from '../../actions/tagsActions';
 import foldersActions from '../../actions/foldersActions';
+import profileActions from '../../actions/profileActions';
 
 class AuthForm extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class AuthForm extends React.Component {
         dispatch(userPicsActions.setState(resp.data.userPics));
         dispatch(tagsActions.setState(resp.data.tags));
         dispatch(foldersActions.setState(resp.data.folders));
+        dispatch(profileActions.setState(resp.data.profile));
       }
       this.props.history.push({ pathname: '/main/collection' });
       this.props.handleSubmit();

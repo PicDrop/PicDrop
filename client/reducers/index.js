@@ -5,8 +5,10 @@ import tags from './tagsReducer';
 import userPics from './userPicsReducer';
 import viewing from './viewingReducer';
 import app from './appReducer';
+import profile from './profileReducer';
 
 const reducer = combineReducers({
+  profile,
   app,
   folders,
   tags,

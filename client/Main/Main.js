@@ -5,6 +5,7 @@ import axios from 'axios';
 import userPicsActions from '../actions/userPicsActions';
 import tagsActions from '../actions/tagsActions';
 import foldersActions from '../actions/foldersActions';
+import profileActions from '../actions/profileActions';
 
 class Main extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class Main extends React.Component {
         this.props.dispatch(userPicsActions.setState(resp.data.userPics));
         this.props.dispatch(tagsActions.setState(resp.data.tags));
         this.props.dispatch(foldersActions.setState(resp.data.folders));
+        this.props.dispatch(profileActions.setState(resp.data.profile));
       })
       .catch((err) => {
         console.log(err);

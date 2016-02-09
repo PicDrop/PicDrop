@@ -121,12 +121,18 @@ const app = new Map({
   loggedIn: false
 });
 
+const profile = new Map({
+  email: '',
+  id: '',
+});
+
 const initialState = {
   userPics,
   folders,
   tags,
   viewing,
   app,
+  profile,
 };
 
 export default initialState;
