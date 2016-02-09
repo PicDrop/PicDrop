@@ -25,6 +25,7 @@ apiRouter.get('/auth/google/success', auth.googleSuccess);
 //?Should we name a user's image object a 'drop'?
 apiRouter.get('/user/getState', user.getState);
 apiRouter.post('/user/createDrop', user.createDrop);
+apiRouter.post('/user/createFolder', user.createFolder);
 apiRouter.post('/user/tagDrop', user.tagDrop);
 apiRouter.post('/user/untagDrop', user.untagDrop);
 apiRouter.post('/user/updateFolder', user.updateFolder);

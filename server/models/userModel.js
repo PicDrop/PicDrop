@@ -26,9 +26,19 @@ var Picture = thinky.createModel('Picture', {
   domain: type.string(),
   tags: type.array()
 });
+var Folder = thinky.createModel('Folder', {
+  id: type.string(),
+  googleId: type.string(),
+  name: type.string(),
+  userId: type.string(),
+})
 
+User.hasMany(Folder, 'folders', 'id', 'userId');
 User.hasMany(Picture, 'userPics', 'id', 'userId');
-Picture.belongsTo(User, 'user', 'userId', 'id')
+Picture.belongsTo(User, 'user', 'userId', 'id');
+Picture.belongsTo(Folder, 'folder', 'folderId', 'id');
+Folder.hasMany(Picture, 'pics', 'id', 'folderId')
+Folder.belongsTo(User, 'user', 'userId', 'id');
 
 module.exports = {
   User: User,
