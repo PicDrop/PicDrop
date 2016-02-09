@@ -18,8 +18,9 @@ const profileActions = {
       // payload: request,
     };
   },*/
-  setProfile: (props) => {
-    const request = axios.post(`${ROOT_URL}/post`, props);
+  setProfile: (id, props) => {
+    console.log(id, props);
+    const request = axios.put(`${ROOT_URL}/${id}`, props);
     return {
       type: 'SET_PROFILE',
       payload: request,

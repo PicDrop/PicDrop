@@ -60,8 +60,8 @@ class Profile extends React.Component {
     //this.props.getProfile();
   }
 
-  onSubmit(props) {
-    this.props.setProfile(props)
+  onSubmit(id, props) {
+    this.props.setProfile(id, props)
       .then((resp) => {
         console.log(resp);
         this.props.history.push.bind(this, { pathname: '/main/collection' });
@@ -76,12 +76,13 @@ class Profile extends React.Component {
     console.log(this.props.profile.get('email'));
     const userEmail = this.props.profile.get('email');
     const userId = this.props.profile.get('id');
+    console.log(userId);
     const { fields: { email, oldPassword, newPassword }, handleSubmit } = this.props;
     return (
       <div className="row">
         <div className="col">
           <Paper style={styles.root} zDepth={1}>
-            <form onSubmit={handleSubmit(this.props.setProfile)}>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this, userId))}>
               <h4>Edit Profile</h4>
               <div className="row">
                 <label style={styles.emailLabel}>Email</label>
