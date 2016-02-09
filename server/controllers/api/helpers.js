@@ -20,6 +20,11 @@ function buildUserState(user) {
       });
     }
   });
+  user.folders.forEach(function(folder){
+    if(!newUser.folders[folder.name]){
+      newUser.folders[folder.name] = {};
+    }
+  });
   newUser.profile.email = user.email;
   newUser.profile.id = user.id;
   return newUser;

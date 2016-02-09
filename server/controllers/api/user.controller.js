@@ -46,7 +46,7 @@ module.exports = {
     });
   },
   getState: function(req, res){
-    DB.User.get(req.user.id).getJoin({ userPics: true }).run().then(function(user){
+    DB.User.get(req.user.id).getJoin({ userPics: true, folders: true }).run().then(function(user){
       var userState = buildUserState(user);
       res.status(200).send(userState);
     });
