@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 import Images from './Navs/Images';
 import Stream from './Navs/Stream';
 import SearchBar from './Navs/SearchBar';
@@ -7,7 +8,7 @@ import Tab from 'material-ui/lib/tabs/tab';
 
 
 function handleActive(tab) {
-  alert(`A tab with this route property ${tab.props.route} was activated.`);
+  this.props.history.push({ pathname: tab.props.route } );
 }
 
 class Navbar extends React.Component {
@@ -15,14 +16,22 @@ class Navbar extends React.Component {
     return (
       <div>
         <Tabs style={{marginBottom: '10px'}}>
-           <Tab label="IMAGES" style={{ backgroundColor: 'GAINSBORO', color:'DIMGREY', fontWeight: '300', fontSize: '18px',  letterSpacing: '-0.5px' }}>
-             <div>
-             </div>
-           </Tab>
-           <Tab label="STREAM" style={{ backgroundColor: 'GAINSBORO', color:'DIMGREY', fontWeight: '300', fontSize: '18px',  letterSpacing: '-0.5px' }}>
-             <div>
-             </div>
-           </Tab>
+          <Tab
+            label="IMAGES"
+            style={{ backgroundColor: 'GAINSBORO', color:'DIMGREY', fontWeight: '300', fontSize: '18px',  letterSpacing: '-0.5px' }}
+            route="/main/collection"
+            onActive={handleActive.bind(this)}
+          >
+            <div></div>
+          </Tab>
+          <Tab
+            label="STREAM"
+            style={{ backgroundColor: 'GAINSBORO', color:'DIMGREY', fontWeight: '300', fontSize: '18px',  letterSpacing: '-0.5px' }}
+            route="/main/stream"
+            onActive={handleActive.bind(this)}
+          >
+            <div></div>
+          </Tab>
          </Tabs>
       </div>
     );

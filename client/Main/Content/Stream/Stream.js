@@ -4,7 +4,7 @@ class Stream extends React.Component {
   render() {
     return (
       <div>
-        <h1>Stream holder</h1>
+        <h1>Coming Soon</h1>
       </div>
     );
   }

@@ -4,6 +4,7 @@ import FlatButton from 'material-ui/lib/flat-button';
 import Popover from 'material-ui/lib/popover/popover';
 import PopoverAnimationFromTop from 'material-ui/lib/popover/popover-animation-from-top';
 import AuthForm from './Auth/AuthForm';
+import ProfileBtn from './ProfileBtn';
 import appActions from '../actions/appActions';
 
 class LoginOut extends React.Component {
@@ -39,7 +40,7 @@ class LoginOut extends React.Component {
   }
   checkLogin() {
     if (this.props.loggedIn) {
-      return <FlatButton onTouchTap={ this.handleLogout } label="Logout" secondary={true} />;
+      return (<span><ProfileBtn/><FlatButton onTouchTap={ this.handleLogout } label="Logout" secondary={true} /></span>);
     } else {
       return <FlatButton onTouchTap={ this.handleAuthOpen } label="Login" secondary={true} />;
     }
