@@ -26,7 +26,7 @@ module.exports = {
               })
               .then(function(data){
                 var token = jwt.sign({id: data.id}, jwtSuperSecretCode);
-                res.status(200);
+                res.status(201);
                 res.send({token: token});
               })
               .error(function (err) {
@@ -45,12 +45,9 @@ module.exports = {
   },
   userLogin: function(req, res, next){
     passport.passport.authenticate('local', function(err, user, info) {
-      if (err) {
-        return next(err);
-      }
-      if (!user) {
-        return res.status(404).send(info);
-      }
+      console.log('in authenticate');
+      if (err) return next(err);
+      if (!user) return res.status(401).send(info);
 
       req.logIn(user, function(err) {
         if (err) {

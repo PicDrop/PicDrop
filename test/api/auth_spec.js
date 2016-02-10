@@ -1,90 +1,89 @@
-import supertest from 'supertest';
-// Import users models
+import request from 'supertest';
 import { expect } from 'chai';
+import DB from '../../server/models/userModel';
+import bcrypt from 'bcrypt';
+import app from '../../server/server';
 
 
-const server = supertest('http://localhost:3000');
-// Set { username: 'captainhipster', password: 'beenheresincealpha' } user
-
+// Set { email: 'captainhipster', password: 'beenheresincealpha' } user
+bcrypt.genSaltSync(10, function(err, salt){
+  bcrypt.hashSync('beenheresincealpha', salt, function(err, hash){
+    DB.User({ email: 'captainhipster', password: hash }).save();
+  });
+});
 
 describe('"/auth" routes', function() {
-  
-  describe('auth/create', function() {
-    beforeEach( function() {
-      //clear created users
+
+  describe('auth/signup', function() {
+    afterEach(function(){
+      DB.User.filter({email: 'joesomebody'}).run().then(function(users){
+        if(users.length){
+          users[0].delete();
+        }
+      });
     });
 
-    it('should accept a json object', function(done) {
-      server
-        .post('/api/auth/create', { username: 'joesomebody', password: 'donthackmebro' } )
-        .expect(201, done);
-    });
     it('should return a user authentication token', function(done) {
-      server
-        .post('/api/auth/create', { username: 'joesomebody', password: 'donthackmebro' } )
+      request(app)
+        .post('/api/auth/signup', { email: 'joesomebody', password: 'donthackmebro' } )
         .expect(201)
         .end( (err, res) => {
           if(err) return done(err);
-          if(!res.authToken) return done('no authToken returned on login');
+          if(!res.body.token) return done('no authToken returned on login');
           done();
         });
     });
-    it('should return a 409 if the username already exists', function(done) {
-      server
-        .post('/api/auth/create', { username: 'captainhipster', password: 'beenheresincealpha' } )
-        .expect(409, done);
-    });
-    it('should return a 403 to a "GET" request', function(done) {
-      server
-        .get('/api/auth/create')
-        .expect(403, done);
+    it('should return a 401 if the email already exists', function(done) {
+      request(app)
+        .post('/api/auth/signup', { email: 'captainhipster', password: 'beenheresincealpha' } )
+        .expect(401, done);
     });
   });
   
-  describe('auth/login', () => {
+  describe('auth/login', function() {
 
     it('should return 200 on successfull login', function(done) {
-      server
-        .post('api/auth/login', { username: 'captainhipster', password: 'beenheresincealpha' } )
+      request(app)
+        .post('/api/auth/login', { email: 'captainhipster', password: 'beenheresincealpha' } )
         .expect(200, done);
     });
     it('should return a user authentication token', function(done) {
-      server
-        .get('/api/auth/login', { username: 'captainhipster', password: 'beenheresincealpha' } )
+      request(app)
+        .get('/api/auth/login', { email: 'captainhipster', password: 'beenheresincealpha' } )
         .expect(200)
         .end( (err, res) => {
           if(err) return done(err);
-          if(!res.authToken) return done('no authToken returned on login');
+          if(!res.user.token) return done('no authToken returned on login');
           done();
         });
     });
-    it('should return a 40 if the username doesn\'t exist', function(done) {
-      server
-        .post('/api/auth/login', { username: 'joesomebody', password: 'donthackmebro' } )
-        .expect(406, done);
+    it('should return a users state object', function(done) {
+      request(app)
+        .get('/api/auth/login', { email: 'captainhipster', password: 'beenheresincealpha' } )
+        .expect(200)
+        .expect(function(res){
+          if(!res.body.userPics) return 'missing userPics';
+          if(!res.body.folders) return 'missing folders';
+          if(!res.body.tags) return 'missing tags';
+          if(!res.body.profile) return 'missing profile info';
+        })
+        .end( (err, res) => {
+          if(err) return done(err);
+          
+          done();
+        });
+    });
+    it('should return a 401 if the email doesn\'t exist', function(done) {
+      request(app)
+        .post('/api/auth/login', { email: 'joesomebody', password: 'donthackmebro' } )
+        .expect(401, done);
     });
     
   });
   
-  // describe('auth/logout/:user', function(done) {
-  //   it('should return 200 on ')
-
-  // });
-  
-  describe('auth/dropbox', function(done) {
-    
-  });
-
-  describe('auth/google', function(done) {
-
-  });
-
-  describe('auth/facebook', function(done) {
-
-  });
 
   it('should return 404 on unkown route', function(done) {
-    server
+    request(app)
       .get('/random')
       .expect(404, done)
   });
