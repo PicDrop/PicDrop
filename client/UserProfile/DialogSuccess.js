@@ -6,11 +6,11 @@ class DialogSuccess extends React.Component {
     return (
       <div>
         <Dialog
-          title="Success"
+          title={this.props.title}
           modal={false}
           open={this.props.shouldOpen}
         >
-          Profile updated!!
+          {this.props.message}
         </Dialog>
       </div>
     );

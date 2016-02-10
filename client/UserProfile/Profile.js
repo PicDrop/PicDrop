@@ -61,6 +61,8 @@ class Profile extends React.Component {
     super(props);
     this.state = {
       shouldOpen: false,
+      title: '',
+      message: ''
     };
   }
 /*  componentWillMount() {
@@ -92,16 +94,33 @@ class Profile extends React.Component {
         newPassword: this.props.values.newPassword,
       })
       .then((resp) => {
-        this.setState({ shouldOpen: true });
+        this.setState({
+          shouldOpen: true,
+          title: 'Success',
+          message: 'Password Updated!!'
+        });
+        setTimeout(() => {
+          this.setState({
+            shouldOpen: false,
+            title: '',
+            message: ''
+          });
+        }, 1500);
         this.props.history.push({ pathname: '/main/collection' });
       })
       .catch((error) => {
-        this.setState({ shouldOpen: true });
+        this.setState({
+          shouldOpen: true,
+          title: 'Error',
+          message: 'Incorrect Old Password'
+        });
         setTimeout(() => {
-          this.setState({ shouldOpen: false });
+          this.setState({
+            shouldOpen: false,
+            title: '',
+            message: ''
+          });
         }, 1500);
-        console.log(this.state.shouldOpen);
-        console.log(error);
       });
   }
 
@@ -115,7 +134,7 @@ class Profile extends React.Component {
       <div className="row">
         <div className="col">
           <Paper style={styles.root} zDepth={1}>
-            <DialogSuccess shouldOpen={this.state.shouldOpen}/>
+            <DialogSuccess shouldOpen={this.state.shouldOpen} title={this.state.title} message={this.state.message}/>
             <form onSubmit={this.submitForm.bind(this)}>
               <h4>Edit Profile</h4>
               <div className="row">
