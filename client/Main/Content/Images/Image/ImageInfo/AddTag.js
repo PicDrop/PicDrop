@@ -27,11 +27,15 @@ class AddTag extends React.Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
     const tag = this.props.values.tag;
     const picId = this.props.picId;
     axios.post(`/api/user/tagDrop`,
       { picId: picId, tag: tag }
-    );
+    )
+    .then((resp) => {
+      console.log(resp);
+    });
   }
 
   render() {

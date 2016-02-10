@@ -44,7 +44,10 @@ class Image extends React.Component {
           />
         </div>
         <div style={{ marginLeft: '250px' }}>
-          <ImageView originalUrl={ originalUrl } />
+          <ImageView
+            originalUrl={ originalUrl }
+            picId={ picId } 
+          />
         </div>
       </div>
     );*/
