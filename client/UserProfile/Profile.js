@@ -137,7 +137,7 @@ class Profile extends React.Component {
           <Paper style={styles.root} zDepth={1}>
             <DialogSuccess shouldOpen={this.state.shouldOpen} title={this.state.title} message={this.state.message}/>
             <form onSubmit={this.submitForm.bind(this)}>
-              <h4>Edit Profile</h4>
+              <h4 style={{ color: '#5A5A5A', fontFamily: 'Abel' }}>Edit Profile</h4>
               <div className="row">
                 <label style={styles.emailLabel}>Email</label>
                 <TextField
