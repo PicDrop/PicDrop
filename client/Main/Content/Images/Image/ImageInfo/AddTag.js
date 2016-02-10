@@ -1,5 +1,6 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
+import axios from 'axios';
 import FlatButton from 'material-ui/lib/flat-button';
 import TextField from 'material-ui/lib/text-field';
 
@@ -26,8 +27,15 @@ class AddTag extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log("handleSubmit called");
-    console.log(this.props.values.tag)
+    e.preventDefault();
+    const tag = this.props.values.tag;
+    const picId = this.props.picId;
+    axios.post(`/api/user/tagDrop`,
+      { picId: picId, tag: tag }
+    )
+    .then((resp) => {
+      console.log(resp);
+    });
   }
 
   render() {
@@ -54,6 +62,7 @@ class AddTag extends React.Component {
 AddTag.propTypes = {
   fields: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
+  picId: React.PropTypes.string.isRequired,
 };
 
 export default reduxForm({

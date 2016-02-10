@@ -48,8 +48,13 @@ class ImageInfo extends React.Component {
               <ListItem primaryText={ this.props.folder } disabled={true} />
             </List>
             <List subheader="Tags" subheaderStyle={ SUBHEADERSTYLE } >
-              <AddTag />
-              <TagList currentTags={ this.props.currentTags } />
+              <AddTag
+                picId = { this.props.picId }
+              />
+              <TagList
+                currentTags={ this.props.currentTags }
+                picId = { this.props.picId }
+              />
             </List>
           </div>
       </Paper>
@@ -61,6 +66,8 @@ ImageInfo.propTypes = {
   title: React.PropTypes.string.isRequired,
   folder: React.PropTypes.string.isRequired,
   originalUrl: React.PropTypes.string.isRequired,
+  picId: React.PropTypes.string.isRequired,
+  currentTags: React.PropTypes.array.isRequired,
 };
 
 export default ImageInfo;
