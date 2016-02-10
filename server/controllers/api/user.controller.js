@@ -1,6 +1,7 @@
 var DB = require('../../models/userModel');
 var passport = require('../../middleware/passport');
 var buildUserState = require('./helpers').buildUserState;
+var bcrypt = require('bcrypt');
 
 module.exports = {
   createDrop: function(req, res){
@@ -118,16 +119,20 @@ module.exports = {
   },
   updatePassword: function(req, res){
     DB.User.get(req.user.id).run().then(function(user){
-      if(req.body.oldPassword === user.password){
-        user.password = req.body.newPassword;
-        user.save().then(function(user){
-          res.status(201).send('Password update successfull');   
-        });
-      }else{
-        user.save().then(function(user){
+      bcrypt.compare(req.body.oldPassword, user.password, function(err, isEqual){
+        if(isEqual){
+          bcrypt.genSalt(10, function(err, salt){
+            bcrypt.hash(req.body.newPassword, salt, function(err, hash){
+              user.password = hash;
+              user.save().then(function(user){
+                res.status(201).send('Password update successfull');
+              });
+            });
+          });   
+        }else{
           res.status(401).send('Invalid old password');
-        });
-      }
+        }
+      });
     });
   }
 }  
