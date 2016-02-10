@@ -6,6 +6,7 @@ import TextField from 'material-ui/lib/text-field';
 import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
 import profileActions from '../actions/profileActions';
+import DialogSuccess from './DialogSuccess';
 
 const styles = {
   root: {
@@ -56,6 +57,14 @@ const styles = {
 };
 
 class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      shouldOpen: false,
+      title: '',
+      message: ''
+    };
+  }
 /*  componentWillMount() {
     console.log("Go and fetch profile");
     //this.props.getProfile();
@@ -85,11 +94,34 @@ class Profile extends React.Component {
         newPassword: this.props.values.newPassword,
       })
       .then((resp) => {
-       this.props.history.push.bind(this, { pathname: '/main/collection' });
+        this.setState({
+          shouldOpen: true,
+          title: 'Success',
+          message: 'Password Updated!!'
+        });
+        setTimeout(() => {
+          this.setState({
+            shouldOpen: false,
+            title: '',
+            message: ''
+          });
+          this.props.history.push({ pathname: '/main/collection' });
+        }, 1500);
+
       })
       .catch((error) => {
-       console.log(error);
-       this.props.history.push.bind(this, { pathname: '/main/collection' });
+        this.setState({
+          shouldOpen: true,
+          title: 'Error',
+          message: 'Incorrect Old Password'
+        });
+        setTimeout(() => {
+          this.setState({
+            shouldOpen: false,
+            title: '',
+            message: ''
+          });
+        }, 1500);
       });
   }
 
@@ -103,6 +135,7 @@ class Profile extends React.Component {
       <div className="row">
         <div className="col">
           <Paper style={styles.root} zDepth={1}>
+            <DialogSuccess shouldOpen={this.state.shouldOpen} title={this.state.title} message={this.state.message}/>
             <form onSubmit={this.submitForm.bind(this)}>
               <h4>Edit Profile</h4>
               <div className="row">

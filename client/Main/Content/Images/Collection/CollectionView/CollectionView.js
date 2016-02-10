@@ -11,14 +11,16 @@ import { connect } from 'react-redux';
 const styles = {
   root: {
     marginTop: -10,
-    marginLeft: -20,
+    marginLeft: -74,
+    maxWidth: screen.width * 0.8,
+    //minWidth: screen.width * 0.8,
     backgroundColor: '#E9E9F4',
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     //minWidth: 965,
     minHeight: screen.height - 240,
-    padding: 16,
+    padding: 21,
   },
   card: {
     maxWidth: 220,

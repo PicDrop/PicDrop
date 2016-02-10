@@ -5,6 +5,18 @@ import FlatButton from 'material-ui/lib/flat-button';
 import TextField from 'material-ui/lib/text-field';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
+import Paper from 'material-ui/lib/paper';
+
+const styles = {
+  root: {
+    minHeight: screen.height - 240,
+    //width: screen.width * 0.2,
+    maxWidth: screen.width * 0.2,
+    marginLeft: 10,
+    marginTop: -10,
+    paddingTop: 20
+  }
+};
 
 const SUBHEADERSTYLE = { fontSize: '11px', lineHeight: '10px' };
 const REDBORDERSTYLE = { borderStyle: 'dotted', borderColor: 'red' };
@@ -13,7 +25,7 @@ class ImageInfo extends React.Component {
 
   render() {
     return (
-      <div>
+      <Paper style={styles.root} z-index={1}>
           <div>
             <FlatButton
               onTouchTap={ this.props.history.push.bind(this, { pathname: '/main/collection' }) }
@@ -40,7 +52,7 @@ class ImageInfo extends React.Component {
               <TagList currentTags={ this.props.currentTags } />
             </List>
           </div>
-      </div>
+      </Paper>
     );
   }
 }
