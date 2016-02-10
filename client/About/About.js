@@ -1,4 +1,9 @@
 import React from 'react';
+import Paper from 'material-ui/lib/paper';
+import Card from 'material-ui/lib/card/card';
+import CardActions from 'material-ui/lib/card/card-actions';
+import CardMedia from 'material-ui/lib/card/card-media';
+import CardTitle from 'material-ui/lib/card/card-title';
 import Social from './Social';
 import GridList from 'material-ui/lib/grid-list/grid-list';
 import GridTile from 'material-ui/lib/grid-list/grid-tile';
@@ -6,46 +11,59 @@ import StarBorder from 'material-ui/lib/svg-icons/toggle/star-border';
 
 const styles = {
   root: {
+    marginTop: -10,
+    marginLeft: -14,
+    //backgroundColor: '#E9E9F4',
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
+    minHeight: screen.height - 240,
+    padding: 21,
   },
-  gridList: {
-    width: 1580,
-    height: 560,
-    overflowY: 'auto',
-    marginBottom: 24,
+  card: {
+    maxWidth: 320,
+    maxHeight: 300,
+    minWidth: 320,
+    minHeight: 430,
+    margin: 16,
   },
+  image: {
+    maxWidth: 300,
+    maxHeight: 300,
+    minWidth: 300,
+    minHeight: 300,
+    border: '10px solid white',
+  }
 };
 
 const teamData = [
   {
-    img: 'http://lorempixel.com/530/530',
+    img: 'http://lorempixel.com/300/300',
     member: 'Travis Miller',
     role: 'Product Owner, Full-Stack Engineer',
-    linkedIn: 'tmiller',
-    github: 'tmiller',
+    linkedIn: 'travisbmiller',
+    github: 'travisbmiller',
   },
   {
-    img: 'http://lorempixel.com/530/530',
+    img: 'http://lorempixel.com/300/300',
     member: 'Bryan Bierce',
     role: 'Scrum Master, Full-Stack Engineer',
     linkedIn: 'bryanbierce',
     github: 'bryanbierce',
   },
   {
-    img: 'http://lorempixel.com/530/530',
+    img: 'http://lorempixel.com/300/300',
     member: 'Ryan Jagger',
     role: 'Full-Stack Engineer',
-    linkedIn: 'tmiller',
-    github: 'tmiller',
+    linkedIn: 'ryanjagger',
+    github: 'ryanjagger',
   },
   {
-    img: 'http://lorempixel.com/530/530',
+    img: 'http://lorempixel.com/300/300',
     member: 'Santosh Gautam',
     role: 'Full-Stack Engineer',
-    linkedIn: 'tmiller',
-    github: 'tmiller',
+    linkedIn: 'gautamsantosh',
+    github: 'gautamsan',
   },
 
 ];
@@ -54,25 +72,21 @@ class About extends React.Component {
     return (
       <div>
         About us
-        <div style={styles.root}>
-          <GridList
-            cellHeight={530}
-            cols={4}
-            style={styles.gridList}
-          >
-            {teamData.map(tile => (
-              <GridTile
-                key={tile.member}
-                title={tile.member}
-                subtitle={<span>{tile.role}</span>}
-                actionIcon={<Social github={tile.github} linkedIn={tile.linkedIn}/>}
-              >
-                <img src={tile.img} />
-              </GridTile>
-            ))}
-          </GridList>
-        </div>
-      </div>
+        <Paper style={styles.root} zDepth={1}>
+          {teamData.map(tile => (
+            <Card style={styles.card}>
+              <CardMedia>
+                <img style={styles.image} src={tile.img} />
+              </CardMedia>
+              <CardTitle style={{ marginTop: -20, textAlign: 'center' }}title={tile.member} subtitle={tile.role}  />
+              <CardActions style={{ marginTop: -7, padding: 0, textAlign: 'center' }}>
+                <Social github={tile.github} linkedIn={tile.linkedIn}/>
+              </CardActions>
+            </Card>
+          ))}
+        </Paper>
+    </div>
+
     );
   }
 }
