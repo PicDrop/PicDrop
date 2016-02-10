@@ -16,7 +16,7 @@ class Image extends React.Component {
     const currentTags = pic.get('tags');
     return (
       <div className="row">
-        <div className="col-sm-4 col-md-3 col-lg-3 info-bar">
+        <div className="col-sm-4 col-md-3 col-lg-2 info-bar">
           <ImageInfo
             picId={ picId }
             folder={ folder }
@@ -26,7 +26,7 @@ class Image extends React.Component {
             history={ this.props.history }
           />
         </div>
-        <div className="col-sm-8 col-md-9 col-lg-9">
+        <div className="col-sm-8 col-md-9 col-lg-10">
           <ImageView originalUrl={ originalUrl } />
         </div>
       </div>

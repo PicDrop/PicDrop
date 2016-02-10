@@ -11,8 +11,8 @@ import { connect } from 'react-redux';
 const styles = {
   root: {
     marginTop: -10,
-    marginLeft: -74,
-    maxWidth: screen.width * 0.8,
+    marginLeft: -14,
+    //maxWidth: screen.width * 0.8,
     //minWidth: screen.width * 0.8,
     backgroundColor: '#E9E9F4',
     display: 'flex',
