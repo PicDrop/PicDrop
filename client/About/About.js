@@ -9,7 +9,6 @@ import GridList from 'material-ui/lib/grid-list/grid-list';
 import GridTile from 'material-ui/lib/grid-list/grid-tile';
 import StarBorder from 'material-ui/lib/svg-icons/toggle/star-border';
 
-const imgUrl = '../../public/client/assets/team_pattern.png';
 const styles = {
   root: {
     marginTop: 40,
@@ -38,8 +37,22 @@ const styles = {
   banner: {
 /*    width: screen.availWidth,
     height: screen.availHeight * 0.4,*/
+/*    left: 0,
+    top: 0,*/
     minWidth: screen.availWidth,
     maxHeight: screen.availHeight * 0.4,
+    background: 'linear-gradient(rgba(20,20,20, .5),rgba(20,20,20, .5))',
+  },
+  overlay: {
+    position: 'absolute',
+    zIndex: 999,
+    color: '#F1EFE0',
+    textShadow: '3px 3px rgba(0, 0, 0, 0.51)',
+    fontFamily: 'sansita one, cursive',
+    fontSize: '65',
+    fontWeight: 'bold',
+    left: '44%',
+    top: '54%',
   },
   container: {
     height: screen.height - 159,
@@ -84,8 +97,9 @@ class About extends React.Component {
     return (
       <div style={styles.container}>
         <div className="row">
-          <div className="col-lg-12">
+          <div className="col-lg-12" style={{ position: 'relative' }}>
             <img style={styles.banner} src="http://i65.tinypic.com/2afbrrl.jpg" alt=""/>
+            <p style={styles.overlay}>The Team</p>
           </div>
         </div>
         <div style={styles.root} zDepth={0}>
