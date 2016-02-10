@@ -52,25 +52,6 @@ class AuthForm extends React.Component {
       this.setState({ submissionType: 'Log In' });
     }
   }
-  // googleAuth(e) {
-  //   e.preventDefault();
-  //   const dispatch = this.props.dispatch;
-  //   axios.get('api/auth/google')
-  //   .then((res) => {
-  //     console.log(res);
-  //     localStorage.setItem('pd.loggedIn', true);
-  //     localStorage.setItem('pd.token', resp.data.token);
-  //     dispatch(appActions.setLoggedIn(true));
-  //     if (route === 'login') {
-  //       dispatch(userPicsActions.setState(resp.data.userPics));
-  //       dispatch(tagsActions.setState(resp.data.tags));
-  //       dispatch(foldersActions.setState(resp.data.folders));
-  //       dispatch(viewingActions.setState(resp.data.viewing));
-  //     }
-  //     this.props.history.push({ pathname: '/main/collection' });
-  //     this.props.handleSubmit();
-  //   });
-  // }
   render() {
     const { fields: { email, password },
       handleSubmit,
@@ -79,22 +60,24 @@ class AuthForm extends React.Component {
     } = this.props;
     return (
       <div>
-        <h4>{ this.state.submissionType }</h4>
+        <h4 style={{ color: '#5A5A5A' }}>{ this.state.submissionType }</h4>
         <form onSubmit={this.submitForm}>
         <TextField
+          underlineStyle={{backgroundColor: '#CCCCCC'}}
           hintText="Email"
           floatingLabelText="Email:"
           {...email}
         />
         <br/>
         <TextField
+          underlineStyle={{backgroundColor: '#CCCCCC'}}
           type="password"
           hintText="Password"
           floatingLabelText="Password:"
           {...password}
         />
         <RaisedButton
-          label="Login" primary={ true } type="submit" style={{ margin: 12 }}
+          label="Login" type="submit" labelColor={ '#5A5A5A' }style={{ margin: 12 }}
         />
         </form>
         <br/>

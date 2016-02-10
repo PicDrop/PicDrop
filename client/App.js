@@ -2,12 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import LogoBar from './LogoBar/LogoBar';
 import appActions from './actions/appActions';
+import MyRawTheme from './theme/theme';
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.componentWillMount = this.componentWillMount.bind(this);
+  }
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getMuiTheme(MyRawTheme),
+    };
   }
   componentWillMount() {
     if (localStorage.getItem('pd.loggedIn')) {
@@ -26,6 +33,8 @@ class App extends React.Component {
     );
   }
 }
-
+App.childContextTypes = {
+  muiTheme: React.PropTypes.object,
+};
 
 export default connect()(App);

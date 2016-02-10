@@ -23,6 +23,7 @@ class LoginSignup extends React.Component {
     return (
       <FlatButton
           label={ this.state.label }
+          labelStyle={{ color:'#5A5A5A' }}
           onTouchTap={ this.handleTouchTap }
       />
     );
