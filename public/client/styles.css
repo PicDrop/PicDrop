@@ -1,3 +1,9 @@
+html{
+    font-family: Abel, sans-serif;
+}
+body {
+    overflow-x: hidden;
+}
 #splashview {
   height:100vh;
   background: url('https://source.unsplash.com/random/1600x900') no-repeat 50% 50% ;
@@ -24,9 +30,6 @@
     z-index: 10;
 }
 
-body {
-    overflow-x: hidden;
-}
 
 .sidebar-header {
 

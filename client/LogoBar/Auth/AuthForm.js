@@ -14,7 +14,7 @@ class AuthForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      submissionType: 'Log In',
+      submissionType: 'LOGIN',
     };
     // this.googleAuth = this.googleAuth.bind(this);
     this.submitForm = this.submitForm.bind(this);
@@ -46,31 +46,12 @@ class AuthForm extends React.Component {
   }
   flipForm() {
     console.log('in flipForm', this.state.submissionType);
-    if (this.state.submissionType === 'Log In') {
-      this.setState({ submissionType: 'Sign Up' });
+    if (this.state.submissionType === 'LOGIN') {
+      this.setState({ submissionType: 'SIGN UP' });
     } else {
-      this.setState({ submissionType: 'Log In' });
+      this.setState({ submissionType: 'LOGIN' });
     }
   }
-  // googleAuth(e) {
-  //   e.preventDefault();
-  //   const dispatch = this.props.dispatch;
-  //   axios.get('api/auth/google')
-  //   .then((res) => {
-  //     console.log(res);
-  //     localStorage.setItem('pd.loggedIn', true);
-  //     localStorage.setItem('pd.token', resp.data.token);
-  //     dispatch(appActions.setLoggedIn(true));
-  //     if (route === 'login') {
-  //       dispatch(userPicsActions.setState(resp.data.userPics));
-  //       dispatch(tagsActions.setState(resp.data.tags));
-  //       dispatch(foldersActions.setState(resp.data.folders));
-  //       dispatch(viewingActions.setState(resp.data.viewing));
-  //     }
-  //     this.props.history.push({ pathname: '/main/collection' });
-  //     this.props.handleSubmit();
-  //   });
-  // }
   render() {
     const { fields: { email, password },
       handleSubmit,
@@ -79,7 +60,7 @@ class AuthForm extends React.Component {
     } = this.props;
     return (
       <div>
-        <h4>{ this.state.submissionType }</h4>
+        <h4 style={{ color: '#5A5A5A', fontFamily: 'Abel' }}>{ this.state.submissionType }</h4>
         <form onSubmit={this.submitForm}>
         <TextField
           hintText="Email"
@@ -94,7 +75,7 @@ class AuthForm extends React.Component {
           {...password}
         />
         <RaisedButton
-          label="Login" primary={ true } type="submit" style={{ margin: 12 }}
+          label={ this.state.submissionType } type="submit" labelColor={ '#5A5A5A' }style={{ margin: 12 }}
         />
         </form>
         <br/>
