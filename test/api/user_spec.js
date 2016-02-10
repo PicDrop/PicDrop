@@ -1,6 +1,6 @@
 import supertest from 'supertest';
-// Import users models
 import { expect } from 'chai';
+import DB from '../../server/models/userModel';
 
 const server = supertest('http://localhost:3000');
 describe('"/user" routes', function() {

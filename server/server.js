@@ -65,4 +65,5 @@ https.createServer({
   console.log("listening on 4000")
 });
 
+module.exports = app;
 
