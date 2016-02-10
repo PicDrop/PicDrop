@@ -105,8 +105,9 @@ class Profile extends React.Component {
             title: '',
             message: ''
           });
+          this.props.history.push({ pathname: '/main/collection' });
         }, 1500);
-        this.props.history.push({ pathname: '/main/collection' });
+
       })
       .catch((error) => {
         this.setState({
