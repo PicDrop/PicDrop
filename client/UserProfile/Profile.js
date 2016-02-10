@@ -57,6 +57,12 @@ const styles = {
 };
 
 class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      shouldOpen: false,
+    };
+  }
 /*  componentWillMount() {
     console.log("Go and fetch profile");
     //this.props.getProfile();
@@ -86,9 +92,15 @@ class Profile extends React.Component {
         newPassword: this.props.values.newPassword,
       })
       .then((resp) => {
+        this.setState({ shouldOpen: true });
         this.props.history.push({ pathname: '/main/collection' });
       })
       .catch((error) => {
+        this.setState({ shouldOpen: true });
+        setTimeout(() => {
+          this.setState({ shouldOpen: false });
+        }, 1500);
+        console.log(this.state.shouldOpen);
         console.log(error);
       });
   }
@@ -103,7 +115,7 @@ class Profile extends React.Component {
       <div className="row">
         <div className="col">
           <Paper style={styles.root} zDepth={1}>
-            <DialogSuccess/>
+            <DialogSuccess shouldOpen={this.state.shouldOpen}/>
             <form onSubmit={this.submitForm.bind(this)}>
               <h4>Edit Profile</h4>
               <div className="row">
