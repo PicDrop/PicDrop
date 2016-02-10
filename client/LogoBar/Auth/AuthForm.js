@@ -14,7 +14,7 @@ class AuthForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      submissionType: 'Log In',
+      submissionType: 'LOGIN',
     };
     // this.googleAuth = this.googleAuth.bind(this);
     this.submitForm = this.submitForm.bind(this);
@@ -46,10 +46,10 @@ class AuthForm extends React.Component {
   }
   flipForm() {
     console.log('in flipForm', this.state.submissionType);
-    if (this.state.submissionType === 'Log In') {
-      this.setState({ submissionType: 'Sign Up' });
+    if (this.state.submissionType === 'LOGIN') {
+      this.setState({ submissionType: 'SIGN UP' });
     } else {
-      this.setState({ submissionType: 'Log In' });
+      this.setState({ submissionType: 'LOGIN' });
     }
   }
   render() {
@@ -60,24 +60,22 @@ class AuthForm extends React.Component {
     } = this.props;
     return (
       <div>
-        <h4 style={{ color: '#5A5A5A' }}>{ this.state.submissionType }</h4>
+        <h4 style={{ color: '#5A5A5A', fontFamily: 'Abel' }}>{ this.state.submissionType }</h4>
         <form onSubmit={this.submitForm}>
         <TextField
-          underlineStyle={{backgroundColor: '#CCCCCC'}}
           hintText="Email"
           floatingLabelText="Email:"
           {...email}
         />
         <br/>
         <TextField
-          underlineStyle={{backgroundColor: '#CCCCCC'}}
           type="password"
           hintText="Password"
           floatingLabelText="Password:"
           {...password}
         />
         <RaisedButton
-          label="Login" type="submit" labelColor={ '#5A5A5A' }style={{ margin: 12 }}
+          label={ this.state.submissionType } type="submit" labelColor={ '#5A5A5A' }style={{ margin: 12 }}
         />
         </form>
         <br/>
