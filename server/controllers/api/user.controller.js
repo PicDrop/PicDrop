@@ -117,7 +117,7 @@ module.exports = {
     });
   },
   updatePassword: function(req, res){
-    DB.get(req.user.id).run().then(function(user){
+    DB.User.get(req.user.id).run().then(function(user){
       if(req.body.oldPassword === user.password){
         user.password = req.body.newPassword;
         user.save().then(function(user){
