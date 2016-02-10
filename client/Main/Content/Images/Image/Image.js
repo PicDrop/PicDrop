@@ -48,7 +48,7 @@ class Image extends React.Component {
         </div>
       </div>
     );*/
-    
+
 /*    return (
       <div>
         <div style={{ width: '250px', position: 'absolute' }}>
