@@ -30,6 +30,8 @@ class AddTag extends React.Component {
     e.preventDefault();
     const tag = this.props.values.tag;
     const picId = this.props.picId;
+    const token = localStorage.getItem('pd.token');
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     axios.post(`/api/user/tagDrop`,
       { picId: picId, tag: tag }
     )
