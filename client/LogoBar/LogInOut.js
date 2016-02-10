@@ -40,9 +40,19 @@ class LoginOut extends React.Component {
   }
   checkLogin() {
     if (this.props.loggedIn) {
-      return (<span><LogoBarBtn label="profile" link="/profile"/><FlatButton onTouchTap={ this.handleLogout } label="Logout" secondary={true} /></span>);
+      return (
+        <span>
+          <LogoBarBtn label="profile" link="/profile"/>
+          <LogoBarBtn label="about" link="/about"/>
+          <FlatButton onTouchTap={ this.handleLogout } label="Logout" secondary={true} />
+        </span>);
     } else {
-      return <FlatButton onTouchTap={ this.handleAuthOpen } label="Login" secondary={true} />;
+      return (
+        <span>
+          <LogoBarBtn label="about" link="/about"/>
+          <FlatButton onTouchTap={ this.handleAuthOpen } label="Login" secondary={true} />
+        </span>
+      );
     }
   }
   render() {
