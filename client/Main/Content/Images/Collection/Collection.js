@@ -9,10 +9,10 @@ class Collection extends React.Component {
   render() {
     return (
       <div className="row">
-        <div className="col-sm-4 col-md-3 col-lg-3 info-bar">
+        <div className="col-sm-4 col-md-3 col-lg-2 info-bar">
           <CollectionInfo folders={this.props.folders} tags={this.props.tags}/>
         </div>
-        <div className="col-sm-8 col-md-9 col-lg-9 image-collection">
+        <div className="col-sm-8 col-md-9 col-lg-10 image-collection">
           <CollectionView userPics={this.props.userPics}/>
         </div>
       </div>
