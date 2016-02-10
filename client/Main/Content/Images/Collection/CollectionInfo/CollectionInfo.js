@@ -6,6 +6,8 @@ import Paper from 'material-ui/lib/paper';
 const styles = {
   root: {
     minHeight: screen.height - 240,
+    //width: screen.width * 0.2,
+    maxWidth: screen.width * 0.2,
     marginLeft: 10,
     marginTop: -10,
     paddingTop: 20

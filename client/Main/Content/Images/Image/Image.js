@@ -15,6 +15,23 @@ class Image extends React.Component {
     const title = pic.get('title');
     const currentTags = pic.get('tags');
     return (
+      <div className="row">
+        <div className="col-sm-4 col-md-3 col-lg-3 info-bar">
+          <ImageInfo
+            picId={ picId }
+            folder={ folder }
+            title={ title }
+            originalUrl={ originalUrl }
+            currentTags={ currentTags }
+            history={ this.props.history }
+          />
+        </div>
+        <div className="col-sm-8 col-md-9 col-lg-9 image-collection">
+          <ImageView originalUrl={ originalUrl } />
+        </div>
+      </div>
+    );
+/*    return (
       <div>
         <div style={{ width: '250px', position: 'absolute' }}>
           <ImageInfo
@@ -30,8 +47,8 @@ class Image extends React.Component {
           <ImageView originalUrl={ originalUrl } />
         </div>
       </div>
-
-    );
+    );*/
+    
 /*    return (
       <div>
         <div style={{ width: '250px', position: 'absolute' }}>
