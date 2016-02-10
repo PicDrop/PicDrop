@@ -6,8 +6,8 @@ class Social extends React.Component {
   render() {
     return (
       <div>
-        <LinkedIn/>
-        <Github/>
+        <LinkedIn linkedIn={this.props.linkedIn}/>
+        <Github github={this.props.github}/>
       </div>
     );
   }

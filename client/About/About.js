@@ -30,8 +30,8 @@ const teamData = [
     img: 'http://lorempixel.com/530/530',
     member: 'Bryan Bierce',
     role: 'Scrum Master, Full-Stack Engineer',
-    linkedIn: 'tmiller',
-    github: 'tmiller',
+    linkedIn: 'bryanbierce',
+    github: 'bryanbierce',
   },
   {
     img: 'http://lorempixel.com/530/530',
@@ -65,7 +65,7 @@ class About extends React.Component {
                 key={tile.member}
                 title={tile.member}
                 subtitle={<span>{tile.role}</span>}
-                actionIcon={<Social/>}
+                actionIcon={<Social github={tile.github} linkedIn={tile.linkedIn}/>}
               >
                 <img src={tile.img} />
               </GridTile>
