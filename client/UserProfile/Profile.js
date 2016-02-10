@@ -6,6 +6,7 @@ import TextField from 'material-ui/lib/text-field';
 import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
 import profileActions from '../actions/profileActions';
+import DialogSuccess from './DialogSuccess';
 
 const styles = {
   root: {
@@ -102,6 +103,7 @@ class Profile extends React.Component {
       <div className="row">
         <div className="col">
           <Paper style={styles.root} zDepth={1}>
+            <DialogSuccess/>
             <form onSubmit={this.submitForm.bind(this)}>
               <h4>Edit Profile</h4>
               <div className="row">
