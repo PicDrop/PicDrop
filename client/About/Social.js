@@ -1,11 +1,13 @@
 import React from 'react';
-
+import Github from './Github';
+import LinkedIn from './LinkedIn';
 
 class Social extends React.Component {
   render() {
     return (
       <div>
-        Social Icons
+        <LinkedIn/>
+        <Github/>
       </div>
     );
   }
