@@ -6,6 +6,7 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 var jwtSuperSecretCode = 'super-secret-key';
 var validateJwt = expressJwt({secret: jwtSuperSecretCode});
+var bcrypt = require('bcrypt');
 
 var googleID, googleSecret; 
 if(process.env.PRODUCTION){
@@ -47,17 +48,19 @@ passport.use(new LocalStrategy(
     }).then(function (data) {
       var user = data[0];
       if (user) {
-        if (password === user.password) {
-          DB.User.get(user.id).getJoin({userPics: true, folders: true})
-          .run().then(function(user){   
-            return done(null, user);
-          })
-          .error(function(error){
-            console.log(error);
-          });
-        } else {
-          done(null, false, { message: 'Incorrect password' });
-        }
+        bcrypt.compare(password, user.password, function(err, res){
+          if (res === true) {
+            DB.User.get(user.id).getJoin({userPics: true, folders: true})
+            .run().then(function(user){   
+              return done(null, user);
+            })
+            .error(function(error){
+              console.log(error);
+            });
+          } else {
+            done(null, false, { message: 'Incorrect password' });
+          }
+        });
       } else {
         done(null, false, { message: 'No User Found' });
       }

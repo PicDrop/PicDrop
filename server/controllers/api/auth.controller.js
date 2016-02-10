@@ -5,7 +5,8 @@ var expressJwt = require('express-jwt');
 var passport = require('../../middleware/passport');
 var jwtSuperSecretCode = 'super-secret-key';
 var validateJwt = expressJwt({secret: jwtSuperSecretCode});
-var buildUserState = require('./helpers').buildUserState
+var buildUserState = require('./helpers').buildUserState;
+var bcrypt = require('bcrypt');
 
 
 module.exports = {
@@ -17,20 +18,24 @@ module.exports = {
           res.status(401);
           res.send('Email is already registered');
         }else{
-          DB.User.save({
-            email: req.body.email,
-            password: req.body.password
-          })
-          .then(function(data){
-            var token = jwt.sign({id: data.id}, jwtSuperSecretCode);
-            res.status(200);
-            res.send({token: token});
-          })
-          .error(function (err) {
-            res.status(501);
-            res.send("error in creating user");
-            console.log("err ", err)
-            // todo handle error
+          bcrypt.genSalt(10, function(err, salt){
+            bcrypt.hash(req.body.password, salt, function(err, hash){
+              DB.User.save({
+                email: req.body.email,
+                password: hash
+              })
+              .then(function(data){
+                var token = jwt.sign({id: data.id}, jwtSuperSecretCode);
+                res.status(200);
+                res.send({token: token});
+              })
+              .error(function (err) {
+                res.status(501);
+                res.send("error in creating user");
+                console.log("err ", err)
+                // todo handle error
+              });
+            });
           });
         }
       })
