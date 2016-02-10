@@ -9,16 +9,17 @@ import GridList from 'material-ui/lib/grid-list/grid-list';
 import GridTile from 'material-ui/lib/grid-list/grid-tile';
 import StarBorder from 'material-ui/lib/svg-icons/toggle/star-border';
 
+const imgUrl = '../../public/client/assets/team_pattern.png';
 const styles = {
   root: {
-    marginTop: -10,
-    marginLeft: -14,
+    marginTop: 40,
+    //marginLeft: -14,
     //backgroundColor: '#E9E9F4',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    minHeight: screen.height - 240,
-    padding: 21,
+    //minHeight: screen.height - 240,
+    //padding: 21,
   },
   card: {
     maxWidth: 320,
@@ -33,6 +34,17 @@ const styles = {
     minWidth: 300,
     minHeight: 300,
     border: '10px solid white',
+  },
+  banner: {
+/*    width: screen.availWidth,
+    height: screen.availHeight * 0.4,*/
+    minWidth: screen.availWidth,
+    maxHeight: screen.availHeight * 0.4,
+  },
+  container: {
+    height: screen.height - 159,
+    backgroundImage: 'url(/assets/team_pattern.png)',
+    backgroundRepeat: 'repeat',
   }
 };
 
@@ -70,9 +82,13 @@ const teamData = [
 class About extends React.Component {
   render() {
     return (
-      <div>
-        About us
-        <Paper style={styles.root} zDepth={1}>
+      <div style={styles.container}>
+        <div className="row">
+          <div className="col-lg-12">
+            <img style={styles.banner} src="http://i65.tinypic.com/2afbrrl.jpg" alt=""/>
+          </div>
+        </div>
+        <div style={styles.root} zDepth={0}>
           {teamData.map(tile => (
             <Card style={styles.card}>
               <CardMedia>
@@ -84,7 +100,7 @@ class About extends React.Component {
               </CardActions>
             </Card>
           ))}
-        </Paper>
+        </div>
     </div>
 
     );
