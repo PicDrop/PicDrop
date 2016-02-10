@@ -85,11 +85,10 @@ class Profile extends React.Component {
         newPassword: this.props.values.newPassword,
       })
       .then((resp) => {
-       this.props.history.push({ pathname: '/main/collection' });
+        this.props.history.push({ pathname: '/main/collection' });
       })
       .catch((error) => {
-       console.log(error);
-       this.props.history.push.bind(this, { pathname: '/main/collection' });
+        console.log(error);
       });
   }
 

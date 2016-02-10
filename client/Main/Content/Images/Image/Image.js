@@ -26,7 +26,7 @@ class Image extends React.Component {
             history={ this.props.history }
           />
         </div>
-        <div className="col-sm-8 col-md-9 col-lg-9 image-collection">
+        <div className="col-sm-8 col-md-9 col-lg-9">
           <ImageView originalUrl={ originalUrl } />
         </div>
       </div>
