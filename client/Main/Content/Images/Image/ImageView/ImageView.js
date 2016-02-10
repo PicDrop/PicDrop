@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import FlatButton from 'material-ui/lib/flat-button';
 import Card from 'material-ui/lib/card/card';
 import CardActions from 'material-ui/lib/card/card-actions';
@@ -40,6 +41,27 @@ const styles = {
 };
 
 class ImageView extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDelete() {
+    console.log('handleDelete called');
+    const picId = this.props.picId;
+    console.log(picId);
+    const token = localStorage.getItem('pd.token');
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    axios.post('/api/user/removeDrop',
+      { picId: picId }
+    )
+    .then(function (response) {
+      console.log(response);
+    });
+
+  }
+
   render() {
     return (
       <Paper style={styles.root} zDepth={1}>
@@ -48,7 +70,10 @@ class ImageView extends React.Component {
             <img style={styles.image} src={ this.props.originalUrl } />
           </CardMedia>
           <CardActions>
-            <FlatButton label="Delete" />
+            <FlatButton
+              label="Delete"
+              onTouchTap={ this.handleDelete }
+            />
             <FlatButton label="Download" />
           </CardActions>
         </Card>
@@ -63,7 +88,7 @@ class ImageView extends React.Component {
               <img src={ this.props.originalUrl } />
             </CardMedia>
             <CardActions>
-              <FlatButton label="Delete" />
+              <FlatButton label="Delete" onTouchTap={ this.handleDelete } />
               <FlatButton label="Download" />
             </CardActions>
           </Card>

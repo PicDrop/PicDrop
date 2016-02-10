@@ -27,7 +27,10 @@ class Image extends React.Component {
           />
         </div>
         <div className="col-sm-8 col-md-9 col-lg-10">
-          <ImageView originalUrl={ originalUrl } />
+          <ImageView
+            originalUrl={ originalUrl }
+            picId={ picId }
+          />
         </div>
       </div>
     );
@@ -46,7 +49,7 @@ class Image extends React.Component {
         <div style={{ marginLeft: '250px' }}>
           <ImageView
             originalUrl={ originalUrl }
-            picId={ picId } 
+            picId={ picId }
           />
         </div>
       </div>
