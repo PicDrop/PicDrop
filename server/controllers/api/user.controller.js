@@ -29,7 +29,7 @@ module.exports = {
           //     newPic.folder = folder;
           //     folder.saveAll({ pics: true });
           //   });
-          // }
+          }
         });
         if(!found){
           var newFolder = DB.Folder({name: req.body.folder, pics: []});
