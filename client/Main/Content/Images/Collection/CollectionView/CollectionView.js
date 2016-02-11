@@ -112,7 +112,7 @@ class CollectionView extends React.Component {
             <CardActions>
               <FlatButton key={counter++} label={pic.get('title')} />
             </CardActions>
-            <CardTitle subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."  />
+            <CardTitle subtitle={pic.get('note')}/>
           </Card>
           //))
         ))}
