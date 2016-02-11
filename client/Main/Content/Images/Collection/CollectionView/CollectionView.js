@@ -20,7 +20,9 @@ const styles = {
     justifyContent: 'center',
     //minWidth: 965,
     minHeight: screen.height - 240,
+    maxHeight: screen.height - 240,
     padding: 21,
+    overflowY: 'scroll',
   },
   card: {
     maxWidth: 220,
@@ -88,30 +90,31 @@ class CollectionView extends React.Component {
     }
 
     // If folder is selected, return selected images
-    const selectedImages = [];
-    const currentCollectionImages = currentCollection.map((val) => {
-      return selectedImages.concat(this.props.userPics.get(val));
+    let selectedImages = [];
+    currentCollection.forEach((val) => {
+      selectedImages = selectedImages.concat(this.props.userPics.get(val));
+      //return selectedImages;
     });
 
-    console.log(currentCollectionImages);
+    console.log(selectedImages);
 
     return (
       <Paper style={styles.root} z-index={1}>
-        {currentCollectionImages.map(picObj => (
-          picObj.map(pic => (
-            <Card onClick={ this.selectImage.bind(this, pic.get('id')) }
-                  onMouseEnter={ this.startHover }
-                  onMouseLeave={ this.endHover }
-                  style={styles.card}>
-              <CardMedia>
-                <img style={styles.image} src={pic.get('thumbnail')} />
-              </CardMedia>
-              <CardActions>
-                <FlatButton key={counter++} label={pic.get('title')} />
-              </CardActions>
-              <CardTitle subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."  />
-            </Card>
-          ))
+        {selectedImages.map(pic => (
+          //picObj.map(pic => (
+          <Card onClick={ this.selectImage.bind(this, pic.get('id')) }
+                onMouseEnter={ this.startHover }
+                onMouseLeave={ this.endHover }
+                style={styles.card}>
+            <CardMedia>
+              <img style={styles.image} src={pic.get('thumbnail')} />
+            </CardMedia>
+            <CardActions>
+              <FlatButton key={counter++} label={pic.get('title')} />
+            </CardActions>
+            <CardTitle subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."  />
+          </Card>
+          //))
         ))}
       </Paper>
     );

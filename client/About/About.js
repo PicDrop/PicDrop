@@ -11,20 +11,16 @@ import StarBorder from 'material-ui/lib/svg-icons/toggle/star-border';
 
 const styles = {
   root: {
-    marginTop: 40,
-    //marginLeft: -14,
-    //backgroundColor: '#E9E9F4',
+    //marginTop: 14,
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    //minHeight: screen.height - 240,
-    //padding: 21,
   },
   card: {
     maxWidth: 320,
-    maxHeight: 300,
+    maxHeight: 422,
     minWidth: 320,
-    minHeight: 430,
+    minHeight: 422,
     margin: 16,
   },
   image: {
@@ -40,7 +36,7 @@ const styles = {
 /*    left: 0,
     top: 0,*/
     minWidth: screen.availWidth,
-    maxHeight: screen.availHeight * 0.4,
+    maxHeight: screen.availHeight * 0.35,
     background: 'linear-gradient(rgba(20,20,20, .5),rgba(20,20,20, .5))',
   },
   overlay: {
