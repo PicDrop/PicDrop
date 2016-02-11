@@ -27,8 +27,8 @@ const styles = {
   card: {
     maxWidth: 670,
     maxHeight: 730,
-/*    minWidth: 220,
-    minHeight: 300,*/
+/*    minWidth: 220,*/
+    minHeight: 300,
     margin: 16,
   },
   image: {
@@ -37,7 +37,6 @@ const styles = {
     minWidth: 65,
     //minHeight: 150,
     border: '10px solid white',
-    //marginLeft: 92
   }
 };
 
