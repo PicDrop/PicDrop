@@ -18,7 +18,7 @@ class Navbar extends React.Component {
         <Tabs style={{marginBottom: '10px'}}>
           <Tab
             label="IMAGES"
-            style={{ backgroundColor: 'GAINSBORO', color:'DIMGREY', fontWeight: '300', fontSize: '18px',  letterSpacing: '-0.5px' }}
+            style={{ backgroundColor: '#F6F6F6', color:'#5A5A5A', fontWeight: '300', fontSize: '18px',  letterSpacing: '-0.5px' }}
             route="/main/collection"
             onActive={handleActive.bind(this)}
           >
@@ -26,7 +26,7 @@ class Navbar extends React.Component {
           </Tab>
           <Tab
             label="STREAM"
-            style={{ backgroundColor: 'GAINSBORO', color:'DIMGREY', fontWeight: '300', fontSize: '18px',  letterSpacing: '-0.5px' }}
+            style={{ backgroundColor: '#F6F6F6', color:'#5A5A5A', fontWeight: '300', fontSize: '18px',  letterSpacing: '-0.5px' }}
             route="/main/stream"
             onActive={handleActive.bind(this)}
           >

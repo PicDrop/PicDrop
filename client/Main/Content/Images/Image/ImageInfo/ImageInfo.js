@@ -12,8 +12,10 @@ const styles = {
     maxWidth: screen.width * 0.2,
     marginLeft: 10,
     marginTop: -10,
-    paddingTop: 20
-  }
+    paddingTop: 20,
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+  },
 };
 
 const SUBHEADERSTYLE = { fontSize: '11px', lineHeight: '10px' };
@@ -31,7 +33,7 @@ class ImageInfo extends React.Component {
               disableTouchRipple={true}
             />
           </div>
-          <div id="metadata">
+          <div id="metadata" style={{ textOverflow: 'ellipsis' }}>
             <List subheader="Title" subheaderStyle={ SUBHEADERSTYLE } >
               <ListItem primaryText={ this.props.title } disabled={true} />
             </List>
@@ -39,7 +41,7 @@ class ImageInfo extends React.Component {
               <ListItem primaryText="Saved to Google Drive" disabled={true} />
             </List>
             <List subheader="Domain" subheaderStyle={ SUBHEADERSTYLE }>
-              <ListItem primaryText={ this.props.originalUrl } disabled={true} />
+              <ListItem primaryText={ this.props.originalUrl }  disabled={true} />
             </List>
             <List subheader="Folder" subheaderStyle={ SUBHEADERSTYLE }>
               <ListItem primaryText={ this.props.folder } disabled={true} />

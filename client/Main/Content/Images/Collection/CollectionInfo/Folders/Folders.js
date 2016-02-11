@@ -27,16 +27,12 @@ class Folders extends React.Component {
     return (
       <div>
         <div className="sidebar-header">
-          <i className="material-icons">folder_open</i>
-          <div>Folders</div>
+          <i className="material-icons" style={{ color: '#5A5A5A' }}>folder_open</i>
+          <div style={{ color: '#5A5A5A' }}>Folders</div>
         </div>
         <List>
           {folders}
         </List>
-        <a className="sidebar-link" href="#">
-          <i className="material-icons">expand_more</i>
-          <div>Show All</div>
-        </a>
       </div>
     );
   }

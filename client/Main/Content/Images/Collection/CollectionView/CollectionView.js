@@ -14,7 +14,7 @@ const styles = {
     marginLeft: -14,
     //maxWidth: screen.width * 0.8,
     //minWidth: screen.width * 0.8,
-    backgroundColor: '#E9E9F4',
+    backgroundColor: '#F3F3F3',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -40,26 +40,45 @@ const styles = {
 };
 
 class CollectionView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { cursor: 'auto' };
+    this.startHover = this.startHover.bind(this);
+    this.endHover = this.endHover.bind(this);
+  }
+  selectImage(picId) {
+    this.props.history.push({ pathname: `/main/image/${picId}` });
+  }
+  startHover() {
+    this.setState({
+      cursor: 'pointer',
+    });
+  }
+  endHover() {
+    this.setState({
+      cursor: 'auto',
+    });
+  }
   render() {
     var counter = 0;
     const currentCollection = this.props.viewing.get('currentCollection');
     const currentFolder = this.props.viewing.get('currentFolder');
     const currentTags = this.props.viewing.get('currentTags');
-     console.log(currentFolder === '' && !currentTags.size);
-
+    styles.card.cursor = this.state.cursor;
     // If no folder or no tag selected, return all images
     if (currentFolder === '' && !currentTags.size) {
       return (
         <Paper style={styles.root} zDepth={1}>
           {this.props.userPics.map(pic => (
-            <Card style={styles.card}>
+            <Card onClick={ this.selectImage.bind(this, pic.get('id')) }
+                  onMouseEnter={ this.startHover }
+                  onMouseLeave={ this.endHover }
+                  style={styles.card}>
               <CardMedia>
                 <img style={styles.image} src={pic.get('thumbnail')} />
               </CardMedia>
               <CardActions>
-                <Link to={`/main/image/${pic.get('id')}`}>
                   <FlatButton key={counter++} label={pic.get('title')} />
-                </Link>
               </CardActions>
               <CardTitle subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."  />
             </Card>
@@ -80,14 +99,15 @@ class CollectionView extends React.Component {
       <Paper style={styles.root} z-index={1}>
         {currentCollectionImages.map(picObj => (
           picObj.map(pic => (
-            <Card style={styles.card}>
+            <Card onClick={ this.selectImage.bind(this, pic.get('id')) }
+                  onMouseEnter={ this.startHover }
+                  onMouseLeave={ this.endHover }
+                  style={styles.card}>
               <CardMedia>
                 <img style={styles.image} src={pic.get('thumbnail')} />
               </CardMedia>
               <CardActions>
-                <Link to={`/main/image/${pic.get('id')}`}>
-                  <FlatButton key={counter++} label={pic.get('title')} />
-                </Link>
+                <FlatButton key={counter++} label={pic.get('title')} />
               </CardActions>
               <CardTitle subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."  />
             </Card>

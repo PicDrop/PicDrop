@@ -10,7 +10,8 @@ const styles = {
     maxWidth: screen.width * 0.2,
     marginLeft: 10,
     marginTop: -10,
-    paddingTop: 20
+    paddingTop: 20,
+    backgroundColor: '#FFFFFF',
   }
 };
 

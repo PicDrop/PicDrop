@@ -20,15 +20,16 @@ class LogoBar extends React.Component {
     this.setState({ cursor: 'auto' });
   }
   render() {
-    const titleStyles = { color: 'DIMGREY', fontFamily: 'Abel, sans-serif', cursor: this.state.cursor };
+    const titleStyles = { color: '#5A5A5A', fontFamily: 'Abel, sans-serif', cursor: this.state.cursor };
     return (
       <div>
         <AppBar
-          style={{ backgroundColor: 'WHITE' }}
-          title={<span  onClick={ this.onClick }
+          style={{ backgroundColor: '#FFFFFF' }}
+          title={<span onClick={ this.onClick }
                         onMouseEnter={ this.startHover }
                         onMouseLeave={ this.endHover }
                         style={ titleStyles }>PICDROP</span>}
+          iconElementLeft={<img style={{ maxHeight: '50px' }} src="http://i.imgur.com/ASsKxdX.png" />}
           iconElementRight={<LogInOut history={this.props.history} />}
           // iconElementRight={<a href='/api/auth/google'>Google</a>}
           zDepth={0}
