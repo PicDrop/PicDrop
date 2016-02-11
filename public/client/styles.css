@@ -4,14 +4,14 @@ html{
 body {
     overflow-x: hidden;
 }
-#splashview {
+/*#splashview {
   height:100vh;
   background: url('https://source.unsplash.com/random/1600x900') no-repeat 50% 50% ;
   background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   -webkit-background-size: cover;
-}
+}*/
 .selected {
     background-color: #CCCCCC;
     border-bottom: 1px solid white !important;
