@@ -60,15 +60,14 @@ class ImageView extends React.Component {
       { picId }
     )
     .then((response) => {
-      console.log(response);
-      dispatch(userPicsActions.deletePic(picId));
-      if (folderName) {
-        disptach(foldersActions.removePic(folderName, picId));
+      if (folderName !== null) {
+        dispatch(foldersActions.removePic(folderName, picId));
       }
       if (tags.size) {
         dispatch(tagsActions.removePic(tags, picId));
       }
-      this.props.history.push({ pathname: '/main/collection' });
+      dispatch(userPicsActions.deletePic(picId));
+      // this.props.history.push({ pathname: '/main/collection' });
     });
   }
 

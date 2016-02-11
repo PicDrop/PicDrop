@@ -10,6 +10,7 @@ class Image extends React.Component {
     //const viewing = this.props.viewing;
     const picId = this.props.params.imageId;
     const pic = userPics.get(picId);
+    if (pic === undefined) this.props.history.push({ pathname: '/main/collection' });
     const originalUrl = pic.get('originalUrl');
     const folder = pic.get('folder');
     const title = pic.get('title');

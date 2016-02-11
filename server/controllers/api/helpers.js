@@ -5,12 +5,12 @@ function buildUserState(user) {
     if(pic.folder){
       pic.folder = pic.folder.name;
     }else{
-      pic.folder = '';
+      pic.folder = null;
     }
     newUser.userPics[id] = pic;
     if(newUser.folders[pic.folder]) {
       newUser.folders[pic.folder][id] = true;
-    } else {
+    } else if(pic.folder !== null) {
       newUser.folders[pic.folder] = {}
       newUser.folders[pic.folder][id] = true;
     }
