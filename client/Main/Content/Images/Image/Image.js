@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ImageInfo from './ImageInfo/ImageInfo';
 import ImageView from './ImageView/ImageView';
-import Immutable from 'immutable';
+import { Map, List } from 'immutable';
 
 class Image extends React.Component {
   render() {
@@ -10,6 +10,7 @@ class Image extends React.Component {
     //const viewing = this.props.viewing;
     const picId = this.props.params.imageId;
     const pic = userPics.get(picId);
+    if (pic === undefined) this.props.history.push({ pathname: '/main/collection' });
     const originalUrl = pic.get('originalUrl');
     const folder = pic.get('folder');
     const title = pic.get('title');
@@ -31,6 +32,9 @@ class Image extends React.Component {
           <ImageView
             originalUrl={ originalUrl }
             picId={ picId }
+            picInfo={ pic }
+            history={ this.props.history }
+            dispatch={ this.props.dispatch }
           />
         </div>
       </div>

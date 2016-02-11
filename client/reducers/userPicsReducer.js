@@ -1,10 +1,13 @@
-import { Map } from 'immutable';
+import { Map, List } from 'immutable';
 
 const addTag = (state, info) => {
   const picsTags = state.getIn([info.picId, 'tags']);
   if (picsTags.includes(info.tag)) return state;
   const newState = state.updateIn([info.picId, 'tags'], tags => tags.push(info.tag));
   return newState;
+};
+const deletePic = (state, picId) => {
+  return state.delete(picId);
 };
 
 const userPicsReducer = (state = new Map(), action) => {
@@ -13,6 +16,8 @@ const userPicsReducer = (state = new Map(), action) => {
       return state.merge(action.state);
     case 'ADD_TAG_TO_PIC':
       return addTag(state, action.state);
+    case 'DELETE_PIC':
+      return deletePic(state, action.picId);
     default:
       return state;
   }

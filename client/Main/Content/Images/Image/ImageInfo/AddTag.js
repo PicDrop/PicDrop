@@ -41,6 +41,7 @@ class AddTag extends React.Component {
       console.log(resp);
       this.props.dispatch(userPicsActions.addTagToPic(tag, picId));
       this.props.dispatch(tagsActions.addPicToTag(tag, picId));
+      this.props.handleSubmit();
     });
   }
 

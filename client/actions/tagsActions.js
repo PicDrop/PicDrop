@@ -11,6 +11,12 @@ const tagsActions = {
       state: { tag, picId },
     };
   },
+  removePic: (tags, picId) => {
+    return {
+      type: 'REMOVE_PIC_TAGS',
+      info: { tags, picId },
+    };
+  },
 };
 
 export default tagsActions;
