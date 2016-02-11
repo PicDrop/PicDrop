@@ -20,7 +20,9 @@ const styles = {
     justifyContent: 'center',
     //minWidth: 965,
     minHeight: screen.height - 240,
+    maxHeight: screen.height - 240,
     padding: 21,
+    overflowY: 'scroll',
   },
   card: {
     maxWidth: 220,

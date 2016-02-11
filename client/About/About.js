@@ -18,9 +18,9 @@ const styles = {
   },
   card: {
     maxWidth: 320,
-    maxHeight: 300,
-    //minWidth: 320,
-    minHeight: 400,
+    maxHeight: 422,
+    minWidth: 320,
+    minHeight: 422,
     margin: 16,
   },
   image: {
