@@ -14,8 +14,8 @@ function buildUserState(user) {
       newUser.folders[pic.folder] = {}
       newUser.folders[pic.folder][id] = true;
     }
-    if(user.tags !== undefined){
-      user.tags.forEach(function(tag){
+    if(pic.tags !== undefined){
+      pic.tags.forEach(function(tag){
         if(newUser.tags[tag]){
           newUser.tags[tag][id] = true;
         } else {
