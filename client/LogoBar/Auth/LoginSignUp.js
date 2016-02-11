@@ -1,7 +1,7 @@
 import React from 'react';
 import FlatButton from 'material-ui/lib/flat-button';
 
-class LoginSignup extends React.Component {
+class LoginSignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
