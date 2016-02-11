@@ -24,16 +24,12 @@ class Tags extends React.Component {
     return (
       <div>
         <div className="sidebar-header">
-          <i className="material-icons">filter_frames</i>
-          <div>Tags</div>
+          <i className="material-icons" style={{ color: '#5A5A5A' }}>filter_frames</i>
+          <div style={{ color: '#5A5A5A' }}>Tags</div>
         </div>
         <List>
           {tags}
         </List>
-        <a className="sidebar-link" href="#">
-          <i className="material-icons">expand_more</i>
-          <div>Show All</div>
-        </a>
       </div>
     );
   }

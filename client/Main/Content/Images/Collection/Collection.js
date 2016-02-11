@@ -13,7 +13,7 @@ class Collection extends React.Component {
           <CollectionInfo folders={this.props.folders} tags={this.props.tags}/>
         </div>
         <div className="col-sm-8 col-md-9 col-lg-10 image-collection">
-          <CollectionView userPics={this.props.userPics}/>
+          <CollectionView history={ this.props.history } userPics={this.props.userPics}/>
         </div>
       </div>
     );

@@ -16,7 +16,7 @@ const styles = {
     marginLeft: -14,
     //maxWidth: screen.width * 0.8,
     //minWidth: screen.width * 0.8,
-    backgroundColor: '#E9E9F4',
+    backgroundColor: '#F3F3F3',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
