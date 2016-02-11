@@ -32,7 +32,7 @@ app.use(function(err, req, res, next){
 });
 // Handle favicon request
 app.get('/favicon.ico', function(req, res){
-  fs.readFile(__dirname + '../public/client/assets/pd_logo.png', function(err, data){
+  fs.readFile(__dirname + '/../public/client/assets/pd_logo.png', function(err, data){
     if(err) console.log(err);
     res.status(200).send(data);
   });

@@ -33,6 +33,7 @@ function buildUserState(user) {
     });
   }
   newUser.profile.email = user.email;
+  console.log(newUser);
   return newUser;
 };
 
