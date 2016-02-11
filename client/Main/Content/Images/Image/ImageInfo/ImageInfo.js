@@ -2,7 +2,6 @@ import React from 'react';
 import TagList from './TagList';
 import AddTag from './AddTag';
 import FlatButton from 'material-ui/lib/flat-button';
-import TextField from 'material-ui/lib/text-field';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Paper from 'material-ui/lib/paper';
@@ -49,6 +48,7 @@ class ImageInfo extends React.Component {
             </List>
             <List subheader="Tags" subheaderStyle={ SUBHEADERSTYLE } >
               <AddTag
+                dispatch={ this.props.dispatch }
                 picId = { this.props.picId }
               />
               <TagList

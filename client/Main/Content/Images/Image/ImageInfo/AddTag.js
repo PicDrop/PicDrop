@@ -3,6 +3,8 @@ import { reduxForm } from 'redux-form';
 import axios from 'axios';
 import FlatButton from 'material-ui/lib/flat-button';
 import TextField from 'material-ui/lib/text-field';
+import userPicsActions from '../../../../../actions/userPicsActions';
+import tagsActions from '../../../../../actions/tagsActions';
 
 
 class AddTag extends React.Component {
@@ -37,6 +39,8 @@ class AddTag extends React.Component {
     )
     .then((resp) => {
       console.log(resp);
+      this.props.dispatch(userPicsActions.addTagToPic(tag, picId));
+      this.props.dispatch(tagsActions.addPicToTag(tag, picId));
     });
   }
 

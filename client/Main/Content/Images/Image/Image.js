@@ -24,6 +24,7 @@ class Image extends React.Component {
             originalUrl={ originalUrl }
             currentTags={ currentTags }
             history={ this.props.history }
+            dispatch={ this.props.dispatch }
           />
         </div>
         <div className="col-sm-8 col-md-9 col-lg-10">
