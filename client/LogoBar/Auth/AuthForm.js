@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
-import LoginSignup from './LoginSignup';
+import LoginSignUp from './LoginSignUp';
 import { reduxForm } from 'redux-form';
 import axios from 'axios';
 import appActions from '../../actions/appActions';
@@ -79,7 +79,7 @@ class AuthForm extends React.Component {
         />
         </form>
         <br/>
-        <LoginSignup
+        <LoginSignUp
           flipForm={ this.flipForm }
         />
       </div>
