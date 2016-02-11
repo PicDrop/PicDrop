@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux';*/
 class Collection extends React.Component {
   render() {
     return (
-      <div className="row"  style={{ height: screen.height - 217 }}>
+      <div className="row"  style={{ height: screen.height - 262 }}>
         <div className="col-sm-4 col-md-3 col-lg-2 info-bar">
           <CollectionInfo folders={this.props.folders} tags={this.props.tags}/>
         </div>

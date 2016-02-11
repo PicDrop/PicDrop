@@ -55,36 +55,36 @@ const styles = {
     top: '54%',
   },
   container: {
-    height: screen.height - 159,
+    height: screen.height - 172,
     backgroundImage: 'url(/assets/team_pattern.png)',
     backgroundRepeat: 'repeat',
-  }
+  },
 };
 
 const teamData = [
   {
-    img: 'http://lorempixel.com/300/300',
+    img: '/assets/tm.jpeg',
     member: 'Travis Miller',
     role: 'Product Owner, Full-Stack Engineer',
     linkedIn: 'travisbmiller',
     github: 'travisbmiller',
   },
   {
-    img: 'http://lorempixel.com/300/300',
+    img: '/assets/bb.jpg',
     member: 'Bryan Bierce',
     role: 'Scrum Master, Full-Stack Engineer',
     linkedIn: 'bryanbierce',
     github: 'bryanbierce',
   },
   {
-    img: 'http://lorempixel.com/300/300',
+    img: '/assets/rj.jpg',
     member: 'Ryan Jagger',
     role: 'Full-Stack Engineer',
     linkedIn: 'ryanjagger',
     github: 'ryanjagger',
   },
   {
-    img: 'http://lorempixel.com/300/300',
+    img: '/assets/sg.jpeg',
     member: 'Santosh Gautam',
     role: 'Full-Stack Engineer',
     linkedIn: 'gautamsantosh',
@@ -96,12 +96,12 @@ class About extends React.Component {
   render() {
     return (
       <div style={styles.container}>
-        <div className="row">
-          <div className="col-lg-12" style={{ position: 'relative' }}>
+
+          <div style={{ position: 'relative' }}>
             <img style={styles.banner} src="http://i65.tinypic.com/2afbrrl.jpg" alt=""/>
             <p style={styles.overlay}>The Team</p>
           </div>
-        </div>
+
         <div style={styles.root} zDepth={0}>
           {teamData.map(tile => (
             <Card style={styles.card}>
