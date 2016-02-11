@@ -33,4 +33,4 @@ LoginSignup.PropTypes = {
   flipForm: React.PropTypes.func.isRequired,
 };
 
-export default LoginSignup;
+export default LoginSignUp;
