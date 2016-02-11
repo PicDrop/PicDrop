@@ -126,7 +126,7 @@ const profile = new Map({
   id: '',
 });
 
-const initialState = {
+const initialStateDev = {
   userPics,
   folders,
   tags,
@@ -134,5 +134,18 @@ const initialState = {
   app,
   profile,
 };
+const initialStateProd = {
+  userPics: new Map(),
+  folders: new Map(),
+  tags: new Map(),
+  viewing: Map({
+    currentFolder: '',
+    currentFolderPics: new Map(),
+    currentTags: new Set(),
+    currentTagsPics: new Map(),
+    currentCollection: new Set(),
+    currentImage: ''
+  }),
+};
 
-export default initialState;
+export default initialStateProd;

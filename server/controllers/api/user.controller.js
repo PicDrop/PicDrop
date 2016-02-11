@@ -7,16 +7,18 @@ module.exports = {
   createDrop: function(req, res){
 
     DB.User.get(req.user.id).getJoin({userPics: true, folders: true}).run().then(function(user){
+      console.log(req.body);
       var newPic = DB.Picture({
         originalUrl: req.body.url,
         thumbnail: req.body.url,
         domain: req.body.domain,
         status: false,
-        title: '',
+        title: req.body.title,
         tags: req.body.tags,
         note: req.body.note
       });
       if(req.body.folder){
+        console.log(user.folders, ' ALL FOLDERS');
         var found = false;
         user.folders.forEach(function(folder){
           if(folder.name === req.body.folder) {
@@ -26,12 +28,13 @@ module.exports = {
           }
         });
         if(!found){
-          var newFolder = DB.Folder({name: newPic.folder, pics: []});
+          var newFolder = DB.Folder({name: req.body.folder, pics: []});
           newFolder.pics.push(newPic);
           user.folders.push(newFolder);
           newPic.folder = newFolder;
         }
       }
+      console.log(newPic);
       user.userPics.push(newPic);
       user.saveAll({userPics: true, folders: true}).then(function(user){
         res.status(201).send({picId: newPic.id});

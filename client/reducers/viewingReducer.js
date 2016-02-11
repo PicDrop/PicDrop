@@ -72,7 +72,16 @@ const updateCurrentTags = (state, tag) => {
   //return newState;
 }
 
-const viewingReducer = (state = new Map(), action) => {
+const defaultState = new Map({
+  currentFolder: '',
+  currentFolderPics: new Map(),
+  currentTags: new Set(),
+  currentTagsPics: new Map(),
+  currentCollection: new Set(),
+  currentImage: '',
+});
+
+const viewingReducer = (state = defaultState, action) => {
   switch (action.type) {
     case 'SET_VIEWING_STATE':
       return state.merge(action.state);
