@@ -11,6 +11,12 @@ const userPicsActions = {
       state: { tag, picId },
     };
   },
+  deletePic: (picId) => {
+    return {
+      type: 'DELETE_PIC',
+      picId,
+    };
+  },
 };
 
 export default userPicsActions;

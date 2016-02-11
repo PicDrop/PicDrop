@@ -9,7 +9,6 @@ import Paper from 'material-ui/lib/paper';
 const styles = {
   root: {
     minHeight: screen.height - 240,
-    //width: screen.width * 0.2,
     maxWidth: screen.width * 0.2,
     marginLeft: 10,
     marginTop: -10,
@@ -18,7 +17,6 @@ const styles = {
 };
 
 const SUBHEADERSTYLE = { fontSize: '11px', lineHeight: '10px' };
-const REDBORDERSTYLE = { borderStyle: 'dotted', borderColor: 'red' };
 
 class ImageInfo extends React.Component {
 

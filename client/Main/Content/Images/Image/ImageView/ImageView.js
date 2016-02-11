@@ -5,6 +5,10 @@ import Card from 'material-ui/lib/card/card';
 import CardActions from 'material-ui/lib/card/card-actions';
 import CardMedia from 'material-ui/lib/card/card-media';
 import Paper from 'material-ui/lib/paper';
+import userPicsActions from '../../../../../actions/userPicsActions';
+import foldersActions from '../../../../../actions/foldersActions';
+import tagsActions from '../../../../../actions/tagsActions';
+import { Map, List } from 'immutable';
 
 const styles = {
   root: {
@@ -45,18 +49,27 @@ class ImageView extends React.Component {
   }
 
   handleDelete() {
-    console.log('handleDelete called');
     const picId = this.props.picId;
-    console.log(picId);
     const token = localStorage.getItem('pd.token');
+    const folderName = this.props.picInfo.get('folder');
+    const tags = this.props.picInfo.get('tags');
+    const dispatch = this.props.dispatch;
+
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     axios.post('/api/user/removeDrop',
-      { picId: picId }
+      { picId }
     )
-    .then(function (response) {
+    .then((response) => {
       console.log(response);
+      dispatch(userPicsActions.deletePic(picId));
+      if (folderName) {
+        disptach(foldersActions.removePic(folderName, picId));
+      }
+      if (tags.size) {
+        dispatch(tagsActions.removePic(tags, picId));
+      }
+      this.props.history.push({ pathname: '/main/collection' });
     });
-
   }
 
   render() {

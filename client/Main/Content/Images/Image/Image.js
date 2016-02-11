@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ImageInfo from './ImageInfo/ImageInfo';
 import ImageView from './ImageView/ImageView';
-import Immutable from 'immutable';
+import { Map, List } from 'immutable';
 
 class Image extends React.Component {
   render() {
@@ -31,6 +31,9 @@ class Image extends React.Component {
           <ImageView
             originalUrl={ originalUrl }
             picId={ picId }
+            picInfo={ pic }
+            history={ this.props.history }
+            dispatch={ this.props.dispatch }
           />
         </div>
       </div>
