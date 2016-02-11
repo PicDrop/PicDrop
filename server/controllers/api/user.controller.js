@@ -26,7 +26,7 @@ module.exports = {
           }
         });
         if(!found){
-          var newFolder = DB.Folder({name: newPic.folder});
+          var newFolder = DB.Folder({name: newPic.folder, pics: []});
           newFolder.pics.push(newPic);
           user.folders.push(newFolder);
           newPic.folder = newFolder;

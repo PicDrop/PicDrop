@@ -5,6 +5,12 @@ const userPicsActions = {
       state: newState,
     };
   },
+  addTagToPic: (tag, picId) => {
+    return {
+      type: 'ADD_TAG_TO_PIC',
+      state: { tag, picId },
+    };
+  },
 };
 
 export default userPicsActions;
