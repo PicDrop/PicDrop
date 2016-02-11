@@ -22,9 +22,12 @@ module.exports = {
         var found = false;
         user.folders.forEach(function(folder){
           if(folder.name === req.body.folder) {
-            folder.pics.push(newPic);
-            newPic.folder = folder;
             found = true;
+            DB.Folder.get(folder.id).getJoin({pics: true}).run().then(function(folder){
+              folder.pics.push(newPic);
+              newPic.folder = folder;
+              folder.saveAll({ pics: true });
+            });
           }
         });
         if(!found){
@@ -34,11 +37,6 @@ module.exports = {
           newPic.folder = newFolder;
         }
       }
-      // if(req.body.tags.length){    
-      //   req.body.tags.forEach(function(tag){
-      //     if(user.tags.indexOf(tag) === -1) user.tags.push(tag);  
-      //   });
-      // }
       console.log(newPic);
       user.userPics.push(newPic);
       user.saveAll({userPics: true, folders: true}).then(function(user){
