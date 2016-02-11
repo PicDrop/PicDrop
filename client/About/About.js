@@ -11,7 +11,7 @@ import StarBorder from 'material-ui/lib/svg-icons/toggle/star-border';
 
 const styles = {
   root: {
-    marginTop: 40,
+    marginTop: 14,
     //marginLeft: -14,
     //backgroundColor: '#E9E9F4',
     display: 'flex',
@@ -40,7 +40,7 @@ const styles = {
 /*    left: 0,
     top: 0,*/
     minWidth: screen.availWidth,
-    maxHeight: screen.availHeight * 0.4,
+    maxHeight: screen.availHeight * 0.3,
     background: 'linear-gradient(rgba(20,20,20, .5),rgba(20,20,20, .5))',
   },
   overlay: {
