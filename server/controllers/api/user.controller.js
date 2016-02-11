@@ -23,12 +23,11 @@ module.exports = {
         user.folders.forEach(function(folder){
           if(folder.name === req.body.folder) {
             found = true;
-            newPic.folder = folder;
-          //   DB.Folder.get(folder.id).getJoin({pics: true}).run().then(function(folder){
-          //     folder.pics.push(newPic);
-          //     newPic.folder = folder;
-          //     folder.saveAll({ pics: true });
-          //   });
+            // newPic.folder = folder;
+            DB.Folder.get(folder.id).getJoin({pics: true}).run().then(function(folder){
+              folder.pics.push(newPic);
+              newPic.folder = folder;
+            });
           }
         });
         if(!found){
