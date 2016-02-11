@@ -11,7 +11,7 @@ var User = thinky.createModel('User', {
   email: type.string(),
   password: type.string(),
   status: type.boolean(),
-  tags: type.object()
+  tags: type.array()
 });
 var Picture = thinky.createModel('Picture', {
   id: type.string(),

@@ -29,7 +29,7 @@ class LoginSignUp extends React.Component {
     );
   }
 }
-LoginSignup.PropTypes = {
+LoginSignUp.PropTypes = {
   flipForm: React.PropTypes.func.isRequired,
 };
 
