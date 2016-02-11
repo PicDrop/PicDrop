@@ -6,8 +6,6 @@ class SplashView extends React.Component {
   render() {
     return (
       <div id="splashview">
-
-
         <div className="intro-header">
             <div className="container">
                 <div className="row">
@@ -16,16 +14,15 @@ class SplashView extends React.Component {
                             <h1>PICDROP</h1>
                             <h3>Save the photos you love, organize them your way.</h3>
                             <ul className="list-inline intro-social-buttons">
-                                <li>
-                                    <FlatButton label="Github" href={"https://github.com/PicDrop/PicDrop"} backgroundColor="white" primary={true} />
-                                </li>
+                              <li>
+                                  <FlatButton label="Github" href={"https://github.com/PicDrop/PicDrop"} backgroundColor="white" primary={true} />
+                              </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <div className="content-section-a">
             <div className="container">
@@ -48,13 +45,13 @@ class SplashView extends React.Component {
                   <div className="col-lg-5 col-sm-pull-6  col-sm-6">
                     <video preload="auto" autoPlay loop="loop" muted="muted" volume="0" id="myVideo">
                       <source src="assets/video.mp4" type="video/mp4" />
-                  </video>
+                    </video>
                   </div>
-                    <div className="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                        <div className="clearfix"></div>
-                        <h2 className="section-heading">Add tags to find it later</h2>
-                        <p className="lead"></p>
-                    </div>
+                  <div className="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <div className="clearfix"></div>
+                    <h2 className="section-heading">Add tags to find it later</h2>
+                    <p className="lead"></p>
+                  </div>
                 </div>
             </div>
         </div>
@@ -71,9 +68,7 @@ class SplashView extends React.Component {
                         <img className="img-responsive" style={{ width: '100%', height: 'auto' }} src="assets/extension1.png" alt="" />
                     </div>
                 </div>
-
             </div>
-
         </div>
 
         <footer>
