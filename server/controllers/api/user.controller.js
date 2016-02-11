@@ -34,11 +34,11 @@ module.exports = {
           newPic.folder = newFolder;
         }
       }
-      if(req.body.tags.length){    
-        req.body.tags.forEach(function(tag){
-          if(user.tags.indexOf(tag) === -1) user.tags.push(tag);  
-        });
-      }
+      // if(req.body.tags.length){    
+      //   req.body.tags.forEach(function(tag){
+      //     if(user.tags.indexOf(tag) === -1) user.tags.push(tag);  
+      //   });
+      // }
       console.log(newPic);
       user.userPics.push(newPic);
       user.saveAll({userPics: true, folders: true}).then(function(user){
