@@ -144,7 +144,7 @@ const initialStateProd = {
     currentTags: new Set(),
     currentTagsPics: new Map(),
     currentCollection: new Set(),
-    currentImage: ''
+    currentImage: '',
   }),
 };
 
