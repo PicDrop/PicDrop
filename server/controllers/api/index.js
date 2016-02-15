@@ -28,7 +28,7 @@ apiRouter.post('/user/createDrop', user.createDrop);
 apiRouter.post('/user/createFolder', user.createFolder);
 apiRouter.post('/user/tagDrop', user.tagDrop);
 apiRouter.post('/user/untagDrop', user.untagDrop);
-apiRouter.post('/user/updateFolder', user.updateFolder);
+apiRouter.post('/user/updateFolder', user.changeDropsFolder);
 apiRouter.post('/user/removeDrop', user.removeDrop);
 apiRouter.post('/user/deleteFolder', user.deleteFolder);
 apiRouter.put('/user/updatePassword', user.updatePassword);
