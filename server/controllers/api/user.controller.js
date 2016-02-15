@@ -5,51 +5,39 @@ var bcrypt = require('bcrypt');
 
 module.exports = {
   createDrop: function(req, res){
-
-    DB.User.get(req.user.id).getJoin({userPics: true, folders: true}).run().then(function(user){
-      console.log(req.body);
+    var folder = req.body.folder;
+    DB.User.get(req.user.id).getJoin({userPics: true}).run().then(function(user){
       var newPic = DB.Picture({
         originalUrl: req.body.url,
         thumbnail: req.body.url,
         domain: req.body.domain,
         status: false,
+        folder: req.body.folder,
         title: req.body.title,
         tags: req.body.tags,
         note: req.body.note
       });
-      if(req.body.folder){
-        console.log(user.folders, ' ALL FOLDERS');
-        var found = false;
-        user.folders.forEach(function(folder){
-          if(folder.name === req.body.folder) {
-            found = true;
-            // newPic.folder = folder;
-            DB.Folder.get(folder.id).getJoin({pics: true}).run().then(function(folder){
-              folder.pics.push(newPic);
-              newPic.folder = folder;
-            });
-          }
-        });
-        if(!found){
-          var newFolder = DB.Folder({name: req.body.folder, pics: []});
-          newFolder.pics.push(newPic);
-          user.folders.push(newFolder);
-          newPic.folder = newFolder;
+      if(folder){
+        if(!user.folders[folder]){
+          user.folders[folder] = {};
         }
+        user.folders[folder][newPic.id] = true;
       }
-      console.log(newPic);
       user.userPics.push(newPic);
-      user.saveAll({userPics: true, folders: true}).then(function(user){
+      user.saveAll({ userPics: true }).then(function(user){
+        console.log(user, 'after save!!!!')
         res.status(201).send({picId: newPic.id});
       });
     });
   },
   createFolder: function(req, res){
-    DB.User.get(req.user.id).getJoin({folders: true}).run().then(function(user){
-      var newFolder = DB.Folder({name: req.body.folderName});
-      user.folders.push(newFolder);
-      user.saveAll({folders: true}).then(function(user){
-        res.status(201).send({folderId: newFolder.id});
+    DB.User.get(req.user.id).run().then(function(user){
+      var newFolder = req.body.folderName;
+      if(!user.folders[newFolder]){
+        user.folders[newFolder] = {};
+      }
+      user.save().then(function(user){
+        res.status(201).send();
       });
     });
   },
@@ -80,25 +68,19 @@ module.exports = {
         ).send('Tag removed');
     })
   },
-  updateFolder: function(req, res){
-    DB.User.get(req.user.id).getJoin({folders: true}).run().then(function(user){
-      var updatedFolder = null;
-      if(user.folders.length){
-        user.folders.forEach(function(folder){
-          if(folder.name === req.body.folder){
-            updatedFolder = folder;
-          }
-        });
+  changeDropsFolder: function(req, res){
+    DB.User.get(req.user.id).run().then(function(user){
+      var oldFolder = req.body.oldFolder, newFolder = req.body.newFolder;
+      var picId = req.body.picId;
+      delete user.folders[oldFolder][picId];
+      if(!user.folders[newFolder]){
+        user.folders[newFolder] = {};
       }
-      if(updatedFolder === null){
-        updatedFolder = DB.Folder({name: req.body.folder});
-        user.folders.push(updatedFolder);
-      }
+      user.folders[newFolder][picId] = true;
       DB.Picture.get(req.body.picId).getJoin({folder: true}).run().then(function(pic){
-        pic.folder = updatedFolder;
-        updatedFolder.pics.push(pic);
-        pic.saveAll({folder: true}).then(function(pic){
-          user.saveAll({folders: true}).then(function(user){
+        pic.folder = newFolder;
+        pic.save().then(function(pic){
+          user.save().then(function(user){
             res.status(201).send('New folder saved');
           });
         });
@@ -107,20 +89,25 @@ module.exports = {
   },
   removeDrop: function(req, res){
     DB.Picture.get(req.body.picId).run().then(function(pic){
+      var folder = pic.folder;
       pic.delete().then(function(result){
-        res.status(200).send('Picture deleted');
+        DB.User.get(req.body.id).run().then(function(user){
+          delete user.folder[folder][req.body.picId];
+          user.save().then(function(user){
+            res.status(200).send('Picture deleted');
+          });
+        });
       });
     });
   },
   deleteFolder: function(req, res){
     DB.User.get(req.user.id).getJoin({folders: true}).run().then(function(user){
-      var targetFolder;
-      user.folders.forEach(function(folder){
-        if(folder.name === req.body.folder) targetFolder = folder;
+      var folder = req.body.folder;
+      var pics = Object.keys(user.folder[folder]);
+      pics.forEach(function(pic){
+        DB.get(pic.id).run().delete();
       });
-      targetFolder.deleteAll({pics: true}).then(function(result){
-        res.status(200).send('Folder and pics deleted');
-      })
+      res.status(200).send('Folder and contents deleted');
     });
   },
   updatePassword: function(req, res){

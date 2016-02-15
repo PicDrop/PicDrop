@@ -8,9 +8,10 @@ var User = thinky.createModel('User', {
     token: type.string(),
     refresh: type.string()
   },
+  folders: type.object().default(function(){ return {}; }),
   email: type.string(),
   password: type.string(),
-  status: type.boolean(),
+  status: type.boolean().default(function(){ return false; }),
   tags: type.array()
 });
 var Picture = thinky.createModel('Picture', {
@@ -22,24 +23,25 @@ var Picture = thinky.createModel('Picture', {
   originalUrl: type.string(),
   note: type.string(),
   domain: type.string(),
-  tags: type.array()
+  tags: type.array(),
+  folder: type.string()
 });
-var Folder = thinky.createModel('Folder', {
-  id: type.string(),
-  googleId: type.string(),
-  name: type.string(),
-  userId: type.string(),
-});
+// var Folder = thinky.createModel('Folder', {
+//   id: type.string(),
+//   googleId: type.string(),
+//   name: type.string(),
+//   userId: type.string(),
+// });
 
-User.hasMany(Folder, 'folders', 'id', 'userId');
+// User.hasMany(Folder, 'folders', 'id', 'userId');
 User.hasMany(Picture, 'userPics', 'id', 'userId');
 Picture.belongsTo(User, 'user', 'userId', 'id');
-Picture.belongsTo(Folder, 'folder', 'folderId', 'id');
-Folder.hasMany(Picture, 'pics', 'id', 'folderId')
-Folder.belongsTo(User, 'user', 'userId', 'id');
+// Picture.belongsTo(Folder, 'folder', 'folderId', 'id');
+// Folder.hasMany(Picture, 'pics', 'id', 'folderId')
+// Folder.belongsTo(User, 'user', 'userId', 'id');
 
 module.exports = {
   User: User,
   Picture: Picture,
-  Folder: Folder
+  // Folder: Folder
 };
