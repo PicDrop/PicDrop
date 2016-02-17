@@ -53,7 +53,7 @@ const styles = {
   },
   iconGray: {
     color: 'gray',
-  }
+  },
 };
 
 class Profile extends React.Component {
@@ -62,31 +62,11 @@ class Profile extends React.Component {
     this.state = {
       shouldOpen: false,
       title: '',
-      message: ''
+      message: '',
     };
   }
-/*  componentWillMount() {
-    console.log("Go and fetch profile");
-    //this.props.getProfile();
-  }*/
-
-/*  <form onSubmit={handleSubmit(this.onSubmit.bind(this, userId))}>
-    onSubmit(id, props) {
-      this.props.setProfile(id, props)
-        .then((resp) => {
-          console.log(resp);
-          this.props.history.push.bind(this, { pathname: '/main/collection' });
-        })
-        .catch((error) => {
-          console.log(error);
-          this.props.history.push.bind(this, { pathname: '/main/collection' });
-        });
-  }*/
   submitForm(e) {
     e.preventDefault();
-    var token = localStorage.getItem('pd.token');
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-
     // axios --put oldPassword and new pw in data /api/user/updatePassword
     axios.put(`/api/user/updatePassword`,
       {
@@ -126,10 +106,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    console.log(this.props.profile.get('email'));
     const userEmail = this.props.profile.get('email');
-    const userId = this.props.profile.get('id');
-    console.log(userId);
     const { fields: { email, oldPassword, newPassword }, handleSubmit } = this.props;
     return (
       <div className="row">
@@ -189,22 +166,6 @@ class Profile extends React.Component {
                   }
                 </RaisedButton>
               </div>
-              <div className="row end-sm end-md end-lg">
-                <Link to={`/api/auth/google`}>
-                  <RaisedButton
-                    className="btn-profile-link"
-                    style={styles.buttonLink}
-                    label="Link to Google Drive"
-                    disabled={oldPassword.error ? true : false}
-                  >
-                    {
-                      oldPassword.error ?
-                        <i className="material-icons btn-icons" style={styles.iconGray}>link</i> :
-                        <i className="material-icons btn-icons" style={styles.iconGreen}>link</i>
-                    }
-                  </RaisedButton>
-                </Link>
-              </div>
             </form>
           </Paper>
         </div>
@@ -237,6 +198,8 @@ export default reduxForm({
   fields: ['email', 'oldPassword', 'newPassword'],
   validate,
 }, mapStateToProps, { setProfile: profileActions.setProfile })(Profile);
+
+
 
 /*export default reduxForm({
   form: 'ProfileForm',
