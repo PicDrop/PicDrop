@@ -11,16 +11,7 @@ apiRouter.post('/auth/signup', auth.userCreate);
 apiRouter.post('/auth/login', auth.userLogin);
 apiRouter.post('/auth/logout', auth.userLogout);
 apiRouter.get('/auth/isAuth', passport.isAuth);
-// apiRouter.post('/auth/dropbox', auth.asdf);
-// apiRouter.post('/auth/google', auth.asdf);
-apiRouter.post('/auth/facebook', auth.userFacebookLogin);
-apiRouter.get('/auth/google', passport.passport.authorize('google', { scope: 'https://www.googleapis.com/auth/drive.file' }));
-apiRouter.get('/auth/google/return', passport.passport.authorize('google', {failureRedirect: '/api/auth/google'}),
-    function(req, res){
-      console.log(req.user, ' before final redirect');
-      res.redirect('/#/profile');
-    });
-apiRouter.get('/auth/google/success', auth.googleSuccess);
+
 /* User Interface Routes */ 
 //?Should we name a user's image object a 'drop'?
 apiRouter.get('/user/getState', user.getState);
