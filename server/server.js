@@ -18,7 +18,6 @@ app.set('port', process.env.PORT || 3000);
 app.use('/', express.static(__dirname + '/../public/client'));
 
 // Passport
-console.log('initialize');
 auth.passportInitialize(app);
 
 // Authinicating Tokens for all routes /api/*
@@ -60,12 +59,13 @@ app.listen(app.get('port'), function(){
 })
 
 // HTTPS Server
-https.createServer({
-  key: fs.readFileSync(__dirname + '/key.pem'),
-  cert: fs.readFileSync(__dirname + '/cert.pem')
-}, app).listen(4000, function () {
-  console.log("listening on 4000")
-});
+
+// https.createServer({
+//   key: fs.readFileSync(__dirname + '/key.pem'),
+//   cert: fs.readFileSync(__dirname + '/cert.pem')
+// }, app).listen(4000, function () {
+//   console.log("listening on 4000")
+// });
 
 module.exports = app;
 
