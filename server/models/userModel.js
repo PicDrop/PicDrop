@@ -3,11 +3,6 @@ var type = thinky.type;
 
 var User = thinky.createModel('User', {
   id: type.string(),
-  google: {
-    id: type.string(),
-    token: type.string(),
-    refresh: type.string()
-  },
   folders: type.object().default(function(){ return {}; }),
   email: type.string(),
   password: type.string(),
@@ -21,6 +16,8 @@ var Picture = thinky.createModel('Picture', {
   title: type.string(),
   userId: type.string(),
   originalUrl: type.string(),
+  storedUrl: type.string(),
+  storedSecureUrl: type.string(),
   note: type.string(),
   domain: type.string(),
   tags: type.array(),

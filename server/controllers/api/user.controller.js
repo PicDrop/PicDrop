@@ -2,31 +2,50 @@ var DB = require('../../models/userModel');
 var passport = require('../../middleware/passport');
 var buildUserState = require('./helpers').buildUserState;
 var bcrypt = require('bcrypt');
+var cloudinary = require('../../utils/cloudinary');
 
 module.exports = {
   createDrop: function(req, res){
-    var folder = req.body.folder;
-    DB.User.get(req.user.id).getJoin({userPics: true}).run().then(function(user){
-      var newPic = DB.Picture({
-        originalUrl: req.body.url,
-        thumbnail: req.body.url,
-        domain: req.body.domain,
-        status: false,
-        folder: req.body.folder,
-        title: req.body.title,
-        tags: req.body.tags,
-        note: req.body.note
-      });
-      if(folder){
-        if(!user.folders[folder]){
-          user.folders[folder] = {};
+    DB.User.get(req.user.id).getJoin({userPics: true, folders: true}).run().then(function(user){
+
+      cloudinary.uploader.upload(req.body.url, function(result){
+        var newPic = DB.Picture({
+          originalUrl: req.body.url,
+          storedUrl: result.url,
+          storedSecureUrl: result.secure_url,
+          thumbnail: req.body.url,
+          domain: req.body.domain,
+          status: false,
+          title: req.body.title,
+          tags: req.body.tags,
+          note: req.body.note
+        });
+        if(req.body.folder){
+          var found = false;
+
+          user.folders.forEach(function(folder){
+            if(folder.name === req.body.folder) {
+              found = true;
+              // newPic.folder = folder;
+              DB.Folder.get(folder.id).getJoin({pics: true}).run().then(function(folder){
+                folder.pics.push(newPic);
+                newPic.folder = folder;
+              });
+            }
+          });
+
+          if(!found){
+            var newFolder = DB.Folder({name: req.body.folder, pics: []});
+            newFolder.pics.push(newPic);
+            user.folders.push(newFolder);
+            newPic.folder = newFolder;
+          }
         }
-        user.folders[folder][newPic.id] = true;
-      }
-      user.userPics.push(newPic);
-      user.saveAll({ userPics: true }).then(function(user){
-        console.log(user, 'after save!!!!')
-        res.status(201).send({picId: newPic.id});
+        console.log(newPic);
+        user.userPics.push(newPic);
+        user.saveAll({userPics: true, folders: true}).then(function(user){
+          res.status(201).send({picId: newPic.id});
+        }); 
       });
     });
   },
