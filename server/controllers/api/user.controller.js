@@ -10,6 +10,7 @@ module.exports = {
       cloudinary.uploader.upload(req.body.url, function(result){
         var newPic = DB.Picture({
           originalUrl: req.body.url,
+          storageId: result.public_id,
           storedUrl: result.url,
           storedSecureUrl: result.secure_url,
           thumbnail: req.body.url,
@@ -93,6 +94,7 @@ module.exports = {
   removeDrop: function(req, res){
     DB.Picture.get(req.body.picId).run().then(function(pic){
       var folder = pic.folder;
+      cloudinary.v2.uploader.destroy(pic.storageId);
       pic.delete().then(function(result){
         DB.User.get(req.body.id).run().then(function(user){
           delete user.folder[folder][req.body.picId];
@@ -108,6 +110,7 @@ module.exports = {
       var folder = req.body.folder;
       var pics = Object.keys(user.folder[folder]);
       pics.forEach(function(pic){
+        cloudinary.v2.uploader.destroy(pic.storageId);
         DB.get(pic.id).run().delete();
       });
       res.status(200).send('Folder and contents deleted');
