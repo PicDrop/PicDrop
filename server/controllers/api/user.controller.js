@@ -10,6 +10,8 @@ module.exports = {
       cloudinary.uploader.upload(req.body.url, function(result){
         var newPic = DB.Picture({
           originalUrl: req.body.url,
+          storedUrl: result.url,
+          storedSecureUrl: result.secure_url,
           thumbnail: req.body.url,
           domain: req.body.domain,
           status: false,
@@ -26,7 +28,6 @@ module.exports = {
         }
         user.userPics.push(newPic);
         user.saveAll({ userPics: true }).then(function(user){
-          console.log(user, 'after save!!!!')
           res.status(201).send({picId: newPic.id});
         });
       });
