@@ -50,9 +50,7 @@ app.get('/favicon.ico', function(req, res){
 });
 
 // load the router module
-//app.use('/api', apiRouter);
 controllers.connectToApi(app);
-
 
 app.listen(app.get('port'), function(){
   console.log('Express listening on port 3000');
