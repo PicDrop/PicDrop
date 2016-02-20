@@ -14,20 +14,20 @@ const styles = {
   root: {
     marginTop: -10,
     marginLeft: -14,
-    //maxWidth: screen.width * 0.8,
-    //minWidth: screen.width * 0.8,
+    // maxWidth: screen.width * 0.8,
+    // minWidth: screen.width * 0.8,
     backgroundColor: '#F3F3F3',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    //minWidth: 965,
+    // minWidth: 965,
     minHeight: screen.height - 240,
     padding: 21,
   },
   card: {
     maxWidth: 670,
     maxHeight: 730,
-/*    minWidth: 220,*/
+    minWidth: 220,
     minHeight: 300,
     margin: 16,
   },
@@ -35,9 +35,8 @@ const styles = {
     maxWidth: 650,
     maxHeight: 650,
     minWidth: 65,
-    //minHeight: 150,
     border: '10px solid white',
-  }
+  },
 };
 
 class ImageView extends React.Component {
@@ -58,7 +57,7 @@ class ImageView extends React.Component {
     axios.post('/api/user/removeDrop',
       { picId }
     )
-    .then((response) => {
+    .then(() => {
       if (folderName !== null) {
         dispatch(foldersActions.removePic(folderName, picId));
       }
@@ -66,11 +65,11 @@ class ImageView extends React.Component {
         dispatch(tagsActions.removePic(tags, picId));
       }
       dispatch(userPicsActions.deletePic(picId));
-      // this.props.history.push({ pathname: '/main/collection' });
+      this.props.history.push({ pathname: '/main/collection' });
     });
   }
-
   render() {
+    console.log(this.props.picInfo.get('storedUrl'));
     return (
       <Paper style={styles.root} zDepth={1}>
         <Card style={styles.card}>
@@ -82,13 +81,13 @@ class ImageView extends React.Component {
               label="Delete"
               onTouchTap={ this.handleDelete }
             />
-            <FlatButton label="Download" />
+            <a href={ this.props.picInfo.get('storedUrl') } download="savedPic" >Download</a>
           </CardActions>
         </Card>
       </Paper>
     );
 
-    /*return (
+    /* return (
       <div style={{ display:'flex', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ width: '55%' }}>
           <Card>
@@ -102,12 +101,16 @@ class ImageView extends React.Component {
           </Card>
         </div>
       </div>
-    );*/
+    ); */
   }
 }
 
 ImageView.propTypes = {
   originalUrl: React.PropTypes.string.isRequired,
+  picInfo: React.PropTypes.object.isRequired,
+  picId: React.PropTypes.string.isRequired,
+  history: React.PropTypes.object.isRequired,
+  dispatch: React.PropTypes.func.isRequired,
 };
 
 export default ImageView;

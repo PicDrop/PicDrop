@@ -4,6 +4,9 @@ html{
 body {
     overflow-x: hidden;
 }
+a {
+  cursor: pointer;
+}
 /*#splashview {
   height:100vh;
   background: url('https://source.unsplash.com/random/1600x900') no-repeat 50% 50% ;
