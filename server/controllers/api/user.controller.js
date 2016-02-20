@@ -7,6 +7,7 @@ var cloudinary = require('../../utils/cloudinary');
 module.exports = {
   createDrop: function(req, res){
     DB.User.get(req.user.id).getJoin({userPics: true}).run().then(function(user){
+      var folder = req.body.folder;
       cloudinary.uploader.upload(req.body.url, function(result){
         var newPic = DB.Picture({
           originalUrl: req.body.url,
@@ -127,11 +128,11 @@ module.exports = {
                 res.status(201).send('Password update successfull');
               });
             });
-          });   
+          });
         }else{
           res.status(401).send('Invalid old password');
         }
       });
     });
   }
-}  
+}
