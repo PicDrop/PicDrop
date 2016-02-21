@@ -18,7 +18,6 @@ app.set('port', process.env.PORT || 3000);
 app.use('/', express.static(__dirname + '/../public/client'));
 
 // Passport
-console.log('initialize');
 auth.passportInitialize(app);
 
 // Authinicating Tokens for all routes /api/*
@@ -30,13 +29,7 @@ app.use(function(err, req, res, next){
     res.status(401).send('Unauthorized');
   }
 });
-// Handle favicon request
-app.get('/favicon.ico', function(req, res){
-  fs.readFile(__dirname + '/../public/client/assets/pd_logo.png', function(err, data){
-    if(err) console.log(err);
-    res.status(200).send(data);
-  });
-})
+
 // CORS
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -48,22 +41,28 @@ app.use(function(req, res, next) {
 
 app.options('*', cors());
 
-// load the router module
-//app.use('/api', apiRouter);
-controllers.connectToApi(app);
+// Handle favicon request
+app.get('/favicon.ico', function(req, res){
+  fs.readFile(__dirname + '/../public/client/assets/pd_logo.png', function(err, data){
+    if(err) console.log(err);
+    res.status(200).send(data);
+  });
+});
 
+// load the router module
+controllers.connectToApi(app);
 
 app.listen(app.get('port'), function(){
   console.log('Express listening on port 3000');
 })
 
 // HTTPS Server
-// https.createServer({
-//   key: fs.readFileSync(__dirname + '/key.pem'),
-//   cert: fs.readFileSync(__dirname + '/cert.pem')
-// }, app).listen(4000, function () {
-//   console.log("listening on 4000")
-// });
+https.createServer({
+  key: fs.readFileSync(__dirname + '/key.pem'),
+  cert: fs.readFileSync(__dirname + '/cert.pem')
+}, app).listen(4000, function () {
+  console.log("listening on 4000")
+});
 
 module.exports = app;
 
