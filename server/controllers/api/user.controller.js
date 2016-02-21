@@ -22,15 +22,17 @@ module.exports = {
           tags: req.body.tags,
           note: req.body.note
         });
-        if(folder){
-          if(!user.folders[folder]){
-            user.folders[folder] = {};
-          }
-          user.folders[folder][newPic.id] = true;
-        }
         user.userPics.push(newPic);
-        user.saveAll({ userPics: true }).then(function(user){
-          res.status(201).send({picId: newPic.id});
+        newPic.save().then(function(pic){
+          if(folder){
+            if(!user.folders[folder]){
+              user.folders[folder] = {};
+            }
+            user.folders[folder][pic.id] = true;
+          }
+          user.saveAll({ userPics: true }).then(function(user){
+            res.status(201).send({picId: pic.id});
+          });
         });
       });
     });
