@@ -1,7 +1,7 @@
 var cloudinary = require('cloudinary');
 
 var configVars;
-if(process.env.Production){
+if(process.env.PRODUCTION){
   configVars = {
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.CLOUD_KEY,
