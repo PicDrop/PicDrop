@@ -46,6 +46,7 @@ module.exports = {
   userLogin: function(req, res, next){
     passport.passport.authenticate('local', function(err, user, info) {
       console.log('in authenticate');
+      console.log(user);
       if (err) return next(err);
       if (!user) return res.status(401).send(info);
 
@@ -59,14 +60,6 @@ module.exports = {
         return res.status(200).send(user);
       });
     })(req, res, next);
-  },
-  googleSuccess: function(req, res){
-    console.log(' in google success');
-    console.log(req.user);
-    var user = buildUserState(req.user);
-    user.token = jwt.sign({id: user.id}, jwtSuperSecretCode);
-    console.log('in google final', user);
-    res.status(200).send(user);
   },
   userLogout: function(req, res){
     req.logout();

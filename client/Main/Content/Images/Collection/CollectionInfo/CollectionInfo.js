@@ -6,13 +6,12 @@ import Paper from 'material-ui/lib/paper';
 const styles = {
   root: {
     minHeight: screen.height - 240,
-    //width: screen.width * 0.2,
     maxWidth: screen.width * 0.2,
     marginLeft: 10,
     marginTop: -10,
     paddingTop: 20,
     backgroundColor: '#FFFFFF',
-  }
+  },
 };
 
 class CollectionInfo extends React.Component {
@@ -31,7 +30,10 @@ class CollectionInfo extends React.Component {
   render() {
     return (
       <Paper style={styles.root} zDepth={1}>
-        <Folders populateCurrentCollection={this.populateCurrentCollection} folders={this.props.folders}/>
+        <Folders
+          populateCurrentCollection={this.populateCurrentCollection}
+          folders={ this.props.folders }
+        />
         <Tags populateCurrentCollection={this.populateCurrentCollection} tags={this.props.tags}/>
       </Paper>
     );

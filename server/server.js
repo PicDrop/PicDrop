@@ -18,7 +18,6 @@ app.set('port', process.env.PORT || 3000);
 app.use('/', express.static(__dirname + '/../public/client'));
 
 // Passport
-console.log('initialize');
 auth.passportInitialize(app);
 
 // Authinicating Tokens for all routes /api/*
@@ -30,28 +29,28 @@ app.use(function(err, req, res, next){
     res.status(401).send('Unauthorized');
   }
 });
+
+// CORS
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header("Access-Control-Allow-Headers", "*");
+
+  next();
+});
+
+app.options('*', cors());
+
 // Handle favicon request
 app.get('/favicon.ico', function(req, res){
   fs.readFile(__dirname + '/../public/client/assets/pd_logo.png', function(err, data){
     if(err) console.log(err);
     res.status(200).send(data);
   });
-})
-// CORS
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header("Access-Control-Allow-Headers", "*");
-  
-  next();
 });
 
-app.options('*', cors());
-
 // load the router module
-//app.use('/api', apiRouter);
 controllers.connectToApi(app);
-
 
 app.listen(app.get('port'), function(){
   console.log('Express listening on port 3000');
@@ -66,4 +65,3 @@ app.listen(app.get('port'), function(){
 // });
 
 module.exports = app;
-
