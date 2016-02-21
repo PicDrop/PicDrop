@@ -30,7 +30,10 @@ class CollectionInfo extends React.Component {
   render() {
     return (
       <Paper style={styles.root} zDepth={1}>
-        <Folders populateCurrentCollection={this.populateCurrentCollection} folders={this.props.folders}/>
+        <Folders
+          populateCurrentCollection={this.populateCurrentCollection}
+          folders={ this.props.folders }
+        />
         <Tags populateCurrentCollection={this.populateCurrentCollection} tags={this.props.tags}/>
       </Paper>
     );
