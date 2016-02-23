@@ -26,8 +26,12 @@ module.exports = {
               })
               .then(function(data){
                 var token = jwt.sign({id: data.id}, jwtSuperSecretCode);
+                var user = buildUserState(data);
+                console.log(data);
+                user.token = token;
+                console.log(user);
                 res.status(201);
-                res.send({token: token});
+                res.send(user);
               })
               .error(function (err) {
                 res.status(501);
