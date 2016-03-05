@@ -1,6 +1,5 @@
 import React from 'react';
 import FlatButton from 'material-ui/lib/flat-button';
-import RaisedButton from 'material-ui/lib/raised-button';
 
 class SplashView extends React.Component {
   render() {
@@ -16,8 +15,9 @@ class SplashView extends React.Component {
                   <ul className="list-inline intro-social-buttons">
                     <li>
                       <FlatButton
-                        label="Github"
-                        href={"https://github.com/PicDrop/PicDrop"}
+                        label="Get the extension"
+                        linkButton
+                        href={"https://chrome.google.com/webstore/detail/picdropio/chhcallbfilklbdmmbeldclpekaeimnk"}
                         backgroundColor="white"
                         primary={true}
                       />
